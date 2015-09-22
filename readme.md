@@ -1,5 +1,5 @@
 # SIMEON ontology
-The SIMEON ontology is an ontology for expressing similarity measures between ontology objects and collections.
+The SIMEON (SImilarity MEasures ONtology) ontology is an ontology for expressing similarity measures between ontology objects and collections.
 
 ## Author
 Alfredo Sánchez Alberca (asalber@ceu.es)
