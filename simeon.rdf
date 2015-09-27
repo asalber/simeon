@@ -37,6 +37,77 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/ceu/simeon#hasSourceEntity -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/ceu/simeon#hasSourceEntity">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has source entity</rdfs:label>
+        <rdfs:label xml:lang="es">tiene entidad origen</rdfs:label>
+        <rdfs:comment xml:lang="en">A similarity measurement expresses the similarity degree of a source object with a target object. This property that relates a similarity measure with the source object.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Una medida de similitud establece el grado de parecido de un objeto origen con otro destino. Esta propiedad relaciona la medida de similitud con el objeto origen.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://purl.org/ceu/simeon#ComparisonMeasure"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#hasTargetEntity -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/ceu/simeon#hasTargetEntity">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has target entity</rdfs:label>
+        <rdfs:label xml:lang="es">tiene entidad destino</rdfs:label>
+        <rdfs:comment xml:lang="en">A similarity measurement expresses the similarity degree of a source object with a target object. This property that relates a similarity measure with the target object.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Una medida de similitud establece el grado de parecido de un objeto origen con otro destino. Esta propiedad relaciona la medida de similitud con el objeto destino.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://purl.org/ceu/simeon#ComparisonMeasure"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/ceu/simeon#hasValue -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/ceu/simeon#hasValue">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has value</rdfs:label>
+        <rdfs:label xml:lang="es">tiene valor</rdfs:label>
+        <rdfs:comment xml:lang="en">Property that relates a similiarity measure with the value of the measure.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Propiedad que relaciona una medida de similitud con el valor de la medida.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://purl.org/ceu/simeon#ComparisonMeasure"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="&xsd;decimal"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                    <rdf:Description>
+                        <xsd:minInclusive rdf:datatype="&xsd;decimal">0.0</xsd:minInclusive>
+                    </rdf:Description>
+                </owl:withRestrictions>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
     // Classes
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -45,14 +116,591 @@
     
 
 
-    <!-- http://purl.org/ceu/simeon#Similarity_measure -->
+    <!-- http://purl.org/ceu/simeon#ComparisonMeasure -->
 
-    <owl:Class rdf:about="http://purl.org/ceu/simeon#Similarity_measure">
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#ComparisonMeasure">
+        <rdfs:label xml:lang="en">Comparison measure</rdfs:label>
+        <rdfs:label xml:lang="es">Medida de comparación</rdfs:label>
+        <rdfs:comment xml:lang="en">A comparison measure is a value that espresses the similarity or dissimilarity degree between two objects.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Una medida de comparación es un valor que expresa el grado de similitud o disimilitud entre dos objetos.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#ComparisonMethod -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#ComparisonMethod">
+        <rdfs:label xml:lang="en">Comparison method</rdfs:label>
+        <rdfs:label xml:lang="es">Método de comparación</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon#ObjectiveComparisonMethod"/>
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon#SubjectiveComparisonMethod"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:comment xml:lang="en">A comparison method identifies the procedure used to get a comparison measure.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Un método de comparación identifica el procedimiento por el que se obtiene una medida de comparación.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#ComparisonMethodForCollections -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#ComparisonMethodForCollections">
+        <rdfs:label xml:lang="en">Comparison method for collections</rdfs:label>
+        <rdfs:label xml:lang="es">Método de comparación para colecciones.</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon#ComparisonMethod"/>
+        <rdfs:comment xml:lang="en">A comparison method for collections is a method for comparing a collection, group or aggregation of objects.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Un método de comparación de colecciones es un método para comparar colecciones, grupos o agregados de objetos.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#ComparisonMethodForSimpleData -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#ComparisonMethodForSimpleData">
+        <rdfs:label xml:lang="en">Comparison method for simple data</rdfs:label>
+        <rdfs:label xml:lang="es">Método de comparación para datos simples</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon#ComparisonMethod"/>
+        <rdfs:comment xml:lang="en">A comparison method for simple data is a method for comparing simple data types like booleans, numbers or strings.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Un método de comparación de datos simple is un método para comparar tipos de datos simples como booleanos, números o cadenas.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#DissimilarityFunction -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#DissimilarityFunction">
+        <rdfs:label xml:lang="en">Dissimilarity function</rdfs:label>
+        <rdfs:label xml:lang="es">Función de disimilitud</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon#ObjectiveComparisonMethod"/>
+        <rdfs:comment xml:lang="en">A dissimilarity function is a real function that associates to every pair of objects in a domain, a real number that expresses the unlikeness, dissimilarity or distance between the two objects according to some of their features.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Una función de disimilitud es una función real que asocia a cada par de elementos de un mismo dominio, un número real que expresa el grado de desemejanza, disimilitud o distancia entre los dos objetos de acuerdo a alguna de sus características.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#DissimilarityMeasure -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#DissimilarityMeasure">
+        <rdfs:label xml:lang="en">Dissimilarity measure</rdfs:label>
+        <rdfs:label xml:lang="es">Medida de disimilitud</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon#ComparisonMeasure"/>
+        <owl:disjointWith rdf:resource="http://purl.org/ceu/simeon#SimilarityMeasure"/>
+        <rdfs:comment xml:lang="en">A dissimilarity measure is a number that expresses the dissimilarity or discrepance degree between two objects, calculated with a dissimilarity function, that is, a real function d that satisfies the following axioms:
+1- Non-negativity: d(x,y) ≥ 0 for all x, y. 
+2- Minimality: d(x,x) = 0 for all x.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Una medida de disimilitud es un número que establece el grado de disimilitud o discrepancia entre dos objetos, calculado con una función de disimilitud, es decir, una función real d que satisface los siguientes axiomas:
+1- No negatividad: d(x, y) ≥ 0 para todo x, y. 
+2- Minimalidad: d(x, x) = 0  para todo x.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#DistanceMeasure -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#DistanceMeasure">
+        <rdfs:label xml:lang="en">Distance measure</rdfs:label>
+        <rdfs:label xml:lang="es">Medida de distancia</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon#SymmetricDissimilarityMeasure"/>
+        <rdfs:comment xml:lang="en">A distance measure is a value that expresses the degree of dissimilarity between two objects calculated with a distance funcion, that is, a real function d that satisfies the following axioms:
+1- Non negativity: d(x,y) ≥ 0 for all x,y.
+2- Coincidence: d(x,y) = 0 if and only if x=y. 
+3- Symmetry: d(x,y) = d(y,x) for all x,y.
+4- Triangle inequality: d(x,z) ≤ d(x,y) + d(y,z) for all x,y,z.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Una medida de distancia es un número que expresa el grado de disimilitud entre dos objetos calculado con una función de distancia d, es decir, una función real d que satisface los siguientes axiomas:
+1- No negatividad: d(x,y) ≥ 0 para todo x,y.
+2- Coincidencia: d(x,y) = 0 si y sólo si x=y.
+3- Simetría: d(x,y) = d(y,x) para todo x,y.
+4- Desigualdad triangular: d(x,z) ≤ d(x,y) + d(y,z) para todo x,y,z.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#NormalizedComparisonMeasure -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#NormalizedComparisonMeasure">
+        <rdfs:label xml:lang="en">Normalized similarity measure</rdfs:label>
+        <rdfs:label xml:lang="es">Medida de comparación normalizada</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon#ComparisonMeasure"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasValue"/>
+                        <owl:allValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="&xsd;decimal"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:maxInclusive rdf:datatype="&xsd;decimal">1</xsd:maxInclusive>
+                                    </rdf:Description>
+                                    <rdf:Description>
+                                        <xsd:minInclusive rdf:datatype="&xsd;decimal">0</xsd:minInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:comment xml:lang="en">A normalized comparison measure is a comparison measure in te real interval [0,1].</rdfs:comment>
+        <rdfs:comment xml:lang="es">Una medida de comparación normalizada es una medida en el intervalo real [0,1].</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#NormalizedDissimilarityMeasure -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#NormalizedDissimilarityMeasure">
+        <rdfs:label xml:lang="en">Normalized dissimilarity measure</rdfs:label>
+        <rdfs:label xml:lang="es">Medida de disimilitud normalizada</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon#DissimilarityMeasure"/>
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon#NormalizedComparisonMeasure"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:comment xml:lang="en">A normalized dissimilarity measure is a dissimilarity measure in the real interval [0,1].</rdfs:comment>
+        <rdfs:comment xml:lang="es">Una medida de disimilitud normalizada es una medida de disimilitud en el intervalo real [0,1].</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#NormalizedDistanceMeasure -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#NormalizedDistanceMeasure">
+        <rdfs:label xml:lang="en">Normalized distance measure</rdfs:label>
+        <rdfs:label xml:lang="es">Medida de distancia normalizada</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon#DistanceMeasure"/>
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon#NormalizedComparisonMeasure"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:comment xml:lang="en">A normalized distance measure is a distance measure in the real interval [0,1].</rdfs:comment>
+        <rdfs:comment xml:lang="es">Una medida de distancia normalizada es una medida de distancia en el intervalo real [0,1].</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#NormalizedSimilarityMeasure -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#NormalizedSimilarityMeasure">
+        <rdfs:label xml:lang="en">Normalized similarity measure</rdfs:label>
+        <rdfs:label xml:lang="es">Medida de similitud normalizada</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon#NormalizedComparisonMeasure"/>
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon#SimilarityMeasure"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:comment xml:lang="en">A normalized similarity measure is a similiarity measure in the real interval [0,1].</rdfs:comment>
+        <rdfs:comment xml:lang="es">Una medida de similitud normalizada es una medida de similitud en el intervalo real [0,1].</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#ObjectiveComparisonMethod -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#ObjectiveComparisonMethod">
+        <rdfs:label xml:lang="en">Objective comparison method</rdfs:label>
+        <rdfs:label xml:lang="es">Método de comparación objetivo</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon#ComparisonMethod"/>
+        <owl:disjointWith rdf:resource="http://purl.org/ceu/simeon#SubjectiveComparisonMethod"/>
+        <rdfs:comment xml:lang="en">An objective comparison method is a comparison method based in a particular procedure, algorithm or function.
+An objective comparison method always returns the same value when applied to the same objects.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Un método de comparación objetivo es un método de comparación basado en un procedimiento, algoritmo o función concreta.
+Un método de comparación objetivo siempre da el mismo resultado cuando se aplica a los mismos objetos.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#SimilarityFunction -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#SimilarityFunction">
+        <rdfs:label xml:lang="en">Similarity function</rdfs:label>
+        <rdfs:label xml:lang="es">Función de similitud</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon#ObjectiveComparisonMethod"/>
+        <rdfs:comment xml:lang="en">A similarity function is a real function that associates to every pair of objects in a domain, a real number that expresses the likeness, similarity or proximity degree between the two objects according to some of their features.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Una función de similitud es una función real que asocia a cada par de objetos de un mismo dominio, un número real que expresa el grado de parecido,  semejanza o proximidad entre los dos objetos de acuerdo a alguna de sus características.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#SimilarityMeasure -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#SimilarityMeasure">
         <rdfs:label xml:lang="en">Similarity measure</rdfs:label>
         <rdfs:label xml:lang="es">Medida de similitud</rdfs:label>
-        <rdfs:comment xml:lang="en">A similarity measure is a number that expresses the similarity degree between two objects.</rdfs:comment>
-        <rdfs:comment xml:lang="es">Una medida de similitud es un número que establece el grado de semejanza o similitud entre dos objetos.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon#ComparisonMeasure"/>
+        <rdfs:comment xml:lang="en">A similarity measure is a number that expresses the similarity degree between two objects, calculated with a similarity function, that is, a real function s that satisfies the following axioms:
+1- Non-negativity: s(x, y) ≥ 0 for all x, y. 
+2- Maximality: s(x, x) ≥ s(x,y) for all x, y.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Una medida de similitud es un número que establece el grado de semejanza o similitud entre dos objetos, calculado con una función de similitud, es decir, una función real s que satisface los siguientes axiomas:
+1- No negatividad: s(x, y) ≥ 0 para todo x, y. 
+2- Maximalidad: s(x, x) ≥ s(x,y) para todo x, y.</rdfs:comment>
     </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#SubjectiveComparisonMethod -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#SubjectiveComparisonMethod">
+        <rdfs:label xml:lang="en">Subjective comparison method</rdfs:label>
+        <rdfs:label xml:lang="es">Método de comparación subjetivo</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon#ComparisonMethod"/>
+        <rdfs:comment xml:lang="en">A subjective comparison method is a comparison method based on the perception, feelings or opinion of a person.
+A subjective comparison method can return different values when applied to the same objects even if it&apos;s performed by the same person.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Un método de comparación subjetivo es un método de comparación basado en la percepción, sentimientos u opinión de una persona.
+Un método de comparación subjetivo puede dar valores distintos cuando se aplica a los mismos objetos incluso si lo aplica la misma persona.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#SymmetricComparisonMeasure -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#SymmetricComparisonMeasure">
+        <rdfs:label xml:lang="en">Symmetric comparison measure</rdfs:label>
+        <rdfs:label xml:lang="es">Medida de comaración simétrica</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon#ComparisonMeasure"/>
+        <rdfs:comment xml:lang="en">A symmetric comparison measure is a comparison measure calculated with a symmetric comparison function, that is, a real function c that satisfies the symmetry axiom:
+c(x,y) = c(y,x) for all x,y.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Una medida de comparación simétrica es una medida de comparación calculada con una función de comparación simétrica, es decir, una función real c que satisface el axioma de simetría:
+c(x,y) = c(y,x) para todo x,y.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#SymmetricDissimilarityMeasure -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#SymmetricDissimilarityMeasure">
+        <rdfs:label xml:lang="en">Symmetric dissimilarity measure</rdfs:label>
+        <rdfs:label xml:lang="es">Medida de disimilitud simétrica</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon#DissimilarityMeasure"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon#SymmetricComparisonMeasure"/>
+        <rdfs:comment xml:lang="en">A symmetric dissimilarity measure is a dissimilarity measure calculated with a symmetric dissimilarity function, that is, a real function d that satisfies the symmetry axiom:
+d(x,y) = d(y,x) for all x,y.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Una medida de disimilitud simétrica es una medida de disimilitud calculada con una función de disimilitud simétrica, es decir, una función real d que satisface el axioma de simetría:
+d(x,y) = d(y,x) para todo x,y.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#SymmetricSimilarityMeasure -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#SymmetricSimilarityMeasure">
+        <rdfs:label xml:lang="en">Symmetric similarity measure</rdfs:label>
+        <rdfs:label xml:lang="es">Medida de similitud simétrica</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon#SimilarityMeasure"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon#SymmetricComparisonMeasure"/>
+        <rdfs:comment xml:lang="en">A symmetric similarity measure is a similarity measure calculated with a symmetric similarity function, that is, a real function s that satisfies the symmetry axiom:
+s(x,y) = s(y,x) for all x,y.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Una medida de similitud simétrica es una medida de similitud calculada con una función de similitud simétrica, es decir, una función real s que satisface el axioma de simetría:
+s(x,y) = s(y,x) para todo x,y.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="urn:swrl#similiarity">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#similarity">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#entity1">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#entity2">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#similarity1">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#value1">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#similarity2">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#value2">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;DatavaluedPropertyAtom"/>
+                        <swrl:argument2 rdf:datatype="&xsd;integer">1</swrl:argument2>
+                        <swrl:propertyPredicate rdf:resource="http://purl.org/ceu/simeon#hasValue"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#similarity"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://purl.org/ceu/simeon#SimilarityMeasure"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#similiarity"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://purl.org/ceu/simeon#hasSourceEntity"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#entity1"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#similarity"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:rest rdf:resource="&rdf;nil"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;SameIndividualAtom"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#entity1"/>
+                                                <swrl:argument2 rdf:resource="urn:swrl#entity2"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                    </rdf:Description>
+                                </rdf:rest>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://purl.org/ceu/simeon#hasTargetEntity"/>
+                                        <swrl:argument2 rdf:resource="urn:swrl#entity2"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#similarity"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://purl.org/ceu/simeon#hasTargetEntity"/>
+                                        <swrl:argument2 rdf:resource="urn:swrl#entity2"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#similarity"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:rest rdf:resource="&rdf;nil"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;SameIndividualAtom"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#entity1"/>
+                                                <swrl:argument2 rdf:resource="urn:swrl#entity2"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://purl.org/ceu/simeon#hasSourceEntity"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#entity1"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#similarity"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://purl.org/ceu/simeon#DissimilarityMeasure"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#similiarity"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;DatavaluedPropertyAtom"/>
+                        <swrl:argument2 rdf:datatype="&xsd;integer">0</swrl:argument2>
+                        <swrl:propertyPredicate rdf:resource="http://purl.org/ceu/simeon#hasValue"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#similarity"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;BuiltinAtom"/>
+                        <swrl:builtin rdf:resource="&swrlb;greaterThanOrEqual"/>
+                        <swrl:arguments rdf:parseType="Collection">
+                            <rdf:Description rdf:about="urn:swrl#value1"/>
+                            <rdf:Description rdf:about="urn:swrl#value2"/>
+                        </swrl:arguments>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://purl.org/ceu/simeon#SimilarityMeasure"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#similarity1"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                <swrl:propertyPredicate rdf:resource="http://purl.org/ceu/simeon#hasSourceEntity"/>
+                                                                <swrl:argument2 rdf:resource="urn:swrl#entity1"/>
+                                                                <swrl:argument1 rdf:resource="urn:swrl#similarity2"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                        <rdf:rest rdf:resource="&rdf;nil"/>
+                                                                        <rdf:first>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&swrl;DatavaluedPropertyAtom"/>
+                                                                                <swrl:propertyPredicate rdf:resource="http://purl.org/ceu/simeon#hasValue"/>
+                                                                                <swrl:argument1 rdf:resource="urn:swrl#similarity2"/>
+                                                                                <swrl:argument2 rdf:resource="urn:swrl#value2"/>
+                                                                            </rdf:Description>
+                                                                        </rdf:first>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                        <swrl:propertyPredicate rdf:resource="http://purl.org/ceu/simeon#hasTargetEntity"/>
+                                                                        <swrl:argument2 rdf:resource="urn:swrl#entity1"/>
+                                                                        <swrl:argument1 rdf:resource="urn:swrl#similarity2"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                        <swrl:classPredicate rdf:resource="http://purl.org/ceu/simeon#SimilarityMeasure"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#similarity2"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;DatavaluedPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="http://purl.org/ceu/simeon#hasValue"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#similarity1"/>
+                                                <swrl:argument2 rdf:resource="urn:swrl#value1"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                    </rdf:Description>
+                                </rdf:rest>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://purl.org/ceu/simeon#hasTargetEntity"/>
+                                        <swrl:argument2 rdf:resource="urn:swrl#entity2"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#similarity1"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                            </rdf:Description>
+                        </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://purl.org/ceu/simeon#hasSourceEntity"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#entity1"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#similarity1"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
 </rdf:RDF>
 
 
