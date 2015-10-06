@@ -1,0 +1,684 @@
+Prefix: : <http://purl.org/ceu/lco#>
+Prefix: dc: <http://purl.org/dc/elements/1.1/>
+Prefix: owl: <http://www.w3.org/2002/07/owl#>
+Prefix: rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Prefix: xml: <http://www.w3.org/XML/1998/namespace>
+Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
+Prefix: rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix: swrl: <http://www.w3.org/2003/11/swrl#>
+Prefix: swrlb: <http://www.w3.org/2003/11/swrlb#>
+
+
+
+Ontology: <http://purl.org/ceu/simeon>
+<http://purl.org/ceu/simeon/1.0>
+
+Annotations: 
+    rdfs:comment "SIMEON ontology allow to establish similarity measures between ontology objets and collections."@en,
+    dc:creator "Alfredo Sánchez Alberca (asalber@ceu.es) <http://aprendeconalf.es/foaf.rdf>"@es,
+    dc:rights "La ontología SIMEON está bajo una licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional ( http://creativecommons.org/licenses/by-sa/4.0/)."@es,
+    rdfs:comment "La ontología SIMEON permite establecer medidas de similitud entre los objetos y colecciones de objetos de las ontologías."@es,
+    rdfs:label "SIMEON Ontology"@en,
+    dc:rights "SIMEON ontology is released under Attribution-ShareAlike 4.0 International Creative Commons license: http://creativecommons.org/licenses/by-sa/4.0/"@en,
+    rdfs:label "Ontología SIMEON"@es
+
+AnnotationProperty: dc:rights
+
+    
+AnnotationProperty: rdfs:seeAlso
+
+    
+AnnotationProperty: rdfs:label
+
+    
+AnnotationProperty: rdfs:comment
+
+    
+AnnotationProperty: dc:creator
+
+    
+Datatype: rdfs:Literal
+
+    
+Datatype: xsd:decimal
+
+    
+Datatype: xsd:integer
+
+    
+Datatype: rdf:PlainLiteral
+
+    
+ObjectProperty: <http://purl.org/ceu/simeon#comparesEntity>
+
+    SubPropertyChain: 
+        <http://purl.org/ceu/simeon#usedByComparisonMeasure> o hasSourceEntity
+    
+    
+ObjectProperty: isPerformedBy
+
+    Annotations: 
+        rdfs:label "es realizada por"@es,
+        rdfs:label "is performed by"@en,
+        rdfs:comment "Propiedad que relaciona una medida de comparación subjetiva con la persona que realiza esa medida."@es,
+        rdfs:comment "Property that relates a subjective comparison measure with the person that performs that measure."@en
+    
+    Domain: 
+        ComparisonMeasure
+    
+    Range: 
+        <http://purl.org/dc/terms/Agent>
+    
+    Characteristics: 
+        Functional
+    
+    
+ObjectProperty: <http://purl.org/dc/terms/hasReference>
+
+    Domain: 
+        ComparisonMethod
+    
+    Range: 
+        <http://purl.org/dc/terms/BibliographicResource>
+    
+    
+ObjectProperty: hasSourceEntity
+
+    Annotations: 
+        rdfs:label "has source entity"@en,
+        rdfs:comment "A similarity measurement expresses the similarity degree of a source object with a target object. This property that relates a similarity measure with the source object."@en,
+        rdfs:label "tiene entidad origen"@es,
+        rdfs:comment "Una medida de similitud establece el grado de parecido de un objeto origen con otro destino. Esta propiedad relaciona la medida de similitud con el objeto origen."@es
+    
+    Domain: 
+        ComparisonMeasure
+    
+    Characteristics: 
+        Functional
+    
+    
+ObjectProperty: hasRange
+
+    Annotations: 
+        rdfs:label "has range"@en,
+        rdfs:label "Property that relates a comparison method with the range of values that returns."@en,
+        rdfs:label "Propiedad que relaciona un método de comparación con el rango de valores que devuelve."@es,
+        rdfs:label "tiene rango"@es
+    
+    Domain: 
+        ComparisonMethod
+    
+    
+ObjectProperty: <http://purl.org/ceu/simeon#usedByComparisonMeasure>
+
+    Annotations: 
+        rdfs:label "usada por medida de comapración"@es,
+        rdfs:comment "Propieda que relaciona un método de comparación con una medida de comparación calculada con ese método."@es,
+        rdfs:label "used by comparsion measure"@en,
+        rdfs:comment "Property that relates a comparison method with a comparison measure calculated with that method."@en
+    
+    InverseOf: 
+        usesComparisonMethod
+    
+    
+ObjectProperty: hasDomain
+
+    Annotations: 
+        rdfs:comment "Propiedad que relaciona un método de comparación con el tipo de objetos o entidades que compara."@es,
+        rdfs:comment "Property that relates a comparison method with the types of objects or entities that compares."@en,
+        rdfs:label "tiene dominio"@es,
+        rdfs:label "has domain"@en
+    
+    Domain: 
+        ComparisonMethod
+    
+    
+ObjectProperty: usesComparisonMethod
+
+    Annotations: 
+        rdfs:comment "Propiedad que relaciona una medida de comparación con el método de comparación utilizado para obtenerla."@es,
+        rdfs:comment "Property that relates a comparison measure with the comparison method used to get it."@en,
+        rdfs:label "usa método de comparación"@es,
+        rdfs:label "uses comparison method"@en
+    
+    Domain: 
+        ComparisonMeasure
+    
+    Range: 
+        ComparisonMethod
+    
+    Characteristics: 
+        Functional
+    
+    InverseOf: 
+        <http://purl.org/ceu/simeon#usedByComparisonMeasure>
+    
+    
+ObjectProperty: hasTargetEntity
+
+    Annotations: 
+        rdfs:comment "Una medida de similitud establece el grado de parecido de un objeto origen con otro destino. Esta propiedad relaciona la medida de similitud con el objeto destino cuando se trata de un literal."@es,
+        rdfs:comment "A similarity measurement expresses the similarity degree of a source object with a target object. This property that relates a similarity measure with the target object."@en,
+        rdfs:comment "Una medida de similitud establece el grado de parecido de un objeto origen con otro destino. Esta propiedad relaciona la medida de similitud con el objeto destino."@es,
+        rdfs:label "has target entity"@en,
+        rdfs:label "tiene entidad destino"@es
+    
+    Domain: 
+        ComparisonMeasure
+    
+    Characteristics: 
+        Functional
+    
+    
+ObjectProperty: hasAlgorithm
+
+    Annotations: 
+        rdfs:comment "Propiedad que relaciona un método de comparación con el algoritmo o procedimiento de cálculo que utiliza."@es,
+        rdfs:comment "Property that relates a comparison method with the algorithm or calculation procedure that uses."@en,
+        rdfs:label "tiene algoritmo"@es,
+        rdfs:label "has algorithm"@en
+    
+    Domain: 
+        ComparisonMethod
+    
+    Range: 
+        Algorithm
+    
+    
+DataProperty: hasValue
+
+    Annotations: 
+        rdfs:label "tiene valor"@es,
+        rdfs:comment "Propiedad que relaciona una medida de similitud con el valor de la medida."@es,
+        rdfs:label "has value"@en,
+        rdfs:comment "Property that relates a similiarity measure with the value of the measure."@en
+    
+    Domain: 
+        ComparisonMeasure
+    
+    Range: 
+        xsd:decimal[>= 0.0]
+    
+    Characteristics: 
+        Functional
+    
+    
+DataProperty: <http://purl.org/ceu/simeon#hasSourceData>
+
+    Annotations: 
+        rdfs:comment "A similarity measurement expresses the similarity degree of a source object with a target object. This property that relates a similarity measure with the source object when that object is a literal."@en,
+        rdfs:label "has source data"@en,
+        rdfs:comment "Una medida de similitud establece el grado de parecido de un objeto origen con otro destino. Esta propiedad relaciona la medida de similitud con el objeto origen cuando se trata de un literal."@es,
+        rdfs:label "tiene dato origen"@es
+    
+    Domain: 
+        ComparisonMeasure
+    
+    Characteristics: 
+        Functional
+    
+    
+DataProperty: <http://purl.org/ceu/simeon#hasTargetData>
+
+    Annotations: 
+        rdfs:comment "A similarity measurement expresses the similarity degree of a source object with a target object. This property that relates a similarity measure with the target object when that object is a literal."@en,
+        rdfs:label "tiene dato destino"@es,
+        rdfs:comment "Una medida de similitud establece el grado de parecido de un objeto origen con otro destino. Esta propiedad relaciona la medida de similitud con el objeto destino cuando se trata de un literal."@es,
+        rdfs:label "has target data"@en
+    
+    Domain: 
+        ComparisonMeasure
+    
+    Characteristics: 
+        Functional
+    
+    
+Class: DissimilarityMeasure
+
+    Annotations: 
+        rdfs:comment "Una medida de disimilitud es un número que establece el grado de disimilitud o discrepancia entre dos objetos, calculado con una función de disimilitud, es decir, una función real d que satisface los siguientes axiomas:
+1- No negatividad: d(x, y) ≥ 0 para todo x, y. 
+2- Minimalidad: d(x, x) = 0  para todo x."@es,
+        rdfs:label "Medida de disimilitud"@es,
+        rdfs:label "Dissimilarity measure"@en,
+        rdfs:comment "A dissimilarity measure is a number that expresses the dissimilarity or discrepance degree between two objects, calculated with a dissimilarity function, that is, a real function d that satisfies the following axioms:
+1- Non-negativity: d(x,y) ≥ 0 for all x, y. 
+2- Minimality: d(x,x) = 0 for all x."@en
+    
+    SubClassOf: 
+        usesComparisonMethod some DissimilarityFunction,
+        ObjectiveComparisonMeasure
+    
+    DisjointWith: 
+        SimilarityMeasure
+    
+    
+Class: ComparisonMethod
+
+    Annotations: 
+        rdfs:comment "A comparison method is a procedure to compare a source object with a target object that returns a real number, known as comparison measure, that expresses the similarity or dissimilarity degree of the source object with the target object."@en,
+        rdfs:label "Método de comparación"@es,
+        rdfs:label "Comparison method"@en,
+        rdfs:comment "Un método de comparación es un procedimiento para comparar un objeto origen con otro destino que devuelve un número real, conocido como medida de comparación, que expresa el grado de similitud o disimilitud del objeto origen con el destino."@es
+    
+    
+Class: <http://purl.obolibrary.org/obo/IAO_0000064>
+
+    Annotations: 
+        rdfs:seeAlso "La ontología de software: http://theswo.sourceforge.net/"@es,
+        rdfs:label "Algoritmo"@es,
+        rdfs:label "Algorithm"@en,
+        rdfs:seeAlso "The software ontology: http://theswo.sourceforge.net/"@en
+    
+    EquivalentTo: 
+        Algorithm
+    
+    
+Class: DissimilarityFunction
+
+    Annotations: 
+        rdfs:comment "A dissimilarity function is a real function that associates to every pair of objects in a domain, a real number that expresses the unlikeness, dissimilarity or distance between the two objects according to some of their features, and satisfies the following axioms:
+1- Non-negativity: d(x,y) ≥ 0 for all x, y. 
+2- Minimality: d(x,x) = 0 for all x."@en,
+        rdfs:comment "Una función de disimilitud es una función real que asocia a cada par de elementos de un mismo dominio, un número real que expresa el grado de desemejanza, disimilitud o distancia entre los dos objetos de acuerdo a alguna de sus características, y satisface los siguientes axiomas:
+1- No negatividad: d(x, y) ≥ 0 para todo x, y. 
+2- Minimalidad: d(x, x) = 0  para todo x."@es,
+        rdfs:label "Dissimilarity function"@en,
+        rdfs:label "Función de disimilitud"@es
+    
+    SubClassOf: 
+        ComparisonMethod
+    
+    
+Class: NormalizedDissimilarityMeasure
+
+    Annotations: 
+        rdfs:label "Normalized dissimilarity measure"@en,
+        rdfs:comment "A normalized dissimilarity measure is a dissimilarity measure in the real interval [0,1]."@en,
+        rdfs:comment "Una medida de disimilitud normalizada es una medida de disimilitud en el intervalo real [0,1]."@es,
+        rdfs:label "Medida de disimilitud normalizada"@es
+    
+    EquivalentTo: 
+        DissimilarityMeasure
+         and NormalizedComparisonMeasure
+    
+    
+Class: <http://purl.org/dc/terms/Agent>
+
+    Annotations: 
+        rdfs:seeAlso "The Dublin Core Ontology: http://dublincore.org/documents/dcmi-terms/"@en,
+        rdfs:label "Agent"@en,
+        rdfs:seeAlso "La ontología Dublin Core: http://dublincore.org/documents/dcmi-terms/"@es,
+        rdfs:label "Agente"@es
+    
+    
+Class: NormalizedDistanceFunction
+
+    Annotations: 
+        rdfs:comment "A normalized distance function is a distance function with range the real inteval [0,1], that is, that returns values between 0 and 1"@en,
+        rdfs:label "Función de distancia normalizada"@es,
+        rdfs:label "Normalized distance function"@en,
+        rdfs:comment "Una función de distancia normalizada es una función de distancia con rango el intervalo real [0,1], es decir, que devuelve valores entre 0 y 1"@es
+    
+    EquivalentTo: 
+        DistanceFunction
+         and NormalizedComparisonMethod
+    
+    
+Class: SymmetricComparisonMethod
+
+    Annotations: 
+        rdfs:label "Método de comparación simétrico"@es,
+        rdfs:comment "A symmetric comparison method is a comparison method or function c that satisfies the symmetry axiom:
+c(x,y) = c(y,x) for all x,y."@en,
+        rdfs:comment "Un método de comparación simétrico es un método de comparación o función c que satisface el axioma de simetría:
+c(x,y) = c(y,x) para todo x,y."@es,
+        rdfs:label "Symmetric comparison method"@en
+    
+    SubClassOf: 
+        ComparisonMethod
+    
+    
+Class: NormalizedComparisonMeasure
+
+    Annotations: 
+        rdfs:comment "A normalized comparison measure is a comparison measure in te real interval [0,1]."@en,
+        rdfs:label "Medida de comparación normalizada"@es,
+        rdfs:label "Normalized similarity measure"@en,
+        rdfs:comment "Una medida de comparación normalizada es una medida en el intervalo real [0,1]."@es
+    
+    EquivalentTo: 
+        ComparisonMeasure
+         and (hasValue only xsd:decimal[>= 0 , <= 1])
+    
+    SubClassOf: 
+        usesComparisonMethod some NormalizedComparisonMethod
+    
+    
+Class: SymmetricDissimilarityMeasure
+
+    Annotations: 
+        rdfs:label "Medida de disimilitud simétrica"@es,
+        rdfs:label "Symmetric dissimilarity measure"@en,
+        rdfs:comment "Una medida de disimilitud simétrica es una medida de disimilitud calculada con una función de disimilitud simétrica, es decir, una función real d que satisface el axioma de simetría:
+d(x,y) = d(y,x) para todo x,y."@es,
+        rdfs:comment "A symmetric dissimilarity measure is a dissimilarity measure calculated with a symmetric dissimilarity function, that is, a real function d that satisfies the symmetry axiom:
+d(x,y) = d(y,x) for all x,y."@en
+    
+    SubClassOf: 
+        DissimilarityMeasure,
+        SymmetricComparisonMeasure
+    
+    
+Class: NormalizedDissimilarityFunction
+
+    Annotations: 
+        rdfs:label "Función de disimilitud normalizada"@es,
+        rdfs:label "Una función de disimilitud normalizada es una función de disimilitud con rango el intervalo real [0,1], es decir, que devuelve valores entre 0 y 1."@es,
+        rdfs:label "Normalized dissimilarity function"@en,
+        rdfs:comment "A normalized dissimilarity function is a dissimilarity function with range the real inteval [0,1], that is, that returns values between 0 and 1."@en
+    
+    EquivalentTo: 
+        DissimilarityFunction
+         and NormalizedComparisonMethod
+    
+    
+Class: Algorithm
+
+    Annotations: 
+        rdfs:label "Algoritmo"@es,
+        rdfs:seeAlso "La ontología del software: http://theswo.sourceforge.net/"@es,
+        rdfs:label "Algorithm"@en,
+        rdfs:seeAlso "The software ontology: http://theswo.sourceforge.net/"@en
+    
+    EquivalentTo: 
+        <http://purl.obolibrary.org/obo/IAO_0000064>
+    
+    
+Class: NormalizedSimilarityMeasure
+
+    Annotations: 
+        rdfs:comment "A normalized similarity measure is a similiarity measure in the real interval [0,1]."@en,
+        rdfs:label "Medida de similitud normalizada"@es,
+        rdfs:label "Normalized similarity measure"@en,
+        rdfs:comment "Una medida de similitud normalizada es una medida de similitud en el intervalo real [0,1]."@es
+    
+    EquivalentTo: 
+        NormalizedComparisonMeasure
+         and SimilarityMeasure
+    
+    
+Class: <http://purl.org/dc/terms/BibliographicResource>
+
+    Annotations: 
+        rdfs:label "Recurso bibliográfico"@es,
+        rdfs:seeAlso "The Dublin Core Ontology: http://dublincore.org/documents/dcmi-terms/"@en,
+        rdfs:label "Bibliographic resource"@en,
+        rdfs:seeAlso "La ontología Dublin Core: http://dublincore.org/documents/dcmi-terms/"@es
+    
+    
+Class: DistanceMeasure
+
+    Annotations: 
+        rdfs:comment "Una medida de distancia es un número que expresa el grado de disimilitud entre dos objetos calculado con una función de distancia d, es decir, una función real d que satisface los siguientes axiomas:
+1- No negatividad: d(x,y) ≥ 0 para todo x,y.
+2- Coincidencia: d(x,y) = 0 si y sólo si x=y.
+3- Simetría: d(x,y) = d(y,x) para todo x,y.
+4- Desigualdad triangular: d(x,z) ≤ d(x,y) + d(y,z) para todo x,y,z."@es,
+        rdfs:comment "A distance measure is a value that expresses the degree of dissimilarity between two objects calculated with a distance funcion, that is, a real function d that satisfies the following axioms:
+1- Non negativity: d(x,y) ≥ 0 for all x,y.
+2- Coincidence: d(x,y) = 0 if and only if x=y. 
+3- Symmetry: d(x,y) = d(y,x) for all x,y.
+4- Triangle inequality: d(x,z) ≤ d(x,y) + d(y,z) for all x,y,z."@en,
+        rdfs:label "Distance measure"@en,
+        rdfs:label "Medida de distancia"@es
+    
+    SubClassOf: 
+        SymmetricDissimilarityMeasure,
+        usesComparisonMethod some DistanceFunction
+    
+    
+Class: SymmetricSimilarityFunction
+
+    Annotations: 
+        rdfs:comment "A symmetric similarity function is a similarity function that satisfies the symmetry axiom
+s(x,y) = s(y,x) for all x,y."@en,
+        rdfs:label "Función de similitud simétrica"@es,
+        rdfs:label "Symmetric similarity function"@en,
+        rdfs:comment "Una función de similitud simétrica es una función de similitud s que satisface el axioma de simetría
+s(x,y) = s(y,x) para todo x,y."@es
+    
+    EquivalentTo: 
+        SimilarityFunction
+         and SymmetricComparisonMethod
+    
+    
+Class: owl:Thing
+
+    
+Class: ComparisonMeasure
+
+    Annotations: 
+        rdfs:label "Medida de comparación"@es,
+        rdfs:comment "A comparison measure is a value that espresses the similarity or dissimilarity degree between two objects."@en,
+        rdfs:comment "Una medida de comparación es un valor que expresa el grado de similitud o disimilitud entre dos objetos."@es,
+        rdfs:label "Comparison measure"@en
+    
+    EquivalentTo: 
+        ObjectiveComparisonMeasure or SubjectiveComparisonMeasure
+    
+    SubClassOf: 
+        hasValue exactly 1 xsd:decimal[>= 0],
+        ((not (hasSourceEntity some owl:Thing))
+         and (not (hasTargetEntity some owl:Thing))
+         and (<http://purl.org/ceu/simeon#hasSourceData> some rdfs:Literal)
+         and (<http://purl.org/ceu/simeon#hasTargetData> some rdfs:Literal)) or ((not (<http://purl.org/ceu/simeon#hasSourceData> some rdfs:Literal))
+         and (not (<http://purl.org/ceu/simeon#hasTargetData> some rdfs:Literal))
+         and (hasSourceEntity some owl:Thing)
+         and (hasTargetEntity some owl:Thing))
+    
+    
+Class: NormalizedDistanceMeasure
+
+    Annotations: 
+        rdfs:comment "Una medida de distancia normalizada es una medida de distancia en el intervalo real [0,1]."@es,
+        rdfs:label "Normalized distance measure"@en,
+        rdfs:label "Medida de distancia normalizada"@es,
+        rdfs:comment "A normalized distance measure is a distance measure in the real interval [0,1]."@en
+    
+    EquivalentTo: 
+        DistanceMeasure
+         and NormalizedComparisonMeasure
+    
+    
+Class: SymmetricComparisonMeasure
+
+    Annotations: 
+        rdfs:comment "Una medida de comparación simétrica es una medida de comparación calculada con una función de comparación simétrica, es decir, una función real c que satisface el axioma de simetría:
+c(x,y) = c(y,x) para todo x,y."@es,
+        rdfs:label "Medida de comaración simétrica"@es,
+        rdfs:comment "A symmetric comparison measure is a comparison measure calculated with a symmetric comparison function, that is, a real function c that satisfies the symmetry axiom:
+c(x,y) = c(y,x) for all x,y."@en,
+        rdfs:label "Symmetric comparison measure"@en
+    
+    SubClassOf: 
+        ComparisonMeasure,
+        usesComparisonMethod some SymmetricComparisonMethod
+    
+    
+Class: ObjectiveComparisonMeasure
+
+    Annotations: 
+        rdfs:comment "An objective comparison measure is a comparison measure calculated with an objective comparison method, that is, a method that always returns the same value when applied to the same objects."@en,
+        rdfs:label "Objective comparison measure"@en,
+        rdfs:comment "Una medida de comparación objetiva es una medida de comparación realizada con un método de comparación objetivo, es decir, un método que siempre da el mismo resultado cuando se aplica a los mismos objetos."@es,
+        rdfs:label "Medida de comparación objetiva"@es
+    
+    SubClassOf: 
+        ComparisonMeasure
+    
+    DisjointWith: 
+        SubjectiveComparisonMeasure
+    
+    
+Class: SimilarityFunction
+
+    Annotations: 
+        rdfs:comment "A similarity function is a real function that associates to every pair of objects in a domain, a real number that expresses the likeness, similarity or proximity degree between the two objects according to some of their features, and satisfies the following axioms:
+1- Non-negativity: s(x, y) ≥ 0 for all x, y. 
+2- Maximality: s(x, x) ≥ s(x,y) for all x, y."@en,
+        rdfs:comment "Una función de similitud es una función real s que asocia a cada par de objetos de un mismo dominio, un número real que expresa el grado de parecido,  semejanza o proximidad entre los dos objetos de acuerdo a alguna de sus características, y satisface los siguientes axiomas:
+1- No negatividad: s(x, y) ≥ 0 para todo x, y. 
+2- Maximalidad: s(x, x) ≥ s(x,y) para todo x, y."@es,
+        rdfs:label "Función de similitud"@es,
+        rdfs:label "Similarity function"@en
+    
+    SubClassOf: 
+        ComparisonMethod
+    
+    
+Class: NormalizedComparisonMethod
+
+    Annotations: 
+        rdfs:label "Método de comparación normalizado"@es,
+        rdfs:comment "A normalized comparison method is a comparison method that returns a number in the real interval [0,1]."@en,
+        rdfs:label "Normalized comparison method"@en,
+        rdfs:comment "Un método de comparación normalizado es un método de comparación que devuelve un número real en el intervalo [0,1]."@es
+    
+    SubClassOf: 
+        ComparisonMethod
+    
+    
+Class: SubjectiveComparisonMeasure
+
+    Annotations: 
+        rdfs:comment "A subjective comparison measure is a measure obtained with a subjective comparison method, that is, based on the perception, feelings or opinion of a person."@en,
+        rdfs:comment "Una medida de comparación subjetiva es una medida realizada con un método de comparación subjetivo, es decir, basado en la percepción, sentimientos u opinión de una persona."@es
+    
+    SubClassOf: 
+        ComparisonMeasure
+    
+    DisjointWith: 
+        ObjectiveComparisonMeasure
+    
+    
+Class: DistanceFunction
+
+    Annotations: 
+        rdfs:label "Distance function"@en,
+        rdfs:comment "Una función de distancia es una función de disimilitud d que satisface los siguientes axiomas:
+1- No negatividad: d(x,y) ≥ 0 para todo x,y.
+2- Coincidencia: d(x,y) = 0 si y sólo si x=y.
+3- Simetría: d(x,y) = d(y,x) para todo x,y.
+4- Desigualdad triangular: d(x,z) ≤ d(x,y) + d(y,z) para todo x,y,z."@es,
+        rdfs:label "Función de distancia"@es,
+        rdfs:comment "A distance function is a dissimilarity function d that satisfies the following axioms:
+1- Non negativity: d(x,y) ≥ 0 for all x,y.
+2- Coincidence: d(x,y) = 0 if and only if x=y. 
+3- Symmetry: d(x,y) = d(y,x) for all x,y.
+4- Triangle inequality: d(x,z) ≤ d(x,y) + d(y,z) for all x,y,z."@en
+    
+    SubClassOf: 
+        SymmetricDissimilarityFunction
+    
+    
+Class: SimilarityMeasure
+
+    Annotations: 
+        rdfs:label "Similarity measure"@en,
+        rdfs:label "Medida de similitud"@es,
+        rdfs:comment "A similarity measure is a number that expresses the similarity degree between two objects, calculated with a similarity function, that is, a real function s that satisfies the following axioms:
+1- Non-negativity: s(x, y) ≥ 0 for all x, y. 
+2- Maximality: s(x, x) ≥ s(x,y) for all x, y."@en,
+        rdfs:comment "Una medida de similitud es un número que establece el grado de semejanza o similitud entre dos objetos, calculado con una función de similitud, es decir, una función real s que satisface los siguientes axiomas:
+1- No negatividad: s(x, y) ≥ 0 para todo x, y. 
+2- Maximalidad: s(x, x) ≥ s(x,y) para todo x, y."@es
+    
+    SubClassOf: 
+        ObjectiveComparisonMeasure,
+        usesComparisonMethod some SimilarityFunction
+    
+    DisjointWith: 
+        DissimilarityMeasure
+    
+    
+Class: SymmetricDissimilarityFunction
+
+    Annotations: 
+        rdfs:label "Función de disimilitud simétrica"@es,
+        rdfs:label "Symmetric dissimilarity function"@en,
+        rdfs:comment "Una función de disimilitud simétrica es una función de disimilitud d que satisface el axioma de simetría
+d(x,y) = d(y,x) para todo x,y."@es,
+        rdfs:comment "A symmetric dissimilarity function is a dissimilarity function d that satisfies the symmetry axiom
+d(x,y) = d(y,x) for all x,y."@en
+    
+    EquivalentTo: 
+        DissimilarityFunction
+         and SymmetricComparisonMethod
+    
+    
+Class: SymmetricSimilarityMeasure
+
+    Annotations: 
+        rdfs:comment "Una medida de similitud simétrica es una medida de similitud calculada con una función de similitud simétrica, es decir, una función real s que satisface el axioma de simetría:
+s(x,y) = s(y,x) para todo x,y."@es,
+        rdfs:label "Medida de similitud simétrica"@es,
+        rdfs:comment "A symmetric similarity measure is a similarity measure calculated with a symmetric similarity function, that is, a real function s that satisfies the symmetry axiom:
+s(x,y) = s(y,x) for all x,y."@en,
+        rdfs:label "Symmetric similarity measure"@en
+    
+    SubClassOf: 
+        SymmetricComparisonMeasure,
+        SimilarityMeasure
+    
+    
+Class: NormalizedSimilarityFunction
+
+    Annotations: 
+        rdfs:label "Función de similitud normalizada"@es,
+        rdfs:label "Normalized similarity function"@en,
+        rdfs:comment "Una función de similitud normalizada es una función de similitud cuyo rango es el intervalo real [0,1], es decir que devuelve valores entre 0 y 1."@es,
+        rdfs:comment "A normalized similarity function is a similarity function with range the real interval [0,1], that is, that returns values between 0 and 1."@en
+    
+    EquivalentTo: 
+        NormalizedComparisonMethod
+         and SimilarityFunction
+    
+    
+Individual: identitySimilarityFunction
+
+    Annotations: 
+        rdfs:comment "The identity similarity function is a normalized similarity function s such that
+s(x,y)=1 if x=y 
+s(x,y)=0 if x≠y"@en,
+        rdfs:label "identity similarity function"@en,
+        rdfs:label "función de similitud identidad"@es,
+        rdfs:comment "Una función de similitud simétrica es una función de similitud s que satisface el axioma de simetría
+s(x,y) = s(y,x) para todo x,y."@es
+    
+    Types: 
+        SymmetricSimilarityFunction,
+        NormalizedSimilarityFunction
+    
+    
+Rule: 
+    DissimilarityMeasure(?measure), hasTargetEntity(?measure, ?entity2),  SameAs (?entity1, ?entity2), hasSourceEntity(?measure, ?entity1) -> hasValue(?measure, 0)
+
+Rule: 
+    DistanceMeasure(?measure1), hasTargetEntity(?measure1, ?entity2), usesComparisonMethod(?measure2, ?method), hasSourceEntity(?measure3, ?entity1), usesComparisonMethod(?measure3, ?method), hasValue(?measure3, ?value3), hasTargetEntity(?measure3, ?entity3), swrlb:add(?value4, ?value1, ?value2), DistanceMeasure(?measure3), hasSourceEntity(?measure1, ?entity1), usesComparisonMethod(?measure1, ?method), hasSourceEntity(?measure2, ?entity2), hasTargetEntity(?measure2, ?entity3), hasValue(?measure2, ?value2), DistanceMeasure(?measure2), hasValue(?measure1, ?value1) -> swrlb:greaterThanOrEqual(?value4, ?value3)
+
+Rule: 
+    hasTargetEntity(?measure1, ?entity2), SymmetricComparisonMeasure(?measure1), hasSourceEntity(?measure1, ?entity1), usesComparisonMethod(?measure1, ?method), hasValue(?measure1, ?value) -> SymmetricComparisonMeasure(?measure2), usesComparisonMethod(?measure2, ?method), hasTargetEntity(?measure2, ?entity1), hasSourceEntity(?measure2, ?entity2), hasValue(?measure2, ?value)
+
+Rule: 
+    hasSourceEntity(?similarity, ?entity1), NormalizedSimilarityMeasure(?similarity), hasTargetEntity(?similarity, ?entity2),  SameAs (?entity1, ?entity2) -> hasValue(?similarity, 1)
+
+Rule: 
+     DifferentFrom (?entity1, ?entity2), SimilarityMeasure(?measure), hasTargetEntity(?measure, ?entity2), hasSourceEntity(?measure, ?entity1) -> hasValue(?measure, 0)
+
+Rule: 
+    hasSourceEntity(?measure2, ?entity1), usesComparisonMethod(?measure2, ?method), SimilarityMeasure(?measure1), hasTargetEntity(?measure1, ?entity1), hasSourceEntity(?measure1, ?entity1), usesComparisonMethod(?measure1, ?method), hasTargetEntity(?measure2, ?entity2), hasValue(?measure2, ?value2), SimilarityMeasure(?measure2), hasValue(?measure1, ?value1) -> swrlb:greaterThanOrEqual(?value1, ?value2)
+
+Rule: 
+    DistanceMeasure(?measure), hasValue(?measure, 0), hasTargetEntity(?measure, ?entity2), hasSourceEntity(?measure, ?entity1) ->  SameAs (?entity1, ?entity2)
+

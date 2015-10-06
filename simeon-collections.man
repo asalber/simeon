@@ -1,0 +1,212 @@
+Prefix: : <http://purl.org/ceu/lco#>
+Prefix: dc: <http://purl.org/dc/elements/1.1/>
+Prefix: owl: <http://www.w3.org/2002/07/owl#>
+Prefix: rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Prefix: xml: <http://www.w3.org/XML/1998/namespace>
+Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
+Prefix: rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix: swrl: <http://www.w3.org/2003/11/swrl#>
+Prefix: swrlb: <http://www.w3.org/2003/11/swrlb#>
+
+
+
+Ontology: <http://purl.org/ceu/simeon/collections>
+<http://purl.org/ceu/simeon/collections/1.0>
+Import: <http://purl.org/ceu/simeon/1.0>
+Import: <http://purl.org/ceu/eco/1.0>
+
+Annotations: 
+    dc:rights "La ontología SIMEON está bajo una licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional ( http://creativecommons.org/licenses/by-sa/4.0/).
+El módulo Collections añade soporte para la comparación de colecciones usando la ontología E-Collections."@es,
+    dc:creator "Alfredo Sánchez Alberca (asalber@ceu.es) <http://aprendeconalf.es/foaf.rdf>"@es,
+    rdfs:comment "SIMEON ontology allow to establish similarity measures between ontology objets and collections.
+The collections module add support for comparing collections using the E-Collections ontology."@en,
+    rdfs:comment "La ontología SIMEON permite establecer medidas de similitud entre los objetos y colecciones de objetos de las ontologías."@es,
+    rdfs:label "Ontología SIMEON (Módulo Collections)"@es,
+    dc:rights "SIMEON ontology is released under Attribution-ShareAlike 4.0 International Creative Commons license: http://creativecommons.org/licenses/by-sa/4.0/"@en,
+    rdfs:label "SIMEON Ontology (Collections module)"@en
+
+AnnotationProperty: dc:rights
+
+    
+AnnotationProperty: rdfs:seeAlso
+
+    
+AnnotationProperty: rdfs:label
+
+    
+AnnotationProperty: rdfs:comment
+
+    
+AnnotationProperty: dc:creator
+
+    
+Datatype: rdf:PlainLiteral
+
+    
+ObjectProperty: <http://purl.org/ceu/simeon#usesComparisonMethod>
+
+    
+ObjectProperty: <http://purl.org/ceu/simeon#hasSourceEntity>
+
+    
+ObjectProperty: <http://purl.org/ceu/simeon#hasDomain>
+
+    
+Class: <http://purl.org/ceu/simeon/1.0#BooleanSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "Función de similitud de booleanos"@es,
+        rdfs:label "Boolean similarity function"@en
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon/1.0#SimpleDataSimilarityFunction>,
+        <http://purl.org/ceu/simeon/1.0#BooleanComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon/1.0#CollectionsSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "Función de similitud de colecciones"@es,
+        rdfs:label "Collections similarity function"@en
+    
+    EquivalentTo: 
+        <http://purl.org/ceu/simeon#SimilarityFunction>
+         and <http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon#DissimilarityFunction>
+
+    
+Class: <http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod>
+
+    Annotations: 
+        rdfs:seeAlso "Ontología E-Collections (http://aprendeconalf.es/ecollections)"@es,
+        rdfs:comment "Un método de comparación de colecciones es un método para comparar dos colecciones, grupos o agregados de objetos."@es,
+        rdfs:comment "A collections comparison method is a method to compare two collections, groups or aggregations of objects."@en,
+        rdfs:label "Collections comparison method"@en,
+        rdfs:seeAlso "E-Collections ontology (http://aprendeconalf.es/ecollections)"@en,
+        rdfs:label "Método de comparación de colecciones."@es
+    
+    EquivalentTo: 
+        <http://purl.org/ceu/simeon#ComparisonMethod>
+         and (<http://purl.org/ceu/simeon#hasDomain> value <http://purl.org/ceu/eco/1.0#Collection>)
+    
+    
+Class: <http://purl.org/ceu/simeon/1.0#CollectionsDissimilarityFunction>
+
+    Annotations: 
+        rdfs:label "Función de disimilitud de colecciones."@es,
+        rdfs:label "Collections dissimilarity function"@en
+    
+    EquivalentTo: 
+        <http://purl.org/ceu/simeon#DissimilarityFunction>
+         and <http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon/1.0#MultisetComparisonMethod>
+
+    EquivalentTo: 
+        <http://purl.org/ceu/simeon/1.0#MultiheterosetComparisonMethod>
+         and (<http://purl.org/ceu/simeon#hasDomain> value <http://purl.org/ceu/eco/1.0#Multiset>)
+    
+    
+Class: <http://purl.org/ceu/simeon#ComparisonMeasure>
+
+    
+Class: <http://purl.org/ceu/simeon/1.0#MultiheterosetComparisonMethod>
+
+    Annotations: 
+        rdfs:label "Multiheteroset comparison method"@en,
+        rdfs:label "Método de comparación de multiheteroconjuntos."@es
+    
+    EquivalentTo: 
+        <http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod>
+         and (<http://purl.org/ceu/simeon#hasDomain> value <http://purl.org/ceu/eco/1.0#Multiheteroset>)
+    
+    
+Class: <http://purl.org/ceu/simeon/1.0#SimpleDataSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "Simple data similiarity function"@en,
+        rdfs:label "Función de similitud de datos simples"@es
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon/1.0#SimpleDataComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon/1.0#BooleanComparisonMethod>
+
+    Annotations: 
+        rdfs:label "Método de comparación de booleanos."@es,
+        rdfs:label "Boolean comparison method"@en
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon/1.0#SimpleDataComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/eco/1.0#Multiheteroset>
+
+    
+Class: <http://purl.org/ceu/simeon#ComparisonMethod>
+
+    
+Class: <http://purl.org/ceu/simeon#SimilarityFunction>
+
+    
+Class: <http://purl.org/ceu/simeon/1.0#SimpleDataDissimilarityFuncion>
+
+    Annotations: 
+        rdfs:label "Función de disimilitud de datos simples"@es,
+        rdfs:label "Simple data dissimilarity function"@en
+    
+    EquivalentTo: 
+        <http://purl.org/ceu/simeon#DissimilarityFunction>
+         and <http://purl.org/ceu/simeon/1.0#SimpleDataComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon/1.0#SimpleDataComparisonMethod>
+
+    Annotations: 
+        rdfs:label "Simple data comparison method"@en,
+        rdfs:comment "A simple data comparison method is a method to compare two simple data of the same type (booleans, numbers, dates, strings, etc.)."@en,
+        rdfs:comment "Un método de comparación de datos simple is un método para comparar dos datos simples del mismo tipo (booleanos, números, fechas, cadenas, etc.)."@es,
+        rdfs:label "Método de comparación de datos simples"@es
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#ComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon/1.0#MultiheterosetSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "Multiheterosets similarity function"@en,
+        rdfs:label "Función de similitud de multiheteroconjuntos"@es
+    
+    EquivalentTo: 
+        <http://purl.org/ceu/simeon/1.0#CollectionsSimilarityFunction>
+         and <http://purl.org/ceu/simeon/1.0#MultiheterosetComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon/1.0#MultisetSimilarityFunction>
+
+    EquivalentTo: 
+        <http://purl.org/ceu/simeon/1.0#MultiheterosetSimilarityFunction>
+         and <http://purl.org/ceu/simeon/1.0#MultisetComparisonMethod>
+    
+    
+Individual: <http://purl.org/ceu/eco/1.0#Multiset>
+
+    
+Individual: <http://purl.org/ceu/eco/1.0#Collection>
+
+    
+Individual: <http://purl.org/ceu/eco/1.0#Multiheteroset>
+
+    
+Rule: 
+    <http://purl.org/ceu/simeon#ComparisonMeasure>(?measure), <http://purl.org/ceu/simeon#usesComparisonMethod>(?measure, ?method), <http://purl.org/ceu/simeon#hasDomain>(?method, <http://purl.org/ceu/eco/1.0#Multiheteroset>), <http://purl.org/ceu/simeon#hasSourceEntity>(?measure, ?collection) -> <http://purl.org/ceu/eco/1.0#Multiheteroset>(?collection)
+
+Rule: 
+    <http://purl.org/ceu/simeon#ComparisonMeasure>(?measure), <http://purl.org/ceu/simeon#hasSourceEntity>(?measure, ?collection), <http://purl.org/ceu/eco/1.0#Multiheteroset>(?collection), <http://purl.org/ceu/simeon#usesComparisonMethod>(?measure, ?method) -> <http://purl.org/ceu/simeon#hasDomain>(?method, <http://purl.org/ceu/eco/1.0#Multiheteroset>)
+

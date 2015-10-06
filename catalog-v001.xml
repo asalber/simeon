@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="Imports Wizard Entry" name="http://purl.org/ceu/eco/1.0" uri="file:/media/alf/datos/drive/INVESTIGACION/doctorado/tesis/ontologias/ecollections/ecollections.rdf"/>
+    <uri id="Imports Wizard Entry" name="http://purl.org/ceu/simeon/1.0" uri="simeon-core.rdf"/>
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1443296180390" name="http://purl.org/ceu/lco" uri="simeon.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1444159176817" name="duplicate:http://purl.org/ceu/lco" uri="simeon-core.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1444159176817" name="duplicate:http://purl.org/ceu/lco" uri="simeon-collections.rdf"/>
     </group>
 </catalog>
