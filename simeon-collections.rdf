@@ -1,0 +1,451 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
+    <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
+    <!ENTITY swrlb "http://www.w3.org/2003/11/swrlb#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://purl.org/ceu/lco#"
+     xml:base="http://purl.org/ceu/lco"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <owl:Ontology rdf:about="http://purl.org/ceu/simeon/collections">
+        <rdfs:label xml:lang="en">SIMEON Ontology (Collections module)</rdfs:label>
+        <rdfs:label xml:lang="es">Ontología SIMEON (Módulo Collections)</rdfs:label>
+        <rdfs:comment xml:lang="en">SIMEON ontology allow to establish similarity measures between ontology objets and collections.
+The collections module add support for comparing collections using the E-Collections ontology.</rdfs:comment>
+        <dc:rights xml:lang="en">SIMEON ontology is released under Attribution-ShareAlike 4.0 International Creative Commons license: http://creativecommons.org/licenses/by-sa/4.0/</dc:rights>
+        <dc:creator xml:lang="es">Alfredo Sánchez Alberca (asalber@ceu.es) &lt;http://aprendeconalf.es/foaf.rdf&gt;</dc:creator>
+        <dc:rights xml:lang="es">La ontología SIMEON está bajo una licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional ( http://creativecommons.org/licenses/by-sa/4.0/).
+El módulo Collections añade soporte para la comparación de colecciones usando la ontología E-Collections.</dc:rights>
+        <rdfs:comment xml:lang="es">La ontología SIMEON permite establecer medidas de similitud entre los objetos y colecciones de objetos de las ontologías.</rdfs:comment>
+        <owl:imports rdf:resource="http://purl.org/ceu/eco/1.0"/>
+        <owl:imports rdf:resource="http://purl.org/ceu/simeon/1.0"/>
+        <owl:versionIRI rdf:resource="http://purl.org/ceu/simeon/collections/1.0"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/ceu/simeon#hasDomain -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/ceu/simeon#hasDomain"/>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#hasSourceEntity -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/ceu/simeon#hasSourceEntity"/>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#usesComparisonMethod -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/ceu/simeon#usesComparisonMethod"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/ceu/simeon#ComparisonMeasure -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#ComparisonMeasure"/>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#ComparisonMethod -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#ComparisonMethod"/>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#DissimilarityFunction -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#DissimilarityFunction"/>
+    
+
+
+    <!-- http://purl.org/ceu/simeon#SimilarityFunction -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon#SimilarityFunction"/>
+    
+
+
+    <!-- http://purl.org/ceu/simeon/1.0#BooleanComparisonMethod -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon/1.0#BooleanComparisonMethod">
+        <rdfs:label xml:lang="en">Boolean comparison method</rdfs:label>
+        <rdfs:label xml:lang="es">Método de comparación de booleanos.</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon/1.0#SimpleDataComparisonMethod"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon/1.0#BooleanSimilarityFunction -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon/1.0#BooleanSimilarityFunction">
+        <rdfs:label xml:lang="en">Boolean similarity function</rdfs:label>
+        <rdfs:label xml:lang="es">Función de similitud de booleanos</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon/1.0#BooleanComparisonMethod"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon/1.0#SimpleDataSimilarityFunction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod">
+        <rdfs:label xml:lang="en">Collections comparison method</rdfs:label>
+        <rdfs:label xml:lang="es">Método de comparación de colecciones.</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon#ComparisonMethod"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasDomain"/>
+                        <owl:hasValue rdf:resource="http://purl.org/ceu/eco/1.0#Collection"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:comment xml:lang="en">A collections comparison method is a method to compare two collections, groups or aggregations of objects.</rdfs:comment>
+        <rdfs:seeAlso xml:lang="en">E-Collections ontology (http://aprendeconalf.es/ecollections)</rdfs:seeAlso>
+        <rdfs:seeAlso xml:lang="es">Ontología E-Collections (http://aprendeconalf.es/ecollections)</rdfs:seeAlso>
+        <rdfs:comment xml:lang="es">Un método de comparación de colecciones es un método para comparar dos colecciones, grupos o agregados de objetos.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon/1.0#CollectionsDissimilarityFunction -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon/1.0#CollectionsDissimilarityFunction">
+        <rdfs:label xml:lang="en">Collections dissimilarity function</rdfs:label>
+        <rdfs:label xml:lang="es">Función de disimilitud de colecciones.</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon#DissimilarityFunction"/>
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon/1.0#CollectionsSimilarityFunction -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon/1.0#CollectionsSimilarityFunction">
+        <rdfs:label xml:lang="en">Collections similarity function</rdfs:label>
+        <rdfs:label xml:lang="es">Función de similitud de colecciones</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon#SimilarityFunction"/>
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon/1.0#MultiheterosetComparisonMethod -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon/1.0#MultiheterosetComparisonMethod">
+        <rdfs:label xml:lang="en">Multiheteroset comparison method</rdfs:label>
+        <rdfs:label xml:lang="es">Método de comparación de multiheteroconjuntos.</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasDomain"/>
+                        <owl:hasValue rdf:resource="http://purl.org/ceu/eco/1.0#Multiheteroset"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon/1.0#MultiheterosetSimilarityFunction -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon/1.0#MultiheterosetSimilarityFunction">
+        <rdfs:label xml:lang="en">Multiheterosets similarity function</rdfs:label>
+        <rdfs:label xml:lang="es">Función de similitud de multiheteroconjuntos</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon/1.0#CollectionsSimilarityFunction"/>
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon/1.0#MultiheterosetComparisonMethod"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon/1.0#MultisetComparisonMethod -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon/1.0#MultisetComparisonMethod">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon/1.0#MultiheterosetComparisonMethod"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasDomain"/>
+                        <owl:hasValue rdf:resource="http://purl.org/ceu/eco/1.0#Multiset"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon/1.0#MultisetSimilarityFunction -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon/1.0#MultisetSimilarityFunction">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon/1.0#MultiheterosetSimilarityFunction"/>
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon/1.0#MultisetComparisonMethod"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon/1.0#SimpleDataComparisonMethod -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon/1.0#SimpleDataComparisonMethod">
+        <rdfs:label xml:lang="en">Simple data comparison method</rdfs:label>
+        <rdfs:label xml:lang="es">Método de comparación de datos simples</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon#ComparisonMethod"/>
+        <rdfs:comment xml:lang="en">A simple data comparison method is a method to compare two simple data of the same type (booleans, numbers, dates, strings, etc.).</rdfs:comment>
+        <rdfs:comment xml:lang="es">Un método de comparación de datos simple is un método para comparar dos datos simples del mismo tipo (booleanos, números, fechas, cadenas, etc.).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon/1.0#SimpleDataDissimilarityFuncion -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon/1.0#SimpleDataDissimilarityFuncion">
+        <rdfs:label xml:lang="en">Simple data dissimilarity function</rdfs:label>
+        <rdfs:label xml:lang="es">Función de disimilitud de datos simples</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon#DissimilarityFunction"/>
+                    <rdf:Description rdf:about="http://purl.org/ceu/simeon/1.0#SimpleDataComparisonMethod"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ceu/simeon/1.0#SimpleDataSimilarityFunction -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/simeon/1.0#SimpleDataSimilarityFunction">
+        <rdfs:label xml:lang="en">Simple data similiarity function</rdfs:label>
+        <rdfs:label xml:lang="es">Función de similitud de datos simples</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon/1.0#SimpleDataComparisonMethod"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="urn:swrl#measure">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#method">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#collection">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://purl.org/ceu/simeon#ComparisonMeasure"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#measure"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                        <swrl:argument2 rdf:resource="http://purl.org/ceu/eco/1.0#Multiheteroset"/>
+                                        <swrl:propertyPredicate rdf:resource="http://purl.org/ceu/simeon#hasDomain"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#method"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:rest rdf:resource="&rdf;nil"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="http://purl.org/ceu/simeon#hasSourceEntity"/>
+                                                <swrl:argument2 rdf:resource="urn:swrl#collection"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#measure"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#measure"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#method"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://purl.org/ceu/eco/1.0#Multiheteroset"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#collection"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://purl.org/ceu/simeon#ComparisonMeasure"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#measure"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="http://purl.org/ceu/eco/1.0#Multiheteroset"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#collection"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:rest rdf:resource="&rdf;nil"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#measure"/>
+                                                <swrl:argument2 rdf:resource="urn:swrl#method"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://purl.org/ceu/simeon#hasSourceEntity"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#collection"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#measure"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:argument2 rdf:resource="http://purl.org/ceu/eco/1.0#Multiheteroset"/>
+                        <swrl:propertyPredicate rdf:resource="http://purl.org/ceu/simeon#hasDomain"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#method"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+
