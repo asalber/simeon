@@ -34,82 +34,19 @@ El módulo Collections añade soporte para la comparación de colecciones usando
 
 #################################################################
 #
-#    Object Properties
-#
-#################################################################
-
-
-###  http://purl.org/ceu/simeon#hasDomain
-
-<http://purl.org/ceu/simeon#hasDomain> rdf:type owl:ObjectProperty .
-
-
-
-###  http://purl.org/ceu/simeon#hasSourceEntity
-
-<http://purl.org/ceu/simeon#hasSourceEntity> rdf:type owl:ObjectProperty .
-
-
-
-###  http://purl.org/ceu/simeon#usesComparisonMethod
-
-<http://purl.org/ceu/simeon#usesComparisonMethod> rdf:type owl:ObjectProperty .
-
-
-
-
-
-#################################################################
-#
 #    Classes
 #
 #################################################################
 
 
-###  http://purl.org/ceu/simeon#ComparisonMeasure
+###  http://purl.org/ceu/simeon/1.0#BooleansComparisonMethod
 
-<http://purl.org/ceu/simeon#ComparisonMeasure> rdf:type owl:Class .
-
-
-
-###  http://purl.org/ceu/simeon#ComparisonMethod
-
-<http://purl.org/ceu/simeon#ComparisonMethod> rdf:type owl:Class .
-
-
-
-###  http://purl.org/ceu/simeon#DissimilarityFunction
-
-<http://purl.org/ceu/simeon#DissimilarityFunction> rdf:type owl:Class .
-
-
-
-###  http://purl.org/ceu/simeon#SimilarityFunction
-
-<http://purl.org/ceu/simeon#SimilarityFunction> rdf:type owl:Class .
-
-
-
-###  http://purl.org/ceu/simeon/1.0#BooleanComparisonMethod
-
-<http://purl.org/ceu/simeon/1.0#BooleanComparisonMethod> rdf:type owl:Class ;
-                                                         
-                                                         rdfs:label "Boolean comparison method"@en ,
-                                                                    "Método de comparación de booleanos."@es ;
-                                                         
-                                                         rdfs:subClassOf <http://purl.org/ceu/simeon/1.0#SimpleDataComparisonMethod> .
-
-
-
-###  http://purl.org/ceu/simeon/1.0#BooleanSimilarityFunction
-
-<http://purl.org/ceu/simeon/1.0#BooleanSimilarityFunction> rdf:type owl:Class ;
-                                                           
-                                                           rdfs:label "Boolean similarity function"@en ,
-                                                                      "Función de similitud de booleanos"@es ;
-                                                           
-                                                           rdfs:subClassOf <http://purl.org/ceu/simeon/1.0#BooleanComparisonMethod> ,
-                                                                           <http://purl.org/ceu/simeon/1.0#SimpleDataSimilarityFunction> .
+<http://purl.org/ceu/simeon/1.0#BooleansComparisonMethod> rdf:type owl:Class ;
+                                                          
+                                                          rdfs:label "Boolean comparison method"@en ,
+                                                                     "Método de comparación de booleanos."@es ;
+                                                          
+                                                          rdfs:subClassOf <http://purl.org/ceu/simeon#DataComparisonMethod> .
 
 
 
@@ -120,14 +57,11 @@ El módulo Collections añade soporte para la comparación de colecciones usando
                                                              rdfs:label "Collections comparison method"@en ,
                                                                         "Método de comparación de colecciones."@es ;
                                                              
-                                                             owl:equivalentClass [ rdf:type owl:Class ;
-                                                                                   owl:intersectionOf ( <http://purl.org/ceu/simeon#ComparisonMethod>
-                                                                                                        [ rdf:type owl:Restriction ;
-                                                                                                          owl:onProperty <http://purl.org/ceu/simeon#hasDomain> ;
-                                                                                                          owl:hasValue <http://purl.org/ceu/eco/1.0#Collection>
-                                                                                                        ]
-                                                                                                      )
-                                                                                 ] ;
+                                                             rdfs:subClassOf <http://purl.org/ceu/simeon#ObjectComparisonMethod> ,
+                                                                             [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty <http://purl.org/ceu/simeon#comparesObject> ;
+                                                                               owl:allValuesFrom <http://purl.org/ceu/eco/1.0#Collection>
+                                                                             ] ;
                                                              
                                                              rdfs:comment "A collections comparison method is a method to compare two collections, groups or aggregations of objects."@en ;
                                                              
@@ -168,103 +102,798 @@ El módulo Collections añade soporte para la comparación de colecciones usando
 
 
 
-###  http://purl.org/ceu/simeon/1.0#MultiheterosetComparisonMethod
+###  http://purl.org/ceu/simeon/collections#BooleansComparisonMeasure
 
-<http://purl.org/ceu/simeon/1.0#MultiheterosetComparisonMethod> rdf:type owl:Class ;
-                                                                
-                                                                rdfs:label "Multiheteroset comparison method"@en ,
-                                                                           "Método de comparación de multiheteroconjuntos."@es ;
-                                                                
-                                                                owl:equivalentClass [ rdf:type owl:Class ;
-                                                                                      owl:intersectionOf ( <http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod>
-                                                                                                           [ rdf:type owl:Restriction ;
-                                                                                                             owl:onProperty <http://purl.org/ceu/simeon#hasDomain> ;
-                                                                                                             owl:hasValue <http://purl.org/ceu/eco/1.0#Multiheteroset>
-                                                                                                           ]
-                                                                                                         )
-                                                                                    ] .
-
-
-
-###  http://purl.org/ceu/simeon/1.0#MultiheterosetSimilarityFunction
-
-<http://purl.org/ceu/simeon/1.0#MultiheterosetSimilarityFunction> rdf:type owl:Class ;
-                                                                  
-                                                                  rdfs:label "Multiheterosets similarity function"@en ,
-                                                                             "Función de similitud de multiheteroconjuntos"@es ;
-                                                                  
-                                                                  owl:equivalentClass [ rdf:type owl:Class ;
-                                                                                        owl:intersectionOf ( <http://purl.org/ceu/simeon/1.0#CollectionsSimilarityFunction>
-                                                                                                             <http://purl.org/ceu/simeon/1.0#MultiheterosetComparisonMethod>
-                                                                                                           )
-                                                                                      ] .
+:BooleansComparisonMeasure rdf:type owl:Class ;
+                           
+                           rdfs:subClassOf <http://purl.org/ceu/simeon#DataComparisonMeasure> ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <http://purl.org/ceu/simeon#hasSourceData> ;
+                                             owl:someValuesFrom xsd:boolean
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <http://purl.org/ceu/simeon#hasTargetData> ;
+                                             owl:someValuesFrom xsd:boolean
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <http://purl.org/ceu/simeon#usesComparisonMethod> ;
+                                             owl:someValuesFrom <http://purl.org/ceu/simeon/1.0#BooleansComparisonMethod>
+                                           ] .
 
 
 
-###  http://purl.org/ceu/simeon/1.0#MultisetComparisonMethod
+###  http://purl.org/ceu/simeon/collections#BoxesComparisonMeasure
 
-<http://purl.org/ceu/simeon/1.0#MultisetComparisonMethod> rdf:type owl:Class ;
-                                                          
-                                                          owl:equivalentClass [ rdf:type owl:Class ;
-                                                                                owl:intersectionOf ( <http://purl.org/ceu/simeon/1.0#MultiheterosetComparisonMethod>
-                                                                                                     [ rdf:type owl:Restriction ;
-                                                                                                       owl:onProperty <http://purl.org/ceu/simeon#hasDomain> ;
-                                                                                                       owl:hasValue <http://purl.org/ceu/eco/1.0#Multiset>
-                                                                                                     ]
-                                                                                                   )
-                                                                              ] .
-
-
-
-###  http://purl.org/ceu/simeon/1.0#MultisetSimilarityFunction
-
-<http://purl.org/ceu/simeon/1.0#MultisetSimilarityFunction> rdf:type owl:Class ;
-                                                            
-                                                            owl:equivalentClass [ rdf:type owl:Class ;
-                                                                                  owl:intersectionOf ( <http://purl.org/ceu/simeon/1.0#MultiheterosetSimilarityFunction>
-                                                                                                       <http://purl.org/ceu/simeon/1.0#MultisetComparisonMethod>
-                                                                                                     )
-                                                                                ] .
+:BoxesComparisonMeasure rdf:type owl:Class ;
+                        
+                        rdfs:label "Boxes comparison measure"@en ,
+                                   "Medida de comparación de cajas"@es ;
+                        
+                        rdfs:subClassOf :MultiheterosetsComparisonMeasure ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty <http://purl.org/ceu/simeon#usesComparisonMethod> ;
+                                          owl:someValuesFrom :BoxesComparisonMethod
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty <http://purl.org/ceu/simeon#hasTargetObject> ;
+                                          owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Box>
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty <http://purl.org/ceu/simeon#hasSourceObject> ;
+                                          owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Box>
+                                        ] .
 
 
 
-###  http://purl.org/ceu/simeon/1.0#SimpleDataComparisonMethod
+###  http://purl.org/ceu/simeon/collections#BoxesComparisonMethod
 
-<http://purl.org/ceu/simeon/1.0#SimpleDataComparisonMethod> rdf:type owl:Class ;
-                                                            
-                                                            rdfs:label "Simple data comparison method"@en ,
-                                                                       "Método de comparación de datos simples"@es ;
-                                                            
-                                                            rdfs:subClassOf <http://purl.org/ceu/simeon#ComparisonMethod> ;
-                                                            
-                                                            rdfs:comment "A simple data comparison method is a method to compare two simple data of the same type (booleans, numbers, dates, strings, etc.)."@en ,
-                                                                         "Un método de comparación de datos simple is un método para comparar dos datos simples del mismo tipo (booleanos, números, fechas, cadenas, etc.)."@es .
-
-
-
-###  http://purl.org/ceu/simeon/1.0#SimpleDataDissimilarityFuncion
-
-<http://purl.org/ceu/simeon/1.0#SimpleDataDissimilarityFuncion> rdf:type owl:Class ;
-                                                                
-                                                                rdfs:label "Simple data dissimilarity function"@en ,
-                                                                           "Función de disimilitud de datos simples"@es ;
-                                                                
-                                                                owl:equivalentClass [ rdf:type owl:Class ;
-                                                                                      owl:intersectionOf ( <http://purl.org/ceu/simeon#DissimilarityFunction>
-                                                                                                           <http://purl.org/ceu/simeon/1.0#SimpleDataComparisonMethod>
-                                                                                                         )
-                                                                                    ] .
+:BoxesComparisonMethod rdf:type owl:Class ;
+                       
+                       rdfs:label "Boxes comparison method"@en ,
+                                  "Método de comparación de cajas"@es ;
+                       
+                       rdfs:subClassOf :MultiheterosetsComparisonMethod ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty <http://purl.org/ceu/simeon#comparesObject> ;
+                                         owl:allValuesFrom <http://purl.org/ceu/eco/1.0#Box>
+                                       ] .
 
 
 
-###  http://purl.org/ceu/simeon/1.0#SimpleDataSimilarityFunction
+###  http://purl.org/ceu/simeon/collections#CollectionsComparisonMeasure
 
-<http://purl.org/ceu/simeon/1.0#SimpleDataSimilarityFunction> rdf:type owl:Class ;
-                                                              
-                                                              rdfs:label "Simple data similiarity function"@en ,
-                                                                         "Función de similitud de datos simples"@es ;
-                                                              
-                                                              rdfs:subClassOf <http://purl.org/ceu/simeon/1.0#SimpleDataComparisonMethod> .
+:CollectionsComparisonMeasure rdf:type owl:Class ;
+                              
+                              rdfs:label "Collections comparison measure"@en ,
+                                         "Medida de comparación de colecciones"@es ;
+                              
+                              rdfs:subClassOf <http://purl.org/ceu/simeon#ObjectComparisonMeasure> ,
+                                              [ rdf:type owl:Restriction ;
+                                                owl:onProperty <http://purl.org/ceu/simeon#usesComparisonMethod> ;
+                                                owl:someValuesFrom <http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod>
+                                              ] ,
+                                              [ rdf:type owl:Restriction ;
+                                                owl:onProperty <http://purl.org/ceu/simeon#hasSourceObject> ;
+                                                owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Collection>
+                                              ] ,
+                                              [ rdf:type owl:Restriction ;
+                                                owl:onProperty <http://purl.org/ceu/simeon#hasTargetObject> ;
+                                                owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Collection>
+                                              ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#CombinationsComparisonMeasure
+
+:CombinationsComparisonMeasure rdf:type owl:Class ;
+                               
+                               rdfs:label "Combinations comparison measure"@en ,
+                                          "Medida de comparación de combinaciones"@es ;
+                               
+                               rdfs:subClassOf :HeterocombinationsComparisonMeasure ,
+                                               :MulticombinationsComparisonMeasure ,
+                                               :SetsComparisonMeasure ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <http://purl.org/ceu/simeon#hasTargetObject> ;
+                                                 owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Combination>
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <http://purl.org/ceu/simeon#usesComparisonMethod> ;
+                                                 owl:someValuesFrom :CombinationsComparisonMethod
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <http://purl.org/ceu/simeon#hasSourceObject> ;
+                                                 owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Combination>
+                                               ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#CombinationsComparisonMethod
+
+:CombinationsComparisonMethod rdf:type owl:Class ;
+                              
+                              rdfs:label "Combinations comparison method"@en ,
+                                         "Método de comparación de combinaciones"@es ;
+                              
+                              rdfs:subClassOf :HeterocombinationsComparisonMethod ,
+                                              :MulticombinationsComparisonMethod ,
+                                              :SetsComparisonMethod ,
+                                              [ rdf:type owl:Restriction ;
+                                                owl:onProperty <http://purl.org/ceu/simeon#comparesObject> ;
+                                                owl:allValuesFrom <http://purl.org/ceu/eco/1.0#Combination>
+                                              ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#DatesComparisonMeasure
+
+:DatesComparisonMeasure rdf:type owl:Class ;
+                        
+                        rdfs:label "Dates comparison measure"@en ,
+                                   "Medida de comparación de fechas"@es ;
+                        
+                        rdfs:subClassOf <http://purl.org/ceu/simeon#DataComparisonMeasure> ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty <http://purl.org/ceu/simeon#hasTargetData> ;
+                                          owl:someValuesFrom xsd:dateTime
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty <http://purl.org/ceu/simeon#hasSourceData> ;
+                                          owl:someValuesFrom xsd:dateTime
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty <http://purl.org/ceu/simeon#usesComparisonMethod> ;
+                                          owl:someValuesFrom :DatesComparsionMethod
+                                        ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#DatesComparsionMethod
+
+:DatesComparsionMethod rdf:type owl:Class ;
+                       
+                       rdfs:label "Dates comparison method"@en ,
+                                  "Método de comparación de fechas"@es ;
+                       
+                       rdfs:subClassOf <http://purl.org/ceu/simeon#DataComparisonMethod> .
+
+
+
+###  http://purl.org/ceu/simeon/collections#HeterocombinationsComparisonMeasure
+
+:HeterocombinationsComparisonMeasure rdf:type owl:Class ;
+                                     
+                                     rdfs:label "Heterocombinations comparison measure"@en ,
+                                                "Medida de comparación de heterocombinaciones"@es ;
+                                     
+                                     rdfs:subClassOf :BoxesComparisonMeasure ,
+                                                     :HeterosetsComparisonMeasure ,
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty <http://purl.org/ceu/simeon#usesComparisonMethod> ;
+                                                       owl:someValuesFrom :HeterocombinationsComparisonMethod
+                                                     ] ,
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty <http://purl.org/ceu/simeon#hasSourceObject> ;
+                                                       owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Heterocombination>
+                                                     ] ,
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty <http://purl.org/ceu/simeon#hasTargetObject> ;
+                                                       owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Heterocombination>
+                                                     ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#HeterocombinationsComparisonMethod
+
+:HeterocombinationsComparisonMethod rdf:type owl:Class ;
+                                    
+                                    rdfs:label "Heterocombinations comparison method"@en ,
+                                               "Método de comparación de heterocombinaciones"@es ;
+                                    
+                                    rdfs:subClassOf :BoxesComparisonMethod ,
+                                                    :HeterosetsComparisonMethod ,
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty <http://purl.org/ceu/simeon#comparesObject> ;
+                                                      owl:allValuesFrom <http://purl.org/ceu/eco/1.0#Heterocombination>
+                                                    ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#HeterorankingsComparisonMeasure
+
+:HeterorankingsComparisonMeasure rdf:type owl:Class ;
+                                 
+                                 rdfs:label "Heterorankings comparison measure"@en ,
+                                            "Medida de comparación de heterorankings"@es ;
+                                 
+                                 rdfs:subClassOf :HeterosetsComparisonMeasure ,
+                                                 :ListsComparisonMeasure ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty <http://purl.org/ceu/simeon#usesComparisonMethod> ;
+                                                   owl:someValuesFrom :HeterorankingsComparisonMethod
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty <http://purl.org/ceu/simeon#hasTargetObject> ;
+                                                   owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Heteroranking>
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty <http://purl.org/ceu/simeon#hasSourceObject> ;
+                                                   owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Heteroranking>
+                                                 ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#HeterorankingsComparisonMethod
+
+:HeterorankingsComparisonMethod rdf:type owl:Class ;
+                                
+                                rdfs:label "Heterorankings comparison method"@en ,
+                                           "Método de comparación de heterorankings"@es ;
+                                
+                                rdfs:subClassOf :HeterosetsComparisonMethod ,
+                                                :ListsComparisonMethod ,
+                                                [ rdf:type owl:Restriction ;
+                                                  owl:onProperty <http://purl.org/ceu/simeon#comparesObject> ;
+                                                  owl:allValuesFrom <http://purl.org/ceu/eco/1.0#Heteroranking>
+                                                ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#HeterosetsComparisonMeasure
+
+:HeterosetsComparisonMeasure rdf:type owl:Class ;
+                             
+                             rdfs:label "Heterosets comparison measure"@en ,
+                                        "Medida de comparación de heteroconjuntos"@es ;
+                             
+                             rdfs:subClassOf :MultiheterosetsComparisonMeasure ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty <http://purl.org/ceu/simeon#usesComparisonMethod> ;
+                                               owl:someValuesFrom :HeterosetsComparisonMethod
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty <http://purl.org/ceu/simeon#hasSourceObject> ;
+                                               owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Heteroset>
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty <http://purl.org/ceu/simeon#hasTargetObject> ;
+                                               owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Heteroset>
+                                             ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#HeterosetsComparisonMethod
+
+:HeterosetsComparisonMethod rdf:type owl:Class ;
+                            
+                            rdfs:label "Heterosets comparison method"@en ,
+                                       "Método de comparación de heteroconjuntos"@es ;
+                            
+                            rdfs:subClassOf :MultiheterosetsComparisonMethod ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty <http://purl.org/ceu/simeon#comparesObject> ;
+                                              owl:allValuesFrom <http://purl.org/ceu/eco/1.0#Heteroset>
+                                            ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#HeterovariationsComparisonMeasure
+
+:HeterovariationsComparisonMeasure rdf:type owl:Class ;
+                                   
+                                   rdfs:label "Heterovariations comparison measure"@en ,
+                                              "Medida de comparación de heterovariaciones"@es ;
+                                   
+                                   rdfs:subClassOf :HeterocombinationsComparisonMeasure ,
+                                                   :HeterorankingsComparisonMeasure ,
+                                                   :TuplesComparisonMeasure ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <http://purl.org/ceu/simeon#hasSourceObject> ;
+                                                     owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Heterovariation>
+                                                   ] ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <http://purl.org/ceu/simeon#hasTargetObject> ;
+                                                     owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Heterovariation>
+                                                   ] ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <http://purl.org/ceu/simeon#usesComparisonMethod> ;
+                                                     owl:someValuesFrom :HeterovariationsComparisonMethod
+                                                   ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#HeterovariationsComparisonMethod
+
+:HeterovariationsComparisonMethod rdf:type owl:Class ;
+                                  
+                                  rdfs:label "Heterovariations comparison method"@en ,
+                                             "Método de comparación de heterovariaciones"@es ;
+                                  
+                                  rdfs:subClassOf :HeterocombinationsComparisonMethod ,
+                                                  :HeterorankingsComparisonMethod ,
+                                                  :TuplesComparisonMethod ,
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty <http://purl.org/ceu/simeon#comparesObject> ;
+                                                    owl:allValuesFrom <http://purl.org/ceu/eco/1.0#Heterovariation>
+                                                  ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#ListsComparisonMeasure
+
+:ListsComparisonMeasure rdf:type owl:Class ;
+                        
+                        rdfs:label "Lists comparison measure"@en ,
+                                   "Medida de comparación de listas"@es ;
+                        
+                        rdfs:subClassOf :MultiheterosetsComparisonMeasure ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty <http://purl.org/ceu/simeon#usesComparisonMethod> ;
+                                          owl:someValuesFrom :ListsComparisonMethod
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty <http://purl.org/ceu/simeon#hasTargetObject> ;
+                                          owl:someValuesFrom <http://purl.org/ceu/eco/1.0#List>
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty <http://purl.org/ceu/simeon#hasSourceObject> ;
+                                          owl:someValuesFrom <http://purl.org/ceu/eco/1.0#List>
+                                        ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#ListsComparisonMethod
+
+:ListsComparisonMethod rdf:type owl:Class ;
+                       
+                       rdfs:label "Lists comparison method"@en ,
+                                  "Método de comparación de listas"@es ;
+                       
+                       rdfs:subClassOf :MultiheterosetsComparisonMethod ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty <http://purl.org/ceu/simeon#comparesObject> ;
+                                         owl:allValuesFrom <http://purl.org/ceu/eco/1.0#List>
+                                       ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#MulticombinationsComparisonMeasure
+
+:MulticombinationsComparisonMeasure rdf:type owl:Class ;
+                                    
+                                    rdfs:label "Multicombinations comparison measure"@en ,
+                                               "Medida de comparación de multicombinaciones"@es ;
+                                    
+                                    rdfs:subClassOf :BoxesComparisonMeasure ,
+                                                    :MultisetsComparisonMeasure ,
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty <http://purl.org/ceu/simeon#hasSourceObject> ;
+                                                      owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Multicombination>
+                                                    ] ,
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty <http://purl.org/ceu/simeon#usesComparisonMethod> ;
+                                                      owl:someValuesFrom :MulticombinationsComparisonMethod
+                                                    ] ,
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty <http://purl.org/ceu/simeon#hasTargetObject> ;
+                                                      owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Multicombination>
+                                                    ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#MulticombinationsComparisonMethod
+
+:MulticombinationsComparisonMethod rdf:type owl:Class ;
+                                   
+                                   rdfs:label "Multicombinations comparison method"@en ,
+                                              "Método de comparación de multicombinaciones"@es ;
+                                   
+                                   rdfs:subClassOf :BoxesComparisonMethod ,
+                                                   :MultisetsComparisonMethod ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <http://purl.org/ceu/simeon#comparesObject> ;
+                                                     owl:allValuesFrom <http://purl.org/ceu/eco/1.0#Multicombination>
+                                                   ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMeasure
+
+:MultiheterosetsComparisonMeasure rdf:type owl:Class ;
+                                  
+                                  rdfs:label "Multiheterosets comparison measure"@en ,
+                                             "Medida de comparación de multiheteroconjuntos"@es ;
+                                  
+                                  rdfs:subClassOf :CollectionsComparisonMeasure ,
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty <http://purl.org/ceu/simeon#hasSourceObject> ;
+                                                    owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Multiheteroset>
+                                                  ] ,
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty <http://purl.org/ceu/simeon#usesComparisonMethod> ;
+                                                    owl:someValuesFrom :MultiheterosetsComparisonMethod
+                                                  ] ,
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty <http://purl.org/ceu/simeon#hasTargetObject> ;
+                                                    owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Multiheteroset>
+                                                  ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMethod
+
+:MultiheterosetsComparisonMethod rdf:type owl:Class ;
+                                 
+                                 rdfs:label "Multiheterosets comparison method"@en ,
+                                            "Método de comparación de multiheteroconjuntos."@es ;
+                                 
+                                 rdfs:subClassOf <http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod> ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty <http://purl.org/ceu/simeon#comparesObject> ;
+                                                   owl:allValuesFrom <http://purl.org/ceu/eco/1.0#Multiheteroset>
+                                                 ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#MultisetsComparisonMeasure
+
+:MultisetsComparisonMeasure rdf:type owl:Class ;
+                            
+                            rdfs:label "Multisets comparison measure"@en ,
+                                       "Medida de comparación de multiconjuntos"@es ;
+                            
+                            rdfs:subClassOf :MultiheterosetsComparisonMeasure ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty <http://purl.org/ceu/simeon#hasSourceObject> ;
+                                              owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Multiset>
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty <http://purl.org/ceu/simeon#usesComparisonMethod> ;
+                                              owl:someValuesFrom :MultisetsComparisonMethod
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty <http://purl.org/ceu/simeon#hasTargetObject> ;
+                                              owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Multiset>
+                                            ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#MultisetsComparisonMethod
+
+:MultisetsComparisonMethod rdf:type owl:Class ;
+                           
+                           rdfs:label "Multisets comparison method"@en ,
+                                      "Método de comparación de multiconjuntos"@es ;
+                           
+                           rdfs:subClassOf :MultiheterosetsComparisonMethod ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <http://purl.org/ceu/simeon#comparesObject> ;
+                                             owl:allValuesFrom <http://purl.org/ceu/eco/1.0#Multiset>
+                                           ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#NumbersComparisonMeasure
+
+:NumbersComparisonMeasure rdf:type owl:Class ;
+                          
+                          rdfs:label "Numbers comparison measure"@en ,
+                                     "Medida de comparación de números"@es ;
+                          
+                          rdfs:subClassOf <http://purl.org/ceu/simeon#DataComparisonMeasure> ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty <http://purl.org/ceu/simeon#hasSourceData> ;
+                                            owl:someValuesFrom xsd:decimal
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty <http://purl.org/ceu/simeon#hasTargetData> ;
+                                            owl:someValuesFrom xsd:decimal
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty <http://purl.org/ceu/simeon#usesComparisonMethod> ;
+                                            owl:someValuesFrom :NumbersComparisonMethod
+                                          ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#NumbersComparisonMethod
+
+:NumbersComparisonMethod rdf:type owl:Class ;
+                         
+                         rdfs:label "Numbers comparison method"@en ,
+                                    "Método de comparación de números"@es ;
+                         
+                         rdfs:subClassOf <http://purl.org/ceu/simeon#DataComparisonMethod> .
+
+
+
+###  http://purl.org/ceu/simeon/collections#RankingsComparisonMeasure
+
+:RankingsComparisonMeasure rdf:type owl:Class ;
+                           
+                           rdfs:label "Rankings comparison measure"@en ,
+                                      "Medida de comparación de rankings"@es ;
+                           
+                           rdfs:subClassOf :HeterorankingsComparisonMeasure ,
+                                           :SequencesComparisonMeasure ,
+                                           :SetsComparisonMeasure ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <http://purl.org/ceu/simeon#hasSourceObject> ;
+                                             owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Ranking>
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <http://purl.org/ceu/simeon#hasTargetObject> ;
+                                             owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Ranking>
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <http://purl.org/ceu/simeon#usesComparisonMethod> ;
+                                             owl:someValuesFrom :RankingsComparisonMethod
+                                           ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#RankingsComparisonMethod
+
+:RankingsComparisonMethod rdf:type owl:Class ;
+                          
+                          rdfs:label "Rankings comparison method"@en ,
+                                     "Método de comparación de rankings"@es ;
+                          
+                          rdfs:subClassOf :HeterorankingsComparisonMethod ,
+                                          :SequencesComparisonMethod ,
+                                          :SetsComparisonMethod ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty <http://purl.org/ceu/simeon#comparesObject> ;
+                                            owl:allValuesFrom <http://purl.org/ceu/eco/1.0#Ranking>
+                                          ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#SequencesComparisonMeasure
+
+:SequencesComparisonMeasure rdf:type owl:Class ;
+                            
+                            rdfs:label "Sequences comparison measure"@en ,
+                                       "Medida de comparación de secuencias"@es ;
+                            
+                            rdfs:subClassOf :ListsComparisonMeasure ,
+                                            :MultisetsComparisonMeasure ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty <http://purl.org/ceu/simeon#hasTargetObject> ;
+                                              owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Sequence>
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty <http://purl.org/ceu/simeon#hasSourceObject> ;
+                                              owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Sequence>
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty <http://purl.org/ceu/simeon#usesComparisonMethod> ;
+                                              owl:someValuesFrom :SequencesComparisonMethod
+                                            ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#SequencesComparisonMethod
+
+:SequencesComparisonMethod rdf:type owl:Class ;
+                           
+                           rdfs:label "Sequences comparison method"@en ,
+                                      "Método de comparación de secuencias"@es ;
+                           
+                           rdfs:subClassOf :ListsComparisonMethod ,
+                                           :MultisetsComparisonMethod ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <http://purl.org/ceu/simeon#comparesObject> ;
+                                             owl:allValuesFrom <http://purl.org/ceu/eco/1.0#Sequence>
+                                           ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#SetsComparisonMeasure
+
+:SetsComparisonMeasure rdf:type owl:Class ;
+                       
+                       rdfs:label "Sets comparison measure"@en ,
+                                  "Medida de comparación de conjuntos"@es ;
+                       
+                       rdfs:subClassOf :HeterosetsComparisonMeasure ,
+                                       :MultisetsComparisonMeasure ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty <http://purl.org/ceu/simeon#hasSourceObject> ;
+                                         owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Set>
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty <http://purl.org/ceu/simeon#hasTargetObject> ;
+                                         owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Set>
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty <http://purl.org/ceu/simeon#usesComparisonMethod> ;
+                                         owl:someValuesFrom :SetsComparisonMethod
+                                       ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#SetsComparisonMethod
+
+:SetsComparisonMethod rdf:type owl:Class ;
+                      
+                      rdfs:label "Sets comparison method"@en ,
+                                 "Método de comparación de conjuntos"@es ;
+                      
+                      rdfs:subClassOf :HeterosetsComparisonMethod ,
+                                      :MultisetsComparisonMethod ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty <http://purl.org/ceu/simeon#comparesObject> ;
+                                        owl:allValuesFrom <http://purl.org/ceu/eco/1.0#Set>
+                                      ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#StringsComparisonMeasure
+
+:StringsComparisonMeasure rdf:type owl:Class ;
+                          
+                          rdfs:label "Strings comparison measure"@en ,
+                                     "Medida de comparación de cadenas"@es ;
+                          
+                          rdfs:subClassOf <http://purl.org/ceu/simeon#DataComparisonMeasure> ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty <http://purl.org/ceu/simeon#hasSourceData> ;
+                                            owl:someValuesFrom xsd:string
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty <http://purl.org/ceu/simeon#hasTargetData> ;
+                                            owl:someValuesFrom xsd:string
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty <http://purl.org/ceu/simeon#usesComparisonMethod> ;
+                                            owl:someValuesFrom :StringsComparisonMethod
+                                          ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#StringsComparisonMethod
+
+:StringsComparisonMethod rdf:type owl:Class ;
+                         
+                         rdfs:label "Strings comparison method"@en ,
+                                    "Método de comparación de cadenas"@es ;
+                         
+                         rdfs:subClassOf <http://purl.org/ceu/simeon#DataComparisonMethod> .
+
+
+
+###  http://purl.org/ceu/simeon/collections#TimesComparisonMethod
+
+:TimesComparisonMethod rdf:type owl:Class ;
+                       
+                       rdfs:label "Times comparison method"@en ,
+                                  "Método de comparación de tiempos"@es ;
+                       
+                       rdfs:subClassOf <http://purl.org/ceu/simeon#DataComparisonMethod> .
+
+
+
+###  http://purl.org/ceu/simeon/collections#TuplesComparisonMeasure
+
+:TuplesComparisonMeasure rdf:type owl:Class ;
+                         
+                         rdfs:label "Tuples comparison measure"@en ,
+                                    "Medida de comparación de tuplas"@es ;
+                         
+                         rdfs:subClassOf :BoxesComparisonMeasure ,
+                                         :ListsComparisonMeasure ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty <http://purl.org/ceu/simeon#hasTargetObject> ;
+                                           owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Tuple>
+                                         ] ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty <http://purl.org/ceu/simeon#usesComparisonMethod> ;
+                                           owl:someValuesFrom :TuplesComparisonMethod
+                                         ] ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty <http://purl.org/ceu/simeon#hasSourceObject> ;
+                                           owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Tuple>
+                                         ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#TuplesComparisonMethod
+
+:TuplesComparisonMethod rdf:type owl:Class ;
+                        
+                        rdfs:label "Tuples comparison method"@en ,
+                                   "Método de comparación de tuplas"@es ;
+                        
+                        rdfs:subClassOf :BoxesComparisonMethod ,
+                                        :ListsComparisonMethod ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty <http://purl.org/ceu/simeon#comparesObject> ;
+                                          owl:allValuesFrom <http://purl.org/ceu/eco/1.0#Tuple>
+                                        ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#VariationsComparisonMeasure
+
+:VariationsComparisonMeasure rdf:type owl:Class ;
+                             
+                             rdfs:label "Variations comparison measure"@en ,
+                                        "Medida de comparación de variaciones"@es ;
+                             
+                             rdfs:subClassOf :CombinationsComparisonMeasure ,
+                                             :HeterovariationsComparisonMeasure ,
+                                             :RankingsComparisonMeasure ,
+                                             :VectorsComparisonMeasure ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty <http://purl.org/ceu/simeon#hasSourceObject> ;
+                                               owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Variation>
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty <http://purl.org/ceu/simeon#usesComparisonMethod> ;
+                                               owl:someValuesFrom :VariationsComparisonMethod
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty <http://purl.org/ceu/simeon#hasTargetObject> ;
+                                               owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Variation>
+                                             ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#VariationsComparisonMethod
+
+:VariationsComparisonMethod rdf:type owl:Class ;
+                            
+                            rdfs:subClassOf :CombinationsComparisonMethod ,
+                                            :HeterovariationsComparisonMethod ,
+                                            :RankingsComparisonMethod ,
+                                            :VectorsComparisonMethod ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty <http://purl.org/ceu/simeon#comparesObject> ;
+                                              owl:allValuesFrom <http://purl.org/ceu/eco/1.0#Variation>
+                                            ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#VectorsComparisonMeasure
+
+:VectorsComparisonMeasure rdf:type owl:Class ;
+                          
+                          rdfs:label "Vectors comparison measure"@en ,
+                                     "Medida de comparacion de vectores"@es ;
+                          
+                          rdfs:subClassOf :MulticombinationsComparisonMeasure ,
+                                          :SequencesComparisonMeasure ,
+                                          :TuplesComparisonMeasure ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty <http://purl.org/ceu/simeon#usesComparisonMethod> ;
+                                            owl:someValuesFrom :VectorsComparisonMethod
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty <http://purl.org/ceu/simeon#hasSourceObject> ;
+                                            owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Vector>
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty <http://purl.org/ceu/simeon#hasTargetObject> ;
+                                            owl:someValuesFrom <http://purl.org/ceu/eco/1.0#Vector>
+                                          ] .
+
+
+
+###  http://purl.org/ceu/simeon/collections#VectorsComparisonMethod
+
+:VectorsComparisonMethod rdf:type owl:Class ;
+                         
+                         rdfs:label "Vectors comparison method"@en ,
+                                    "Método de comparación de vectores"@es ;
+                         
+                         rdfs:subClassOf :MulticombinationsComparisonMethod ,
+                                         :SequencesComparisonMethod ,
+                                         :TuplesComparisonMethod ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty <http://purl.org/ceu/simeon#comparesObject> ;
+                                           owl:allValuesFrom <http://purl.org/ceu/eco/1.0#Vector>
+                                         ] .
 
 
 
@@ -272,88 +901,501 @@ El módulo Collections añade soporte para la comparación de colecciones usando
 
 #################################################################
 #
-#    Rules
+#    Individuals
 #
 #################################################################
 
 
-<urn:swrl#measure> rdf:type swrl:Variable .
-<urn:swrl#method> rdf:type swrl:Variable .
-<urn:swrl#collection> rdf:type swrl:Variable .
-[ rdf:type swrl:Imp ;
-  swrl:body [ rdf:type swrl:AtomList ;
-              rdf:first [ rdf:type swrl:ClassAtom ;
-                          swrl:classPredicate <http://purl.org/ceu/simeon#ComparisonMeasure> ;
-                          swrl:argument1 <urn:swrl#measure>
-                        ] ;
-              rdf:rest [ rdf:type swrl:AtomList ;
-                         rdf:rest [ rdf:type swrl:AtomList ;
-                                    rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                swrl:argument2 <http://purl.org/ceu/eco/1.0#Multiheteroset> ;
-                                                swrl:propertyPredicate <http://purl.org/ceu/simeon#hasDomain> ;
-                                                swrl:argument1 <urn:swrl#method>
-                                              ] ;
-                                    rdf:rest [ rdf:type swrl:AtomList ;
-                                               rdf:rest rdf:nil ;
-                                               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                           swrl:propertyPredicate <http://purl.org/ceu/simeon#hasSourceEntity> ;
-                                                           swrl:argument2 <urn:swrl#collection> ;
-                                                           swrl:argument1 <urn:swrl#measure>
-                                                         ]
-                                             ]
-                                  ] ;
-                         rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                     swrl:propertyPredicate <http://purl.org/ceu/simeon#usesComparisonMethod> ;
-                                     swrl:argument1 <urn:swrl#measure> ;
-                                     swrl:argument2 <urn:swrl#method>
-                                   ]
-                       ]
-            ] ;
-  swrl:head [ rdf:type swrl:AtomList ;
-              rdf:rest rdf:nil ;
-              rdf:first [ rdf:type swrl:ClassAtom ;
-                          swrl:classPredicate <http://purl.org/ceu/eco/1.0#Multiheteroset> ;
-                          swrl:argument1 <urn:swrl#collection>
-                        ]
-            ]
-] .
-[ rdf:type swrl:Imp ;
-  swrl:head [ rdf:type swrl:AtomList ;
-              rdf:rest rdf:nil ;
-              rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                          swrl:argument2 <http://purl.org/ceu/eco/1.0#Multiheteroset> ;
-                          swrl:propertyPredicate <http://purl.org/ceu/simeon#hasDomain> ;
-                          swrl:argument1 <urn:swrl#method>
-                        ]
-            ] ;
-  swrl:body [ rdf:type swrl:AtomList ;
-              rdf:first [ rdf:type swrl:ClassAtom ;
-                          swrl:classPredicate <http://purl.org/ceu/simeon#ComparisonMeasure> ;
-                          swrl:argument1 <urn:swrl#measure>
-                        ] ;
-              rdf:rest [ rdf:type swrl:AtomList ;
-                         rdf:rest [ rdf:type swrl:AtomList ;
-                                    rdf:first [ rdf:type swrl:ClassAtom ;
-                                                swrl:classPredicate <http://purl.org/ceu/eco/1.0#Multiheteroset> ;
-                                                swrl:argument1 <urn:swrl#collection>
-                                              ] ;
-                                    rdf:rest [ rdf:type swrl:AtomList ;
-                                               rdf:rest rdf:nil ;
-                                               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                           swrl:propertyPredicate <http://purl.org/ceu/simeon#usesComparisonMethod> ;
-                                                           swrl:argument1 <urn:swrl#measure> ;
-                                                           swrl:argument2 <urn:swrl#method>
-                                                         ]
-                                             ]
-                                  ] ;
-                         rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                     swrl:propertyPredicate <http://purl.org/ceu/simeon#hasSourceEntity> ;
-                                     swrl:argument2 <urn:swrl#collection> ;
-                                     swrl:argument1 <urn:swrl#measure>
-                                   ]
-                       ]
-            ]
-] .
+###  http://purl.org/ceu/simeon/collections#ancestorsSimilarityFunction
+
+:ancestorsSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                      <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                      :StringsComparisonMethod ,
+                                      owl:NamedIndividual ;
+                             
+                             rdfs:label "ancestors similarity function"@en ,
+                                        "función de similitud de los ancestros"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#averageSimilarityBetweenElementsSimilarityFunction
+
+:averageSimilarityBetweenElementsSimilarityFunction rdf:type <http://purl.org/ceu/simeon#SymmetricComparisonMethod> ,
+                                                             :SetsComparisonMethod ,
+                                                             owl:NamedIndividual ;
+                                                    
+                                                    rdfs:label "average similarity between elements similarity function"@en ,
+                                                               "función de similitud media entre elementos"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#averageSimilarityFunction
+
+:averageSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                    <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                    :TuplesComparisonMethod ,
+                                    owl:NamedIndividual ;
+                           
+                           rdfs:label "average similarity function"@en ,
+                                      "función de similitud media"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#cardinalitySimilarityFunction
+
+:cardinalitySimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                        :MultiheterosetsComparisonMethod ,
+                                        owl:NamedIndividual ;
+                               
+                               rdfs:label "cardinality similarity function"@en ,
+                                          "función de similitud de cardinalidad"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#chiSquareSimilarityFunction
+
+:chiSquareSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                      :MultisetsComparisonMethod ,
+                                      owl:NamedIndividual ;
+                             
+                             rdfs:label "chi-square similarity function"@en ,
+                                        "función de similitud chi-cuadrado"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#coincidenceWindowSimilarityFunction
+
+:coincidenceWindowSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                              <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                              :ListsComparisonMethod ,
+                                              owl:NamedIndividual ;
+                                     
+                                     rdfs:label "coincidence window similarity function"@en ,
+                                                "función de similitud de ventana de coincidencia"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#commonPrefixSimilarityFunction
+
+:commonPrefixSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                         <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                         :ListsComparisonMethod ,
+                                         owl:NamedIndividual ;
+                                
+                                rdfs:label "common prefix similarity function"@en ,
+                                           "función de similitud de prefijo común"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#commonSufixSimilarityFunction
+
+:commonSufixSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                        :ListsComparisonMethod ,
+                                        owl:NamedIndividual ;
+                               
+                               rdfs:label "common sufix similarity function"@en ,
+                                          "función de similitud de sufijo común"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#cosineSimilarityFunction
+
+:cosineSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                   <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                   :VectorsComparisonMethod ,
+                                   owl:NamedIndividual ;
+                          
+                          rdfs:label "cosine similarity function"@en ,
+                                     "función de similitud del coseno"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#diceSimilarityFunction
+
+:diceSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                 <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                 :MultiheterosetsComparisonMethod ,
+                                 owl:NamedIndividual ;
+                        
+                        rdfs:label "Dice's similarity function"@en ,
+                                   "función de similitud de Dice"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#diferenceDistanceFunction
+
+:diferenceDistanceFunction rdf:type <http://purl.org/ceu/simeon#DistanceFunction> ,
+                                    :NumbersComparisonMethod ,
+                                    owl:NamedIndividual .
+
+
+
+###  http://purl.org/ceu/simeon/collections#editionDistanceFunction
+
+:editionDistanceFunction rdf:type <http://purl.org/ceu/simeon#DistanceFunction> ,
+                                  :SequencesComparisonMethod ,
+                                  owl:NamedIndividual ;
+                         
+                         rdfs:label "edition distance function"@en ,
+                                    "función de distancia de edición"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#euclideanDistanceFunction
+
+:euclideanDistanceFunction rdf:type <http://purl.org/ceu/simeon#DistanceFunction> ,
+                                    :VectorsComparisonMethod ,
+                                    owl:NamedIndividual ;
+                           
+                           rdfs:label "euclidean distance function"@en ,
+                                      "función de distancia euclídea"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#extendedHammingSimilarityFunction
+
+:extendedHammingSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                            <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                            :SequencesComparisonMethod ,
+                                            owl:NamedIndividual ;
+                                   
+                                   rdfs:label "extended Hamming's similarity function"@en ,
+                                              "función de similitud de Hamming extendida"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#generalizedAverageSimilarityFunction
+
+:generalizedAverageSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                               <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                               :TuplesComparisonMethod ,
+                                               owl:NamedIndividual ;
+                                      
+                                      rdfs:label "generalized average similarity function"@en ,
+                                                 "función de similitud media generalizada"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#greatestCommonConsecutiveSublistSimilarityFunction
+
+:greatestCommonConsecutiveSublistSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                                             <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                                             :ListsComparisonMethod ,
+                                                             owl:NamedIndividual ;
+                                                    
+                                                    rdfs:label "greatest common consecutive sublist similarity function"@en ,
+                                                               "función de similitud de la mayor sublista consecutiva común"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#greatestCommonSublistSimilarityFunction
+
+:greatestCommonSublistSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                                  <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                                  :ListsComparisonMethod ,
+                                                  owl:NamedIndividual ;
+                                         
+                                         rdfs:label "greatest common sublist similarity function"@en ,
+                                                    "función de similitud de la mayor sublista común"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#hammingSimilarityFunction
+
+:hammingSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                    <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                    :ListsComparisonMethod ,
+                                    owl:NamedIndividual ;
+                           
+                           rdfs:label "Hamming's similarity function"@en ,
+                                      "función de similitud de Hamming"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#informationContentSimilarityFunction
+
+:informationContentSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                               <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                               :StringsComparisonMethod ,
+                                               owl:NamedIndividual ;
+                                      
+                                      rdfs:label "information content similarity function"@en ,
+                                                 "función de similitud de contenido de información"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#jaccardSimilarityFunction
+
+:jaccardSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                    <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                    :MultiheterosetsComparisonMethod ,
+                                    owl:NamedIndividual ;
+                           
+                           rdfs:label "Jaccard's similarity function"@en ,
+                                      "función de similitud de Jaccard"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#jaroSimilarityFunction
+
+:jaroSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                 <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                 :ListsComparisonMethod ,
+                                 owl:NamedIndividual ;
+                        
+                        rdfs:label "Jaro's similarity function"@en ,
+                                   "función de similitud de Jaro"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#jaroWinklerSimilarityFunction
+
+:jaroWinklerSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                        :ListsComparisonMethod ,
+                                        owl:NamedIndividual ;
+                               
+                               rdfs:label "Jaro-Winkler's similarity function"@en ,
+                                          "función de similitud de Jaro-Winkler"@en .
+
+
+
+###  http://purl.org/ceu/simeon/collections#kulczynskiSimilarityFunction
+
+:kulczynskiSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                       :MultiheterosetsComparisonMethod ,
+                                       owl:NamedIndividual ;
+                              
+                              rdfs:label "Kulczynski's similarity function"@en ,
+                                         "función de similitud de Kulczynski"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#levenshteinSimilarityFunction
+
+:levenshteinSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                        :SequencesComparisonMethod ,
+                                        owl:NamedIndividual ;
+                               
+                               rdfs:label "Levenshtein's similarity function"@en ,
+                                          "función de similitud de Levenshtein"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#manhattanDistanceFunction
+
+:manhattanDistanceFunction rdf:type <http://purl.org/ceu/simeon#DistanceFunction> ,
+                                    :VectorsComparisonMethod ,
+                                    owl:NamedIndividual ;
+                           
+                           rdfs:label "Manhattan's distance function"@en ,
+                                      "función de distancia de Manhattan"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#maxSimilarityBetweenElementsSimilarityFunction
+
+:maxSimilarityBetweenElementsSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                                         <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                                         :SetsComparisonMethod ,
+                                                         owl:NamedIndividual ;
+                                                
+                                                rdfs:label "maximum similarity between elements similarity function"@en ,
+                                                           "función de similitud máxima entre elementos"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#minSimilarityBetweenElementsSimilarityFuncion
+
+:minSimilarityBetweenElementsSimilarityFuncion rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                                        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                                        :SetsComparisonMethod ,
+                                                        owl:NamedIndividual ;
+                                               
+                                               rdfs:label "minimum similarity between elements similarity function"@en ,
+                                                          "función de similtiud mínima entre elementos"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#minkowskiDistanceFunction
+
+:minkowskiDistanceFunction rdf:type <http://purl.org/ceu/simeon#DistanceFunction> ,
+                                    :VectorsComparisonMethod ,
+                                    owl:NamedIndividual ;
+                           
+                           rdfs:label "Minkowski's distance function"@en ,
+                                      "función de distancia de Minkowski"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#morphosyntacticSimilarityFunction
+
+:morphosyntacticSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                            <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                            :StringsComparisonMethod ,
+                                            owl:NamedIndividual ;
+                                   
+                                   rdfs:label "morphosyntactic similarity function"@en ,
+                                              "función de similitud morfosintáctica"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#ngramsSimilarityFunction
+
+:ngramsSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                   <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                   :SequencesComparisonMethod ,
+                                   owl:NamedIndividual ;
+                          
+                          rdfs:label "n-grams similarity function"@en ,
+                                     "función de similitud de n-gramas"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#optimalMatchSimilarityFunction
+
+:optimalMatchSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                         <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                         :SetsComparisonMethod ,
+                                         owl:NamedIndividual ;
+                                
+                                rdfs:label "optimal match similarity function"@en ,
+                                           "función de similitud de emparejamiento óptimo"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#resnikSimilarityFunction
+
+:resnikSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                   <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                   :StringsComparisonMethod ,
+                                   owl:NamedIndividual ;
+                          
+                          rdfs:label "Resnik similarity function"@en ,
+                                     "función de similitud de Resnik"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#shortestPathSimilarityFunction
+
+:shortestPathSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                         <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                         :StringsComparisonMethod ,
+                                         owl:NamedIndividual ;
+                                
+                                rdfs:label "shortest path similarity function"@en ,
+                                           "función de similitud del camino más corto"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#simpsonSimilarityFunction
+
+:simpsonSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                    :MultiheterosetsComparisonMethod ,
+                                    owl:NamedIndividual ;
+                           
+                           rdfs:label "Simpson's similarity function"@en ,
+                                      "función de similitud de Simpson"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#synonymySimilarityFunction
+
+:synonymySimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                     <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                     :StringsComparisonMethod ,
+                                     owl:NamedIndividual ;
+                            
+                            rdfs:label "synonymy similarity function"@en ,
+                                       "función de similitud de sinonimia"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#synsetsSimilarityFunction
+
+:synsetsSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                    <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                    :StringsComparisonMethod ,
+                                    owl:NamedIndividual ;
+                           
+                           rdfs:label "synsets similarity function"@en ,
+                                      "función de similitud de conjuntos de sinónimos"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#tanimotoSimilarityFunction
+
+:tanimotoSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                     <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                     :VectorsComparisonMethod ,
+                                     owl:NamedIndividual ;
+                            
+                            rdfs:label "Tanimoto's similarity function"@en ,
+                                       "función de similitud de Tanimoto"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#tchebychevDistanceFunction
+
+:tchebychevDistanceFunction rdf:type <http://purl.org/ceu/simeon#DistanceFunction> ,
+                                     :VectorsComparisonMethod ,
+                                     owl:NamedIndividual ;
+                            
+                            rdfs:label "Tchebychev's distance function"@en ,
+                                       "función de distancia de Tchebychev"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#tfIdfSimilarityFunction
+
+:tfIdfSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                  <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                  :MultisetsComparisonMethod ,
+                                  owl:NamedIndividual ;
+                         
+                         rdfs:label "term frecuency x inverse document frequency similarity function"@en ,
+                                    "función de similitud de frecuencia de términos x frecuencia de documento inversa"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#tverskySimilarityFunction
+
+:tverskySimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                    :MultiheterosetsComparisonMethod ,
+                                    owl:NamedIndividual ;
+                           
+                           rdfs:label "Tversky's similarity function"@en ,
+                                      "función de similitud de Tversky"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#weightedAverageSimilarityFunction
+
+:weightedAverageSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                            <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                            :TuplesComparisonMethod ,
+                                            owl:NamedIndividual ;
+                                   
+                                   rdfs:label "weighted average similarity function"@en ,
+                                              "función de similitud media ponderada"@es .
+
+
+
+###  http://purl.org/ceu/simeon/collections#xorSimilarityFunction
+
+:xorSimilarityFunction rdf:type <http://purl.org/ceu/simeon#NormalizedSimilarityFunction> ,
+                                <http://purl.org/ceu/simeon#SymmetricSimilarityFunction> ,
+                                <http://purl.org/ceu/simeon/1.0#BooleansComparisonMethod> ,
+                                owl:NamedIndividual ;
+                       
+                       rdfs:label "XOR similarity function"@en ,
+                                  "Función de similitud XOR"@es .
+
+
+
 
 ###  Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net
 
