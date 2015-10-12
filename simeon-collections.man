@@ -41,27 +41,267 @@ AnnotationProperty: rdfs:comment
 AnnotationProperty: dc:creator
 
     
+Datatype: xsd:dateTime
+
+    
+Datatype: xsd:decimal
+
+    
+Datatype: xsd:string
+
+    
+Datatype: xsd:boolean
+
+    
 Datatype: rdf:PlainLiteral
 
     
 ObjectProperty: <http://purl.org/ceu/simeon#usesComparisonMethod>
 
     
-ObjectProperty: <http://purl.org/ceu/simeon#hasSourceEntity>
+ObjectProperty: <http://purl.org/ceu/simeon#comparesObject>
 
     
-ObjectProperty: <http://purl.org/ceu/simeon#hasDomain>
+ObjectProperty: <http://purl.org/ceu/simeon#hasSourceObject>
 
     
-Class: <http://purl.org/ceu/simeon/1.0#BooleanSimilarityFunction>
+ObjectProperty: <http://purl.org/ceu/simeon#hasTargetObject>
+
+    
+DataProperty: <http://purl.org/ceu/simeon#hasSourceData>
+
+    
+DataProperty: <http://purl.org/ceu/simeon#hasTargetData>
+
+    
+Class: <http://purl.org/ceu/simeon/collections#CombinationsComparisonMethod>
 
     Annotations: 
-        rdfs:label "Función de similitud de booleanos"@es,
-        rdfs:label "Boolean similarity function"@en
+        rdfs:label "Método de comparación de combinaciones"@es,
+        rdfs:label "Combinations comparison method"@en
     
     SubClassOf: 
-        <http://purl.org/ceu/simeon/1.0#SimpleDataSimilarityFunction>,
-        <http://purl.org/ceu/simeon/1.0#BooleanComparisonMethod>
+        <http://purl.org/ceu/simeon#comparesObject> only <http://purl.org/ceu/eco/1.0#Combination>,
+        <http://purl.org/ceu/simeon/collections#MulticombinationsComparisonMethod>,
+        <http://purl.org/ceu/simeon/collections#HeterocombinationsComparisonMethod>,
+        <http://purl.org/ceu/simeon/collections#SetsComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#HeterosetsComparisonMethod>
+
+    Annotations: 
+        rdfs:label "Heterosets comparison method"@en,
+        rdfs:label "Método de comparación de heteroconjuntos"@es
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#comparesObject> only <http://purl.org/ceu/eco/1.0#Heteroset>,
+        <http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#NumbersComparisonMethod>
+
+    Annotations: 
+        rdfs:label "Método de comparación de números"@es,
+        rdfs:label "Numbers comparison method"@en
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#DataComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#SetsComparisonMethod>
+
+    Annotations: 
+        rdfs:label "Método de comparación de conjuntos"@es,
+        rdfs:label "Sets comparison method"@en
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon/collections#HeterosetsComparisonMethod>,
+        <http://purl.org/ceu/simeon#comparesObject> only <http://purl.org/ceu/eco/1.0#Set>,
+        <http://purl.org/ceu/simeon/collections#MultisetsComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/eco/1.0#Combination>
+
+    
+Class: <http://purl.org/ceu/simeon/collections#NumbersComparisonMeasure>
+
+    Annotations: 
+        rdfs:label "Numbers comparison measure"@en,
+        rdfs:label "Medida de comparación de números"@es
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#hasTargetData> some xsd:decimal,
+        <http://purl.org/ceu/simeon#DataComparisonMeasure>,
+        <http://purl.org/ceu/simeon#usesComparisonMethod> some <http://purl.org/ceu/simeon/collections#NumbersComparisonMethod>,
+        <http://purl.org/ceu/simeon#hasSourceData> some xsd:decimal
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#ListsComparisonMethod>
+
+    Annotations: 
+        rdfs:label "Método de comparación de listas"@es,
+        rdfs:label "Lists comparison method"@en
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMethod>,
+        <http://purl.org/ceu/simeon#comparesObject> only <http://purl.org/ceu/eco/1.0#List>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#CombinationsComparisonMeasure>
+
+    Annotations: 
+        rdfs:label "Combinations comparison measure"@en,
+        rdfs:label "Medida de comparación de combinaciones"@es
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon/collections#MulticombinationsComparisonMeasure>,
+        <http://purl.org/ceu/simeon/collections#SetsComparisonMeasure>,
+        <http://purl.org/ceu/simeon#hasSourceObject> some <http://purl.org/ceu/eco/1.0#Combination>,
+        <http://purl.org/ceu/simeon/collections#HeterocombinationsComparisonMeasure>,
+        <http://purl.org/ceu/simeon#usesComparisonMethod> some <http://purl.org/ceu/simeon/collections#CombinationsComparisonMethod>,
+        <http://purl.org/ceu/simeon#hasTargetObject> some <http://purl.org/ceu/eco/1.0#Combination>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#VariationsComparisonMethod>
+
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#comparesObject> only <http://purl.org/ceu/eco/1.0#Variation>,
+        <http://purl.org/ceu/simeon/collections#RankingsComparisonMethod>,
+        <http://purl.org/ceu/simeon/collections#CombinationsComparisonMethod>,
+        <http://purl.org/ceu/simeon/collections#VectorsComparisonMethod>,
+        <http://purl.org/ceu/simeon/collections#HeterovariationsComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon#DataComparisonMethod>
+
+    
+Class: <http://purl.org/ceu/simeon/1.0#CollectionsDissimilarityFunction>
+
+    Annotations: 
+        rdfs:label "Collections dissimilarity function"@en,
+        rdfs:label "Función de disimilitud de colecciones."@es
+    
+    EquivalentTo: 
+        <http://purl.org/ceu/simeon#DissimilarityFunction>
+         and <http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon#DistanceFunction>
+
+    
+Class: <http://purl.org/ceu/simeon#DissimilarityFunction>
+
+    
+Class: <http://purl.org/ceu/simeon/collections#RankingsComparisonMeasure>
+
+    Annotations: 
+        rdfs:label "Medida de comparación de rankings"@es,
+        rdfs:label "Rankings comparison measure"@en
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#hasTargetObject> some <http://purl.org/ceu/eco/1.0#Ranking>,
+        <http://purl.org/ceu/simeon#hasSourceObject> some <http://purl.org/ceu/eco/1.0#Ranking>,
+        <http://purl.org/ceu/simeon#usesComparisonMethod> some <http://purl.org/ceu/simeon/collections#RankingsComparisonMethod>,
+        <http://purl.org/ceu/simeon/collections#SetsComparisonMeasure>,
+        <http://purl.org/ceu/simeon/collections#HeterorankingsComparisonMeasure>,
+        <http://purl.org/ceu/simeon/collections#SequencesComparisonMeasure>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#VariationsComparisonMeasure>
+
+    Annotations: 
+        rdfs:label "Medida de comparación de variaciones"@es,
+        rdfs:label "Variations comparison measure"@en
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon/collections#VectorsComparisonMeasure>,
+        <http://purl.org/ceu/simeon#hasSourceObject> some <http://purl.org/ceu/eco/1.0#Variation>,
+        <http://purl.org/ceu/simeon/collections#CombinationsComparisonMeasure>,
+        <http://purl.org/ceu/simeon#hasTargetObject> some <http://purl.org/ceu/eco/1.0#Variation>,
+        <http://purl.org/ceu/simeon/collections#RankingsComparisonMeasure>,
+        <http://purl.org/ceu/simeon/collections#HeterovariationsComparisonMeasure>,
+        <http://purl.org/ceu/simeon#usesComparisonMethod> some <http://purl.org/ceu/simeon/collections#VariationsComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#HeterorankingsComparisonMethod>
+
+    Annotations: 
+        rdfs:label "Método de comparación de heterorankings"@es,
+        rdfs:label "Heterorankings comparison method"@en
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon/collections#HeterosetsComparisonMethod>,
+        <http://purl.org/ceu/simeon/collections#ListsComparisonMethod>,
+        <http://purl.org/ceu/simeon#comparesObject> only <http://purl.org/ceu/eco/1.0#Heteroranking>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#ListsComparisonMeasure>
+
+    Annotations: 
+        rdfs:label "Medida de comparación de listas"@es,
+        rdfs:label "Lists comparison measure"@en
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#hasSourceObject> some <http://purl.org/ceu/eco/1.0#List>,
+        <http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMeasure>,
+        <http://purl.org/ceu/simeon#hasTargetObject> some <http://purl.org/ceu/eco/1.0#List>,
+        <http://purl.org/ceu/simeon#usesComparisonMethod> some <http://purl.org/ceu/simeon/collections#ListsComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMethod>
+
+    Annotations: 
+        rdfs:label "Multiheterosets comparison method"@en,
+        rdfs:label "Método de comparación de multiheteroconjuntos."@es
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod>,
+        <http://purl.org/ceu/simeon#comparesObject> only <http://purl.org/ceu/eco/1.0#Multiheteroset>
+    
+    
+Class: <http://purl.org/ceu/simeon#ObjectComparisonMeasure>
+
+    
+Class: <http://purl.org/ceu/simeon/collections#VectorsComparisonMeasure>
+
+    Annotations: 
+        rdfs:label "Medida de comparacion de vectores"@es,
+        rdfs:label "Vectors comparison measure"@en
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon/collections#MulticombinationsComparisonMeasure>,
+        <http://purl.org/ceu/simeon#hasTargetObject> some <http://purl.org/ceu/eco/1.0#Vector>,
+        <http://purl.org/ceu/simeon/collections#TuplesComparisonMeasure>,
+        <http://purl.org/ceu/simeon/collections#SequencesComparisonMeasure>,
+        <http://purl.org/ceu/simeon#usesComparisonMethod> some <http://purl.org/ceu/simeon/collections#VectorsComparisonMethod>,
+        <http://purl.org/ceu/simeon#hasSourceObject> some <http://purl.org/ceu/eco/1.0#Vector>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#BoxesComparisonMeasure>
+
+    Annotations: 
+        rdfs:label "Medida de comparación de cajas"@es,
+        rdfs:label "Boxes comparison measure"@en
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#usesComparisonMethod> some <http://purl.org/ceu/simeon/collections#BoxesComparisonMethod>,
+        <http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMeasure>,
+        <http://purl.org/ceu/simeon#hasSourceObject> some <http://purl.org/ceu/eco/1.0#Box>,
+        <http://purl.org/ceu/simeon#hasTargetObject> some <http://purl.org/ceu/eco/1.0#Box>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#TuplesComparisonMeasure>
+
+    Annotations: 
+        rdfs:label "Tuples comparison measure"@en,
+        rdfs:label "Medida de comparación de tuplas"@es
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon/collections#ListsComparisonMeasure>,
+        <http://purl.org/ceu/simeon#hasTargetObject> some <http://purl.org/ceu/eco/1.0#Tuple>,
+        <http://purl.org/ceu/simeon#usesComparisonMethod> some <http://purl.org/ceu/simeon/collections#TuplesComparisonMethod>,
+        <http://purl.org/ceu/simeon/collections#BoxesComparisonMeasure>,
+        <http://purl.org/ceu/simeon#hasSourceObject> some <http://purl.org/ceu/eco/1.0#Tuple>
     
     
 Class: <http://purl.org/ceu/simeon/1.0#CollectionsSimilarityFunction>
@@ -75,7 +315,151 @@ Class: <http://purl.org/ceu/simeon/1.0#CollectionsSimilarityFunction>
          and <http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod>
     
     
-Class: <http://purl.org/ceu/simeon#DissimilarityFunction>
+Class: <http://purl.org/ceu/eco/1.0#Heteroranking>
+
+    
+Class: <http://purl.org/ceu/eco/1.0#Tuple>
+
+    
+Class: <http://purl.org/ceu/simeon/collections#SetsComparisonMeasure>
+
+    Annotations: 
+        rdfs:label "Sets comparison measure"@en,
+        rdfs:label "Medida de comparación de conjuntos"@es
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#hasTargetObject> some <http://purl.org/ceu/eco/1.0#Set>,
+        <http://purl.org/ceu/simeon#usesComparisonMethod> some <http://purl.org/ceu/simeon/collections#SetsComparisonMethod>,
+        <http://purl.org/ceu/simeon/collections#MultisetsComparisonMeasure>,
+        <http://purl.org/ceu/simeon/collections#HeterosetsComparisonMeasure>,
+        <http://purl.org/ceu/simeon#hasSourceObject> some <http://purl.org/ceu/eco/1.0#Set>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#DatesComparsionMethod>
+
+    Annotations: 
+        rdfs:label "Método de comparación de fechas"@es,
+        rdfs:label "Dates comparison method"@en
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#DataComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#VectorsComparisonMethod>
+
+    Annotations: 
+        rdfs:label "Vectors comparison method"@en,
+        rdfs:label "Método de comparación de vectores"@es
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon/collections#MulticombinationsComparisonMethod>,
+        <http://purl.org/ceu/simeon/collections#SequencesComparisonMethod>,
+        <http://purl.org/ceu/simeon#comparesObject> only <http://purl.org/ceu/eco/1.0#Vector>,
+        <http://purl.org/ceu/simeon/collections#TuplesComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#SequencesComparisonMethod>
+
+    Annotations: 
+        rdfs:label "Método de comparación de secuencias"@es,
+        rdfs:label "Sequences comparison method"@en
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#comparesObject> only <http://purl.org/ceu/eco/1.0#Sequence>,
+        <http://purl.org/ceu/simeon/collections#MultisetsComparisonMethod>,
+        <http://purl.org/ceu/simeon/collections#ListsComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/eco/1.0#Variation>
+
+    
+Class: <http://purl.org/ceu/eco/1.0#List>
+
+    
+Class: <http://purl.org/ceu/simeon/collections#HeterovariationsComparisonMethod>
+
+    Annotations: 
+        rdfs:label "Heterovariations comparison method"@en,
+        rdfs:label "Método de comparación de heterovariaciones"@es
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#comparesObject> only <http://purl.org/ceu/eco/1.0#Heterovariation>,
+        <http://purl.org/ceu/simeon/collections#TuplesComparisonMethod>,
+        <http://purl.org/ceu/simeon/collections#HeterocombinationsComparisonMethod>,
+        <http://purl.org/ceu/simeon/collections#HeterorankingsComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/eco/1.0#Box>
+
+    
+Class: <http://purl.org/ceu/eco/1.0#Ranking>
+
+    
+Class: <http://purl.org/ceu/simeon/collections#MultisetsComparisonMethod>
+
+    Annotations: 
+        rdfs:label "Multisets comparison method"@en,
+        rdfs:label "Método de comparación de multiconjuntos"@es
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#comparesObject> only <http://purl.org/ceu/eco/1.0#Multiset>,
+        <http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon#SimilarityFunction>
+
+    
+Class: <http://purl.org/ceu/simeon/collections#BooleansComparisonMeasure>
+
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#usesComparisonMethod> some <http://purl.org/ceu/simeon/1.0#BooleansComparisonMethod>,
+        <http://purl.org/ceu/simeon#DataComparisonMeasure>,
+        <http://purl.org/ceu/simeon#hasTargetData> some xsd:boolean,
+        <http://purl.org/ceu/simeon#hasSourceData> some xsd:boolean
+    
+    
+Class: <http://purl.org/ceu/eco/1.0#Multiheteroset>
+
+    
+Class: <http://purl.org/ceu/eco/1.0#Sequence>
+
+    
+Class: <http://purl.org/ceu/simeon/collections#HeterovariationsComparisonMeasure>
+
+    Annotations: 
+        rdfs:label "Heterovariations comparison measure"@en,
+        rdfs:label "Medida de comparación de heterovariaciones"@es
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon/collections#HeterorankingsComparisonMeasure>,
+        <http://purl.org/ceu/simeon#hasTargetObject> some <http://purl.org/ceu/eco/1.0#Heterovariation>,
+        <http://purl.org/ceu/simeon/collections#HeterocombinationsComparisonMeasure>,
+        <http://purl.org/ceu/simeon/collections#TuplesComparisonMeasure>,
+        <http://purl.org/ceu/simeon#usesComparisonMethod> some <http://purl.org/ceu/simeon/collections#HeterovariationsComparisonMethod>,
+        <http://purl.org/ceu/simeon#hasSourceObject> some <http://purl.org/ceu/eco/1.0#Heterovariation>
+    
+    
+Class: <http://purl.org/ceu/simeon#ObjectComparisonMethod>
+
+    
+Class: <http://purl.org/ceu/eco/1.0#Collection>
+
+    
+Class: <http://purl.org/ceu/simeon/collections#HeterocombinationsComparisonMeasure>
+
+    Annotations: 
+        rdfs:label "Heterocombinations comparison measure"@en,
+        rdfs:label "Medida de comparación de heterocombinaciones"@es
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#hasTargetObject> some <http://purl.org/ceu/eco/1.0#Heterocombination>,
+        <http://purl.org/ceu/simeon/collections#BoxesComparisonMeasure>,
+        <http://purl.org/ceu/simeon#hasSourceObject> some <http://purl.org/ceu/eco/1.0#Heterocombination>,
+        <http://purl.org/ceu/simeon/collections#HeterosetsComparisonMeasure>,
+        <http://purl.org/ceu/simeon#usesComparisonMethod> some <http://purl.org/ceu/simeon/collections#HeterocombinationsComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon#SymmetricComparisonMethod>
 
     
 Class: <http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod>
@@ -83,130 +467,742 @@ Class: <http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod>
     Annotations: 
         rdfs:seeAlso "Ontología E-Collections (http://aprendeconalf.es/ecollections)"@es,
         rdfs:comment "Un método de comparación de colecciones es un método para comparar dos colecciones, grupos o agregados de objetos."@es,
-        rdfs:comment "A collections comparison method is a method to compare two collections, groups or aggregations of objects."@en,
         rdfs:label "Collections comparison method"@en,
         rdfs:seeAlso "E-Collections ontology (http://aprendeconalf.es/ecollections)"@en,
+        rdfs:comment "A collections comparison method is a method to compare two collections, groups or aggregations of objects."@en,
         rdfs:label "Método de comparación de colecciones."@es
     
-    EquivalentTo: 
-        <http://purl.org/ceu/simeon#ComparisonMethod>
-         and (<http://purl.org/ceu/simeon#hasDomain> value <http://purl.org/ceu/eco/1.0#Collection>)
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#ObjectComparisonMethod>,
+        <http://purl.org/ceu/simeon#comparesObject> only <http://purl.org/ceu/eco/1.0#Collection>
     
     
-Class: <http://purl.org/ceu/simeon/1.0#CollectionsDissimilarityFunction>
+Class: <http://purl.org/ceu/simeon/collections#MultisetsComparisonMeasure>
 
     Annotations: 
-        rdfs:label "Función de disimilitud de colecciones."@es,
-        rdfs:label "Collections dissimilarity function"@en
-    
-    EquivalentTo: 
-        <http://purl.org/ceu/simeon#DissimilarityFunction>
-         and <http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod>
-    
-    
-Class: <http://purl.org/ceu/simeon/1.0#MultisetComparisonMethod>
-
-    EquivalentTo: 
-        <http://purl.org/ceu/simeon/1.0#MultiheterosetComparisonMethod>
-         and (<http://purl.org/ceu/simeon#hasDomain> value <http://purl.org/ceu/eco/1.0#Multiset>)
-    
-    
-Class: <http://purl.org/ceu/simeon#ComparisonMeasure>
-
-    
-Class: <http://purl.org/ceu/simeon/1.0#MultiheterosetComparisonMethod>
-
-    Annotations: 
-        rdfs:label "Multiheteroset comparison method"@en,
-        rdfs:label "Método de comparación de multiheteroconjuntos."@es
-    
-    EquivalentTo: 
-        <http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod>
-         and (<http://purl.org/ceu/simeon#hasDomain> value <http://purl.org/ceu/eco/1.0#Multiheteroset>)
-    
-    
-Class: <http://purl.org/ceu/simeon/1.0#SimpleDataSimilarityFunction>
-
-    Annotations: 
-        rdfs:label "Simple data similiarity function"@en,
-        rdfs:label "Función de similitud de datos simples"@es
+        rdfs:label "Medida de comparación de multiconjuntos"@es,
+        rdfs:label "Multisets comparison measure"@en
     
     SubClassOf: 
-        <http://purl.org/ceu/simeon/1.0#SimpleDataComparisonMethod>
+        <http://purl.org/ceu/simeon#hasTargetObject> some <http://purl.org/ceu/eco/1.0#Multiset>,
+        <http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMeasure>,
+        <http://purl.org/ceu/simeon#hasSourceObject> some <http://purl.org/ceu/eco/1.0#Multiset>,
+        <http://purl.org/ceu/simeon#usesComparisonMethod> some <http://purl.org/ceu/simeon/collections#MultisetsComparisonMethod>
     
     
-Class: <http://purl.org/ceu/simeon/1.0#BooleanComparisonMethod>
+Class: <http://purl.org/ceu/simeon/collections#DatesComparisonMeasure>
 
     Annotations: 
-        rdfs:label "Método de comparación de booleanos."@es,
-        rdfs:label "Boolean comparison method"@en
+        rdfs:label "Dates comparison measure"@en,
+        rdfs:label "Medida de comparación de fechas"@es
     
     SubClassOf: 
-        <http://purl.org/ceu/simeon/1.0#SimpleDataComparisonMethod>
+        <http://purl.org/ceu/simeon#usesComparisonMethod> some <http://purl.org/ceu/simeon/collections#DatesComparsionMethod>,
+        <http://purl.org/ceu/simeon#DataComparisonMeasure>,
+        <http://purl.org/ceu/simeon#hasTargetData> some xsd:dateTime,
+        <http://purl.org/ceu/simeon#hasSourceData> some xsd:dateTime
     
     
-Class: <http://purl.org/ceu/eco/1.0#Multiheteroset>
-
-    
-Class: <http://purl.org/ceu/simeon#ComparisonMethod>
-
-    
-Class: <http://purl.org/ceu/simeon#SimilarityFunction>
-
-    
-Class: <http://purl.org/ceu/simeon/1.0#SimpleDataDissimilarityFuncion>
+Class: <http://purl.org/ceu/simeon/collections#StringsComparisonMethod>
 
     Annotations: 
-        rdfs:label "Función de disimilitud de datos simples"@es,
-        rdfs:label "Simple data dissimilarity function"@en
-    
-    EquivalentTo: 
-        <http://purl.org/ceu/simeon#DissimilarityFunction>
-         and <http://purl.org/ceu/simeon/1.0#SimpleDataComparisonMethod>
-    
-    
-Class: <http://purl.org/ceu/simeon/1.0#SimpleDataComparisonMethod>
-
-    Annotations: 
-        rdfs:label "Simple data comparison method"@en,
-        rdfs:comment "A simple data comparison method is a method to compare two simple data of the same type (booleans, numbers, dates, strings, etc.)."@en,
-        rdfs:comment "Un método de comparación de datos simple is un método para comparar dos datos simples del mismo tipo (booleanos, números, fechas, cadenas, etc.)."@es,
-        rdfs:label "Método de comparación de datos simples"@es
+        rdfs:label "Método de comparación de cadenas"@es,
+        rdfs:label "Strings comparison method"@en
     
     SubClassOf: 
-        <http://purl.org/ceu/simeon#ComparisonMethod>
+        <http://purl.org/ceu/simeon#DataComparisonMethod>
     
     
-Class: <http://purl.org/ceu/simeon/1.0#MultiheterosetSimilarityFunction>
+Class: <http://purl.org/ceu/simeon/collections#TuplesComparisonMethod>
 
     Annotations: 
-        rdfs:label "Multiheterosets similarity function"@en,
-        rdfs:label "Función de similitud de multiheteroconjuntos"@es
+        rdfs:label "Tuples comparison method"@en,
+        rdfs:label "Método de comparación de tuplas"@es
     
-    EquivalentTo: 
-        <http://purl.org/ceu/simeon/1.0#CollectionsSimilarityFunction>
-         and <http://purl.org/ceu/simeon/1.0#MultiheterosetComparisonMethod>
-    
-    
-Class: <http://purl.org/ceu/simeon/1.0#MultisetSimilarityFunction>
-
-    EquivalentTo: 
-        <http://purl.org/ceu/simeon/1.0#MultiheterosetSimilarityFunction>
-         and <http://purl.org/ceu/simeon/1.0#MultisetComparisonMethod>
+    SubClassOf: 
+        <http://purl.org/ceu/simeon/collections#ListsComparisonMethod>,
+        <http://purl.org/ceu/simeon/collections#BoxesComparisonMethod>,
+        <http://purl.org/ceu/simeon#comparesObject> only <http://purl.org/ceu/eco/1.0#Tuple>
     
     
-Individual: <http://purl.org/ceu/eco/1.0#Multiset>
+Class: <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>
 
     
-Individual: <http://purl.org/ceu/eco/1.0#Collection>
+Class: <http://purl.org/ceu/simeon/collections#HeterosetsComparisonMeasure>
+
+    Annotations: 
+        rdfs:label "Heterosets comparison measure"@en,
+        rdfs:label "Medida de comparación de heteroconjuntos"@es
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMeasure>,
+        <http://purl.org/ceu/simeon#hasTargetObject> some <http://purl.org/ceu/eco/1.0#Heteroset>,
+        <http://purl.org/ceu/simeon#usesComparisonMethod> some <http://purl.org/ceu/simeon/collections#HeterosetsComparisonMethod>,
+        <http://purl.org/ceu/simeon#hasSourceObject> some <http://purl.org/ceu/eco/1.0#Heteroset>
+    
+    
+Class: <http://purl.org/ceu/eco/1.0#Heteroset>
 
     
-Individual: <http://purl.org/ceu/eco/1.0#Multiheteroset>
+Class: <http://purl.org/ceu/simeon/1.0#BooleansComparisonMethod>
+
+    Annotations: 
+        rdfs:label "Boolean comparison method"@en,
+        rdfs:label "Método de comparación de booleanos."@es
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#DataComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#TimesComparisonMethod>
+
+    Annotations: 
+        rdfs:label "Times comparison method"@en,
+        rdfs:label "Método de comparación de tiempos"@es
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#DataComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#HeterorankingsComparisonMeasure>
+
+    Annotations: 
+        rdfs:label "Medida de comparación de heterorankings"@es,
+        rdfs:label "Heterorankings comparison measure"@en
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon/collections#ListsComparisonMeasure>,
+        <http://purl.org/ceu/simeon#hasSourceObject> some <http://purl.org/ceu/eco/1.0#Heteroranking>,
+        <http://purl.org/ceu/simeon/collections#HeterosetsComparisonMeasure>,
+        <http://purl.org/ceu/simeon#hasTargetObject> some <http://purl.org/ceu/eco/1.0#Heteroranking>,
+        <http://purl.org/ceu/simeon#usesComparisonMethod> some <http://purl.org/ceu/simeon/collections#HeterorankingsComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#SequencesComparisonMeasure>
+
+    Annotations: 
+        rdfs:label "Medida de comparación de secuencias"@es,
+        rdfs:label "Sequences comparison measure"@en
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon/collections#ListsComparisonMeasure>,
+        <http://purl.org/ceu/simeon#hasSourceObject> some <http://purl.org/ceu/eco/1.0#Sequence>,
+        <http://purl.org/ceu/simeon/collections#MultisetsComparisonMeasure>,
+        <http://purl.org/ceu/simeon#hasTargetObject> some <http://purl.org/ceu/eco/1.0#Sequence>,
+        <http://purl.org/ceu/simeon#usesComparisonMethod> some <http://purl.org/ceu/simeon/collections#SequencesComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/eco/1.0#Multicombination>
 
     
-Rule: 
-    <http://purl.org/ceu/simeon#ComparisonMeasure>(?measure), <http://purl.org/ceu/simeon#usesComparisonMethod>(?measure, ?method), <http://purl.org/ceu/simeon#hasDomain>(?method, <http://purl.org/ceu/eco/1.0#Multiheteroset>), <http://purl.org/ceu/simeon#hasSourceEntity>(?measure, ?collection) -> <http://purl.org/ceu/eco/1.0#Multiheteroset>(?collection)
+Class: <http://purl.org/ceu/simeon/collections#HeterocombinationsComparisonMethod>
 
-Rule: 
-    <http://purl.org/ceu/simeon#ComparisonMeasure>(?measure), <http://purl.org/ceu/simeon#hasSourceEntity>(?measure, ?collection), <http://purl.org/ceu/eco/1.0#Multiheteroset>(?collection), <http://purl.org/ceu/simeon#usesComparisonMethod>(?measure, ?method) -> <http://purl.org/ceu/simeon#hasDomain>(?method, <http://purl.org/ceu/eco/1.0#Multiheteroset>)
+    Annotations: 
+        rdfs:label "Método de comparación de heterocombinaciones"@es,
+        rdfs:label "Heterocombinations comparison method"@en
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon/collections#HeterosetsComparisonMethod>,
+        <http://purl.org/ceu/simeon/collections#BoxesComparisonMethod>,
+        <http://purl.org/ceu/simeon#comparesObject> only <http://purl.org/ceu/eco/1.0#Heterocombination>
+    
+    
+Class: <http://purl.org/ceu/simeon#DataComparisonMeasure>
 
+    
+Class: <http://purl.org/ceu/eco/1.0#Heterovariation>
+
+    
+Class: <http://purl.org/ceu/simeon/collections#RankingsComparisonMethod>
+
+    Annotations: 
+        rdfs:label "Rankings comparison method"@en,
+        rdfs:label "Método de comparación de rankings"@es
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon/collections#HeterorankingsComparisonMethod>,
+        <http://purl.org/ceu/simeon#comparesObject> only <http://purl.org/ceu/eco/1.0#Ranking>,
+        <http://purl.org/ceu/simeon/collections#SequencesComparisonMethod>,
+        <http://purl.org/ceu/simeon/collections#SetsComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#CollectionsComparisonMeasure>
+
+    Annotations: 
+        rdfs:label "Collections comparison measure"@en,
+        rdfs:label "Medida de comparación de colecciones"@es
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#hasTargetObject> some <http://purl.org/ceu/eco/1.0#Collection>,
+        <http://purl.org/ceu/simeon#hasSourceObject> some <http://purl.org/ceu/eco/1.0#Collection>,
+        <http://purl.org/ceu/simeon#usesComparisonMethod> some <http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod>,
+        <http://purl.org/ceu/simeon#ObjectComparisonMeasure>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#StringsComparisonMeasure>
+
+    Annotations: 
+        rdfs:label "Medida de comparación de cadenas"@es,
+        rdfs:label "Strings comparison measure"@en
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#usesComparisonMethod> some <http://purl.org/ceu/simeon/collections#StringsComparisonMethod>,
+        <http://purl.org/ceu/simeon#DataComparisonMeasure>,
+        <http://purl.org/ceu/simeon#hasSourceData> some xsd:string,
+        <http://purl.org/ceu/simeon#hasTargetData> some xsd:string
+    
+    
+Class: <http://purl.org/ceu/eco/1.0#Heterocombination>
+
+    
+Class: <http://purl.org/ceu/eco/1.0#Set>
+
+    
+Class: <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>
+
+    
+Class: <http://purl.org/ceu/eco/1.0#Multiset>
+
+    
+Class: <http://purl.org/ceu/simeon/collections#MulticombinationsComparisonMethod>
+
+    Annotations: 
+        rdfs:label "Multicombinations comparison method"@en,
+        rdfs:label "Método de comparación de multicombinaciones"@es
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon/collections#MultisetsComparisonMethod>,
+        <http://purl.org/ceu/simeon#comparesObject> only <http://purl.org/ceu/eco/1.0#Multicombination>,
+        <http://purl.org/ceu/simeon/collections#BoxesComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMeasure>
+
+    Annotations: 
+        rdfs:label "Medida de comparación de multiheteroconjuntos"@es,
+        rdfs:label "Multiheterosets comparison measure"@en
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#hasSourceObject> some <http://purl.org/ceu/eco/1.0#Multiheteroset>,
+        <http://purl.org/ceu/simeon#hasTargetObject> some <http://purl.org/ceu/eco/1.0#Multiheteroset>,
+        <http://purl.org/ceu/simeon/collections#CollectionsComparisonMeasure>,
+        <http://purl.org/ceu/simeon#usesComparisonMethod> some <http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#MulticombinationsComparisonMeasure>
+
+    Annotations: 
+        rdfs:label "Multicombinations comparison measure"@en,
+        rdfs:label "Medida de comparación de multicombinaciones"@es
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#hasSourceObject> some <http://purl.org/ceu/eco/1.0#Multicombination>,
+        <http://purl.org/ceu/simeon#usesComparisonMethod> some <http://purl.org/ceu/simeon/collections#MulticombinationsComparisonMethod>,
+        <http://purl.org/ceu/simeon#hasTargetObject> some <http://purl.org/ceu/eco/1.0#Multicombination>,
+        <http://purl.org/ceu/simeon/collections#BoxesComparisonMeasure>,
+        <http://purl.org/ceu/simeon/collections#MultisetsComparisonMeasure>
+    
+    
+Class: <http://purl.org/ceu/simeon/collections#BoxesComparisonMethod>
+
+    Annotations: 
+        rdfs:label "Boxes comparison method"@en,
+        rdfs:label "Método de comparación de cajas"@es
+    
+    SubClassOf: 
+        <http://purl.org/ceu/simeon#comparesObject> only <http://purl.org/ceu/eco/1.0#Box>,
+        <http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMethod>
+    
+    
+Class: <http://purl.org/ceu/eco/1.0#Vector>
+
+    
+Individual: <http://purl.org/ceu/simeon/collections#tfIdfSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "term frecuency x inverse document frequency similarity function"@en,
+        rdfs:label "función de similitud de frecuencia de términos x frecuencia de documento inversa"@es
+    
+    Types: 
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon/collections#MultisetsComparisonMethod>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#euclideanDistanceFunction>
+
+    Annotations: 
+        rdfs:label "función de distancia euclídea"@es,
+        rdfs:label "euclidean distance function"@en
+    
+    Types: 
+        <http://purl.org/ceu/simeon/collections#VectorsComparisonMethod>,
+        <http://purl.org/ceu/simeon#DistanceFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#diferenceDistanceFunction>
+
+    Types: 
+        <http://purl.org/ceu/simeon#DistanceFunction>,
+        <http://purl.org/ceu/simeon/collections#NumbersComparisonMethod>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#jaroWinklerSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "Jaro-Winkler's similarity function"@en,
+        rdfs:label "función de similitud de Jaro-Winkler"@en
+    
+    Types: 
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon/collections#ListsComparisonMethod>,
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#jaroSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "función de similitud de Jaro"@es,
+        rdfs:label "Jaro's similarity function"@en
+    
+    Types: 
+        <http://purl.org/ceu/simeon/collections#ListsComparisonMethod>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#weightedAverageSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "función de similitud media ponderada"@es,
+        rdfs:label "weighted average similarity function"@en
+    
+    Types: 
+        <http://purl.org/ceu/simeon/collections#TuplesComparisonMethod>,
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#minSimilarityBetweenElementsSimilarityFuncion>
+
+    Annotations: 
+        rdfs:label "función de similtiud mínima entre elementos"@es,
+        rdfs:label "minimum similarity between elements similarity function"@en
+    
+    Types: 
+        <http://purl.org/ceu/simeon/collections#SetsComparisonMethod>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#morphosyntacticSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "función de similitud morfosintáctica"@es,
+        rdfs:label "morphosyntactic similarity function"@en
+    
+    Types: 
+        <http://purl.org/ceu/simeon/collections#StringsComparisonMethod>,
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#averageSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "average similarity function"@en,
+        rdfs:label "función de similitud media"@es
+    
+    Types: 
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon/collections#TuplesComparisonMethod>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#hammingSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "Hamming's similarity function"@en,
+        rdfs:label "función de similitud de Hamming"@es
+    
+    Types: 
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon/collections#ListsComparisonMethod>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#jaccardSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "Jaccard's similarity function"@en,
+        rdfs:label "función de similitud de Jaccard"@es
+    
+    Types: 
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMethod>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#synsetsSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "synsets similarity function"@en,
+        rdfs:label "función de similitud de conjuntos de sinónimos"@es
+    
+    Types: 
+        <http://purl.org/ceu/simeon/collections#StringsComparisonMethod>,
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#kulczynskiSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "función de similitud de Kulczynski"@es,
+        rdfs:label "Kulczynski's similarity function"@en
+    
+    Types: 
+        <http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMethod>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#tanimotoSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "función de similitud de Tanimoto"@es,
+        rdfs:label "Tanimoto's similarity function"@en
+    
+    Types: 
+        <http://purl.org/ceu/simeon/collections#VectorsComparisonMethod>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#generalizedAverageSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "función de similitud media generalizada"@es,
+        rdfs:label "generalized average similarity function"@en
+    
+    Types: 
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon/collections#TuplesComparisonMethod>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#ngramsSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "n-grams similarity function"@en,
+        rdfs:label "función de similitud de n-gramas"@es
+    
+    Types: 
+        <http://purl.org/ceu/simeon/collections#SequencesComparisonMethod>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#ancestorsSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "ancestors similarity function"@en,
+        rdfs:label "función de similitud de los ancestros"@es
+    
+    Types: 
+        <http://purl.org/ceu/simeon/collections#StringsComparisonMethod>,
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#shortestPathSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "función de similitud del camino más corto"@es,
+        rdfs:label "shortest path similarity function"@en
+    
+    Types: 
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon/collections#StringsComparisonMethod>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#maxSimilarityBetweenElementsSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "maximum similarity between elements similarity function"@en,
+        rdfs:label "función de similitud máxima entre elementos"@es
+    
+    Types: 
+        <http://purl.org/ceu/simeon/collections#SetsComparisonMethod>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#cardinalitySimilarityFunction>
+
+    Annotations: 
+        rdfs:label "cardinality similarity function"@en,
+        rdfs:label "función de similitud de cardinalidad"@es
+    
+    Types: 
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMethod>,
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#resnikSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "función de similitud de Resnik"@es,
+        rdfs:label "Resnik similarity function"@en
+    
+    Types: 
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon/collections#StringsComparisonMethod>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#simpsonSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "Simpson's similarity function"@en,
+        rdfs:label "función de similitud de Simpson"@es
+    
+    Types: 
+        <http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMethod>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#manhattanDistanceFunction>
+
+    Annotations: 
+        rdfs:label "Manhattan's distance function"@en,
+        rdfs:label "función de distancia de Manhattan"@es
+    
+    Types: 
+        <http://purl.org/ceu/simeon/collections#VectorsComparisonMethod>,
+        <http://purl.org/ceu/simeon#DistanceFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#cosineSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "cosine similarity function"@en,
+        rdfs:label "función de similitud del coseno"@es
+    
+    Types: 
+        <http://purl.org/ceu/simeon/collections#VectorsComparisonMethod>,
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#diceSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "función de similitud de Dice"@es,
+        rdfs:label "Dice's similarity function"@en
+    
+    Types: 
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMethod>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#commonSufixSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "función de similitud de sufijo común"@es,
+        rdfs:label "common sufix similarity function"@en
+    
+    Types: 
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon/collections#ListsComparisonMethod>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#greatestCommonConsecutiveSublistSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "greatest common consecutive sublist similarity function"@en,
+        rdfs:label "función de similitud de la mayor sublista consecutiva común"@es
+    
+    Types: 
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon/collections#ListsComparisonMethod>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#editionDistanceFunction>
+
+    Annotations: 
+        rdfs:label "edition distance function"@en,
+        rdfs:label "función de distancia de edición"@es
+    
+    Types: 
+        <http://purl.org/ceu/simeon/collections#SequencesComparisonMethod>,
+        <http://purl.org/ceu/simeon#DistanceFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#greatestCommonSublistSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "greatest common sublist similarity function"@en,
+        rdfs:label "función de similitud de la mayor sublista común"@es
+    
+    Types: 
+        <http://purl.org/ceu/simeon/collections#ListsComparisonMethod>,
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#informationContentSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "función de similitud de contenido de información"@es,
+        rdfs:label "information content similarity function"@en
+    
+    Types: 
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon/collections#StringsComparisonMethod>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#commonPrefixSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "función de similitud de prefijo común"@es,
+        rdfs:label "common prefix similarity function"@en
+    
+    Types: 
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon/collections#ListsComparisonMethod>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#averageSimilarityBetweenElementsSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "función de similitud media entre elementos"@es,
+        rdfs:label "average similarity between elements similarity function"@en
+    
+    Types: 
+        <http://purl.org/ceu/simeon/collections#SetsComparisonMethod>,
+        <http://purl.org/ceu/simeon#SymmetricComparisonMethod>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#synonymySimilarityFunction>
+
+    Annotations: 
+        rdfs:label "synonymy similarity function"@en,
+        rdfs:label "función de similitud de sinonimia"@es
+    
+    Types: 
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon/collections#StringsComparisonMethod>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#xorSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "Función de similitud XOR"@es,
+        rdfs:label "XOR similarity function"@en
+    
+    Types: 
+        <http://purl.org/ceu/simeon/1.0#BooleansComparisonMethod>,
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#levenshteinSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "función de similitud de Levenshtein"@es,
+        rdfs:label "Levenshtein's similarity function"@en
+    
+    Types: 
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon/collections#SequencesComparisonMethod>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#tverskySimilarityFunction>
+
+    Annotations: 
+        rdfs:label "función de similitud de Tversky"@es,
+        rdfs:label "Tversky's similarity function"@en
+    
+    Types: 
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMethod>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#optimalMatchSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "optimal match similarity function"@en,
+        rdfs:label "función de similitud de emparejamiento óptimo"@es
+    
+    Types: 
+        <http://purl.org/ceu/simeon/collections#SetsComparisonMethod>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#tchebychevDistanceFunction>
+
+    Annotations: 
+        rdfs:label "función de distancia de Tchebychev"@es,
+        rdfs:label "Tchebychev's distance function"@en
+    
+    Types: 
+        <http://purl.org/ceu/simeon/collections#VectorsComparisonMethod>,
+        <http://purl.org/ceu/simeon#DistanceFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#minkowskiDistanceFunction>
+
+    Annotations: 
+        rdfs:label "Minkowski's distance function"@en,
+        rdfs:label "función de distancia de Minkowski"@es
+    
+    Types: 
+        <http://purl.org/ceu/simeon#DistanceFunction>,
+        <http://purl.org/ceu/simeon/collections#VectorsComparisonMethod>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#chiSquareSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "función de similitud chi-cuadrado"@es,
+        rdfs:label "chi-square similarity function"@en
+    
+    Types: 
+        <http://purl.org/ceu/simeon/collections#MultisetsComparisonMethod>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#extendedHammingSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "extended Hamming's similarity function"@en,
+        rdfs:label "función de similitud de Hamming extendida"@es
+    
+    Types: 
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon/collections#SequencesComparisonMethod>
+    
+    
+Individual: <http://purl.org/ceu/simeon/collections#coincidenceWindowSimilarityFunction>
+
+    Annotations: 
+        rdfs:label "coincidence window similarity function"@en,
+        rdfs:label "función de similitud de ventana de coincidencia"@es
+    
+    Types: 
+        <http://purl.org/ceu/simeon/collections#ListsComparisonMethod>,
+        <http://purl.org/ceu/simeon#NormalizedSimilarityFunction>,
+        <http://purl.org/ceu/simeon#SymmetricSimilarityFunction>
+    
+    
