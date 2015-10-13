@@ -14,17 +14,21 @@
                              rdfs:label "SIMEON Ontology"@en ,
                                         "Ontología SIMEON"@es ;
                              
+                             dc:license "Attribution-ShareAlike 4.0 International Creative Commons license (http://creativecommons.org/licenses/by-sa/4.0/)"@en ;
+                             
                              rdfs:comment "SIMEON ontology allow to establish similarity measures between ontology objets and collections."@en ;
                              
-                             dc:rights "SIMEON ontology is released under Attribution-ShareAlike 4.0 International Creative Commons license: http://creativecommons.org/licenses/by-sa/4.0/"@en ;
+                             dc:abstract "SIMEON ontology allow to establish similarity measures between ontology objets and collections."@en ;
                              
                              owl:versionInfo "Version 1.0 2015/07/01"@en ;
                              
                              dc:creator "Alfredo Sánchez Alberca (asalber@ceu.es) <http://aprendeconalf.es/foaf.rdf>"@es ;
                              
-                             dc:rights "La ontología SIMEON está bajo una licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional ( http://creativecommons.org/licenses/by-sa/4.0/)."@es ;
-                             
                              rdfs:comment "La ontología SIMEON permite establecer medidas de similitud entre los objetos y colecciones de objetos de las ontologías."@es ;
+                             
+                             dc:abstract "La ontología SIMEON permite establecer medidas de similitud entre los objetos y colecciones de objetos de las ontologías."@es ;
+                             
+                             dc:license "Licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional (http://creativecommons.org/licenses/by-sa/4.0/)."@es ;
                              
                              owl:versionInfo "Versión 1.0 01/07/2015"@es ;
                              
@@ -48,11 +52,15 @@
                 rdfs:comment "Property that relates a comparison method with an individual that is compared with that method."@en ,
                              "Propiedad que relaciona un método de comparación con un individuo que es comparado mediante ese método."@es ;
                 
+                rdfs:domain :ComparisonMethod ;
+                
+                rdfs:range owl:Thing ;
+                
                 owl:propertyChainAxiom ( :usedByComparisonMeasure
-                                         :hasTargetObject
+                                         :hasSourceObject
                                        ) ,
                                        ( :usedByComparisonMeasure
-                                         :hasSourceObject
+                                         :hasTargetObject
                                        ) .
 
 
@@ -87,19 +95,6 @@
 
 
 
-###  http://purl.org/ceu/simeon#hasRange
-
-:hasRange rdf:type owl:ObjectProperty ;
-          
-          rdfs:label "Property that relates a comparison method with the range of values that returns."@en ,
-                     "has range"@en ,
-                     "Propiedad que relaciona un método de comparación con el rango de valores que devuelve."@es ,
-                     "tiene rango"@es ;
-          
-          rdfs:domain :ComparisonMethod .
-
-
-
 ###  http://purl.org/ceu/simeon#hasReference
 
 :hasReference rdf:type owl:ObjectProperty ;
@@ -127,7 +122,9 @@
                  rdfs:comment "A similarity measurement expresses the similarity degree of a source object with a target object. This property that relates a similarity measure with the source object."@en ,
                               "Una medida de similitud establece el grado de parecido de un objeto origen con otro destino. Esta propiedad relaciona la medida de similitud con el objeto origen."@es ;
                  
-                 rdfs:domain :ObjectComparisonMeasure .
+                 rdfs:domain :ObjectComparisonMeasure ;
+                 
+                 rdfs:range owl:Thing .
 
 
 
@@ -143,7 +140,9 @@
                               "Una medida de similitud establece el grado de parecido de un objeto origen con otro destino. Esta propiedad relaciona la medida de similitud con el objeto destino cuando se trata de un literal."@es ,
                               "Una medida de similitud establece el grado de parecido de un objeto origen con otro destino. Esta propiedad relaciona la medida de similitud con el objeto destino."@es ;
                  
-                 rdfs:domain :ObjectComparisonMeasure .
+                 rdfs:domain :ObjectComparisonMeasure ;
+                 
+                 rdfs:range owl:Thing .
 
 
 
@@ -166,13 +165,18 @@
 
 ###  http://purl.org/ceu/simeon#usedByComparisonMeasure
 
-:usedByComparisonMeasure rdf:type owl:ObjectProperty ;
+:usedByComparisonMeasure rdf:type owl:InverseFunctionalProperty ,
+                                  owl:ObjectProperty ;
                          
                          rdfs:label "used by comparsion measure"@en ,
                                     "usada por medida de comapración"@es ;
                          
                          rdfs:comment "Property that relates a comparison method with a comparison measure calculated with that method."@en ,
-                                      "Propieda que relaciona un método de comparación con una medida de comparación calculada con ese método."@es .
+                                      "Propieda que relaciona un método de comparación con una medida de comparación calculada con ese método."@es ;
+                         
+                         rdfs:range :ComparisonMeasure ;
+                         
+                         rdfs:domain :ComparisonMethod .
 
 
 
@@ -215,7 +219,9 @@
                rdfs:comment "A similarity measurement expresses the similarity degree of a source object with a target object. This property that relates a similarity measure with the source object when that object is a literal."@en ,
                             "Una medida de similitud establece el grado de parecido de un objeto origen con otro destino. Esta propiedad relaciona la medida de similitud con el objeto origen cuando se trata de un literal."@es ;
                
-               rdfs:domain :DataComparisonMeasure .
+               rdfs:domain :DataComparisonMeasure ;
+               
+               rdfs:range rdfs:Literal .
 
 
 
@@ -230,7 +236,9 @@
                rdfs:comment "A similarity measurement expresses the similarity degree of a source object with a target object. This property that relates a similarity measure with the target object when that object is a literal."@en ,
                             "Una medida de similitud establece el grado de parecido de un objeto origen con otro destino. Esta propiedad relaciona la medida de similitud con el objeto destino cuando se trata de un literal."@es ;
                
-               rdfs:domain :DataComparisonMeasure .
+               rdfs:domain :DataComparisonMeasure ;
+               
+               rdfs:range rdfs:Literal .
 
 
 
@@ -274,8 +282,12 @@
                                              
                                              owl:equivalentClass :Algorithm ;
                                              
+                                             rdfs:comment "An algorithm is a procedure for doing some calculations."@en ;
+                                             
                                              rdfs:seeAlso "The software ontology: http://theswo.sourceforge.net/"@en ,
-                                                          "La ontología de software: http://theswo.sourceforge.net/"@es .
+                                                          "La ontología de software: http://theswo.sourceforge.net/"@es ;
+                                             
+                                             rdfs:comment "Un algoritmo es un procedimiento para realizar unos cálculos."@es .
 
 
 
@@ -286,8 +298,12 @@
            rdfs:label "Algorithm"@en ,
                       "Algoritmo"@es ;
            
+           rdfs:comment "An algorithm is a procedure for doing some calculations."@en ;
+           
            rdfs:seeAlso "The software ontology: http://theswo.sourceforge.net/"@en ,
-                        "La ontología del software: http://theswo.sourceforge.net/"@es .
+                        "La ontología del software: http://theswo.sourceforge.net/"@es ;
+           
+           rdfs:comment "Un algoritmo es un procedimiento para realizar unos cálculos."@es .
 
 
 
@@ -337,12 +353,14 @@
 
 :DataComparisonMeasure rdf:type owl:Class ;
                        
-                       rdfs:label "A comparison measure is a value that espresses the similarity or dissimilarity degree between two simple data (literals): booleans, numbers, dates, strings, etc."@en ,
-                                  "Data comparison measure"@en ,
-                                  "Medida de comparación de datos"@es ,
-                                  "Una medida de comparación es un valor que expresa el grado de similitud o disimilitud entre dos datos simples (literales): booleanos, números, fechas, cadenas, etc."@es ;
+                       rdfs:label "Data comparison measure"@en ,
+                                  "Medida de comparación de datos"@es ;
                        
                        rdfs:subClassOf :ComparisonMeasure ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty :hasSourceData ;
+                                         owl:someValuesFrom rdfs:Literal
+                                       ] ,
                                        [ rdf:type owl:Restriction ;
                                          owl:onProperty :hasTargetData ;
                                          owl:someValuesFrom rdfs:Literal
@@ -350,13 +368,12 @@
                                        [ rdf:type owl:Restriction ;
                                          owl:onProperty :usesComparisonMethod ;
                                          owl:someValuesFrom :DataComparisonMethod
-                                       ] ,
-                                       [ rdf:type owl:Restriction ;
-                                         owl:onProperty :hasSourceData ;
-                                         owl:someValuesFrom rdfs:Literal
                                        ] ;
                        
-                       owl:disjointWith :ObjectComparisonMeasure .
+                       owl:disjointWith :ObjectComparisonMeasure ;
+                       
+                       rdfs:comment "A comparison measure is a value that espresses the similarity or dissimilarity degree between two simple data (literals): booleans, numbers, dates, strings, etc."@en ,
+                                    "Una medida de comparación es un valor que expresa el grado de similitud o disimilitud entre dos datos simples (literales): booleanos, números, fechas, cadenas, etc."@es .
 
 
 
@@ -364,13 +381,14 @@
 
 :DataComparisonMethod rdf:type owl:Class ;
                       
+                      rdfs:label "Data comparison method"@en ,
+                                 "Método de comparación de datos"@es ;
+                      
                       rdfs:subClassOf :ComparisonMethod ;
                       
                       owl:disjointWith :ObjectComparisonMethod ;
                       
                       rdfs:comment "A comparison method is a procedure to compare a source literal data with a target literal data that returns a real number, known as comparison measure, that expresses the similarity or dissimilarity degree of the source literal data with the target one."@en ,
-                                   "Data comparison method"@en ,
-                                   "Método de comparación de datos"@es ,
                                    "Un método de comparación es un procedimiento para comparar un dato literal origen con otro destino que devuelve un número real, conocido como medida de comparación, que expresa el grado de similitud o disimilitud del dato literal origen con el destino."@es .
 
 
@@ -517,8 +535,7 @@
 :NormalizedDissimilarityFunction rdf:type owl:Class ;
                                  
                                  rdfs:label "Normalized dissimilarity function"@en ,
-                                            "Función de disimilitud normalizada"@es ,
-                                            "Una función de disimilitud normalizada es una función de disimilitud con rango el intervalo real [0,1], es decir, que devuelve valores entre 0 y 1."@es ;
+                                            "Función de disimilitud normalizada"@es ;
                                  
                                  owl:equivalentClass [ rdf:type owl:Class ;
                                                        owl:intersectionOf ( :DissimilarityFunction
@@ -526,7 +543,8 @@
                                                                           )
                                                      ] ;
                                  
-                                 rdfs:comment "A normalized dissimilarity function is a dissimilarity function with range the real inteval [0,1], that is, that returns values between 0 and 1."@en .
+                                 rdfs:comment "A normalized dissimilarity function is a dissimilarity function with range the real inteval [0,1], that is, that returns values between 0 and 1."@en ,
+                                              "Una función de disimilitud normalizada es una función de disimilitud con rango el intervalo real [0,1], es decir, que devuelve valores entre 0 y 1."@es .
 
 
 
@@ -716,6 +734,9 @@
 
 :SubjectiveComparisonMeasure rdf:type owl:Class ;
                              
+                             rdfs:label "Subjective comparison measure"@en ,
+                                        "Medida de comparación subjetiva"@es ;
+                             
                              rdfs:subClassOf :ComparisonMeasure ;
                              
                              rdfs:comment "A subjective comparison measure is a measure obtained with a subjective comparison method, that is, based on the perception, feelings or opinion of a person."@en ,
@@ -840,8 +861,12 @@ s(x,y) = s(y,x) para todo x,y."""@es .
                                  rdfs:label "Agent"@en ,
                                             "Agente"@es ;
                                  
+                                 rdfs:comment "An agent is an entity (person or artefact) capable of acting and doing things."@en ;
+                                 
                                  rdfs:seeAlso "The Dublin Core Ontology: http://dublincore.org/documents/dcmi-terms/"@en ,
-                                              "La ontología Dublin Core: http://dublincore.org/documents/dcmi-terms/"@es .
+                                              "La ontología Dublin Core: http://dublincore.org/documents/dcmi-terms/"@es ;
+                                 
+                                 rdfs:comment "Un agente es una entidad (persona o artefacto) capaz de actuar y hacer cosas."@es .
 
 
 
@@ -852,8 +877,12 @@ s(x,y) = s(y,x) para todo x,y."""@es .
                                                  rdfs:label "Bibliographic resource"@en ,
                                                             "Recurso bibliográfico"@es ;
                                                  
+                                                 rdfs:comment "A bibliographic resource is a publication (article, book, web page, etc.)"@en ;
+                                                 
                                                  rdfs:seeAlso "The Dublin Core Ontology: http://dublincore.org/documents/dcmi-terms/"@en ,
-                                                              "La ontología Dublin Core: http://dublincore.org/documents/dcmi-terms/"@es .
+                                                              "La ontología Dublin Core: http://dublincore.org/documents/dcmi-terms/"@es ;
+                                                 
+                                                 rdfs:comment "Un recurso bibliográfico es una publicación (artículo, libro, página web, etc)."@es .
 
 
 
@@ -936,11 +965,43 @@ owl:topDataProperty rdfs:label "compares entity"@en ,
 <urn:swrl#literal3> rdf:type swrl:Variable .
 [ rdf:type swrl:Imp ;
   swrl:body [ rdf:type swrl:AtomList ;
-              rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                          swrl:propertyPredicate :hasSourceObject ;
-                          swrl:argument2 <urn:swrl#individual1> ;
-                          swrl:argument1 <urn:swrl#measure2>
+              rdf:first [ rdf:type swrl:ClassAtom ;
+                          swrl:classPredicate :DistanceMeasure ;
+                          swrl:argument1 <urn:swrl#measure>
                         ] ;
+              rdf:rest [ rdf:type swrl:AtomList ;
+                         rdf:rest [ rdf:type swrl:AtomList ;
+                                    rdf:rest [ rdf:type swrl:AtomList ;
+                                               rdf:rest rdf:nil ;
+                                               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                           swrl:argument2 0 ;
+                                                           swrl:propertyPredicate :hasValue ;
+                                                           swrl:argument1 <urn:swrl#measure>
+                                                         ]
+                                             ] ;
+                                    rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                swrl:propertyPredicate :hasTargetObject ;
+                                                swrl:argument2 <urn:swrl#individual2> ;
+                                                swrl:argument1 <urn:swrl#measure>
+                                              ]
+                                  ] ;
+                         rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                     swrl:propertyPredicate :hasSourceObject ;
+                                     swrl:argument2 <urn:swrl#individual1> ;
+                                     swrl:argument1 <urn:swrl#measure>
+                                   ]
+                       ]
+            ] ;
+  swrl:head [ rdf:type swrl:AtomList ;
+              rdf:rest rdf:nil ;
+              rdf:first [ rdf:type swrl:SameIndividualAtom ;
+                          swrl:argument1 <urn:swrl#individual1> ;
+                          swrl:argument2 <urn:swrl#individual2>
+                        ]
+            ]
+] .
+[ rdf:type swrl:Imp ;
+  swrl:body [ rdf:type swrl:AtomList ;
               rdf:rest [ rdf:type swrl:AtomList ;
                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
                                      swrl:propertyPredicate :usesComparisonMethod ;
@@ -949,149 +1010,161 @@ owl:topDataProperty rdfs:label "compares entity"@en ,
                                    ] ;
                          rdf:rest [ rdf:type swrl:AtomList ;
                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                           swrl:propertyPredicate :usesComparisonMethod ;
+                                                           swrl:argument1 <urn:swrl#measure3> ;
+                                                           swrl:argument2 <urn:swrl#method>
+                                                         ] ;
                                                rdf:rest [ rdf:type swrl:AtomList ;
                                                           rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                      swrl:propertyPredicate :usesComparisonMethod ;
-                                                                      swrl:argument1 <urn:swrl#measure1> ;
-                                                                      swrl:argument2 <urn:swrl#method>
+                                                                      swrl:propertyPredicate :hasTargetObject ;
+                                                                      swrl:argument2 <urn:swrl#individual3> ;
+                                                                      swrl:argument1 <urn:swrl#measure2>
                                                                     ] ;
                                                           rdf:rest [ rdf:type swrl:AtomList ;
-                                                                     rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                                                                 swrl:propertyPredicate :hasValue ;
-                                                                                 swrl:argument1 <urn:swrl#measure2> ;
-                                                                                 swrl:argument2 <urn:swrl#value2>
+                                                                     rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                                                 swrl:propertyPredicate :hasSourceObject ;
+                                                                                 swrl:argument2 <urn:swrl#individual1> ;
+                                                                                 swrl:argument1 <urn:swrl#measure1>
                                                                                ] ;
                                                                      rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                           rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                                                       swrl:propertyPredicate :hasSourceObject ;
-                                                                                                       swrl:argument2 <urn:swrl#individual1> ;
-                                                                                                       swrl:argument1 <urn:swrl#measure1>
-                                                                                                     ] ;
-                                                                                           rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                      rdf:first [ rdf:type swrl:ClassAtom ;
-                                                                                                                  swrl:classPredicate :SimilarityMeasure ;
-                                                                                                                  swrl:argument1 <urn:swrl#measure2>
-                                                                                                                ] ;
-                                                                                                      rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                 rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                            rdf:rest rdf:nil ;
-                                                                                                                            rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                                                                                                                        swrl:propertyPredicate :hasValue ;
-                                                                                                                                        swrl:argument1 <urn:swrl#measure1> ;
-                                                                                                                                        swrl:argument2 <urn:swrl#value1>
-                                                                                                                                      ]
-                                                                                                                          ] ;
-                                                                                                                 rdf:first [ rdf:type swrl:SameIndividualAtom ;
-                                                                                                                             swrl:argument1 <urn:swrl#individual1> ;
-                                                                                                                             swrl:argument2 <urn:swrl#individual2>
-                                                                                                                           ]
-                                                                                                               ]
-                                                                                                    ]
-                                                                                         ] ;
                                                                                 rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
                                                                                             swrl:propertyPredicate :hasTargetObject ;
-                                                                                            swrl:argument2 <urn:swrl#individual3> ;
-                                                                                            swrl:argument1 <urn:swrl#measure2>
-                                                                                          ]
+                                                                                            swrl:argument2 <urn:swrl#individual2> ;
+                                                                                            swrl:argument1 <urn:swrl#measure1>
+                                                                                          ] ;
+                                                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                           rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                                      rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                                                 rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                                                            rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                                                                       rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                                                                                                                   swrl:propertyPredicate :usesComparisonMethod ;
+                                                                                                                                                   swrl:argument1 <urn:swrl#measure1> ;
+                                                                                                                                                   swrl:argument2 <urn:swrl#method>
+                                                                                                                                                 ] ;
+                                                                                                                                       rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                                                                                  rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                                                                                                                              swrl:propertyPredicate :hasSourceObject ;
+                                                                                                                                                              swrl:argument2 <urn:swrl#individual1> ;
+                                                                                                                                                              swrl:argument1 <urn:swrl#measure3>
+                                                                                                                                                            ] ;
+                                                                                                                                                  rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                                                                                             rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                                                                                                        rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                                                                                                                                    swrl:classPredicate :DistanceMeasure ;
+                                                                                                                                                                                    swrl:argument1 <urn:swrl#measure2>
+                                                                                                                                                                                  ] ;
+                                                                                                                                                                        rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                                                                                                                   rdf:rest rdf:nil ;
+                                                                                                                                                                                   rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                                                                                                                                                               swrl:propertyPredicate :hasValue ;
+                                                                                                                                                                                               swrl:argument1 <urn:swrl#measure1> ;
+                                                                                                                                                                                               swrl:argument2 <urn:swrl#value1>
+                                                                                                                                                                                             ]
+                                                                                                                                                                                 ]
+                                                                                                                                                                      ] ;
+                                                                                                                                                             rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                                                                                                                                         swrl:propertyPredicate :hasValue ;
+                                                                                                                                                                         swrl:argument1 <urn:swrl#measure2> ;
+                                                                                                                                                                         swrl:argument2 <urn:swrl#value2>
+                                                                                                                                                                       ]
+                                                                                                                                                           ]
+                                                                                                                                                ]
+                                                                                                                                     ] ;
+                                                                                                                            rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                                                                                        swrl:classPredicate :DistanceMeasure ;
+                                                                                                                                        swrl:argument1 <urn:swrl#measure3>
+                                                                                                                                      ]
+                                                                                                                          ] ;
+                                                                                                                 rdf:first [ rdf:type swrl:BuiltinAtom ;
+                                                                                                                             swrl:builtin swrlb:add ;
+                                                                                                                             swrl:arguments ( <urn:swrl#value4>
+                                                                                                                                              <urn:swrl#value1>
+                                                                                                                                              <urn:swrl#value2>
+                                                                                                                                            )
+                                                                                                                           ]
+                                                                                                               ] ;
+                                                                                                      rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                                                                                  swrl:propertyPredicate :hasValue ;
+                                                                                                                  swrl:argument1 <urn:swrl#measure3> ;
+                                                                                                                  swrl:argument2 <urn:swrl#value3>
+                                                                                                                ]
+                                                                                                    ] ;
+                                                                                           rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                                                                       swrl:propertyPredicate :hasSourceObject ;
+                                                                                                       swrl:argument2 <urn:swrl#individual2> ;
+                                                                                                       swrl:argument1 <urn:swrl#measure2>
+                                                                                                     ]
+                                                                                         ]
                                                                               ]
                                                                    ]
-                                                        ] ;
-                                               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                           swrl:propertyPredicate :hasTargetObject ;
-                                                           swrl:argument2 <urn:swrl#individual1> ;
-                                                           swrl:argument1 <urn:swrl#measure1>
-                                                         ]
+                                                        ]
                                              ] ;
-                                    rdf:first [ rdf:type swrl:ClassAtom ;
-                                                swrl:classPredicate :SimilarityMeasure ;
-                                                swrl:argument1 <urn:swrl#measure1>
+                                    rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                swrl:propertyPredicate :hasTargetObject ;
+                                                swrl:argument2 <urn:swrl#individual3> ;
+                                                swrl:argument1 <urn:swrl#measure3>
                                               ]
                                   ]
-                       ]
+                       ] ;
+              rdf:first [ rdf:type swrl:ClassAtom ;
+                          swrl:classPredicate :DistanceMeasure ;
+                          swrl:argument1 <urn:swrl#measure1>
+                        ]
             ] ;
   swrl:head [ rdf:type swrl:AtomList ;
               rdf:rest rdf:nil ;
               rdf:first [ rdf:type swrl:BuiltinAtom ;
                           swrl:builtin swrlb:greaterThanOrEqual ;
-                          swrl:arguments ( <urn:swrl#value1>
-                                           <urn:swrl#value2>
+                          swrl:arguments ( <urn:swrl#value4>
+                                           <urn:swrl#value3>
                                          )
                         ]
             ]
 ] .
 [ rdf:type swrl:Imp ;
-  swrl:body [ rdf:type swrl:AtomList ;
-              rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                          swrl:propertyPredicate :hasSourceObject ;
-                          swrl:argument2 <urn:swrl#individual1> ;
-                          swrl:argument1 <urn:swrl#similarity>
-                        ] ;
-              rdf:rest [ rdf:type swrl:AtomList ;
-                         rdf:rest [ rdf:type swrl:AtomList ;
-                                    rdf:first [ rdf:type swrl:ClassAtom ;
-                                                swrl:classPredicate :NormalizedSimilarityMeasure ;
-                                                swrl:argument1 <urn:swrl#similarity>
-                                              ] ;
-                                    rdf:rest [ rdf:type swrl:AtomList ;
-                                               rdf:rest rdf:nil ;
-                                               rdf:first [ rdf:type swrl:SameIndividualAtom ;
-                                                           swrl:argument1 <urn:swrl#individual1> ;
-                                                           swrl:argument2 <urn:swrl#individual2>
-                                                         ]
-                                             ]
-                                  ] ;
-                         rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                     swrl:propertyPredicate :hasTargetObject ;
-                                     swrl:argument2 <urn:swrl#individual2> ;
-                                     swrl:argument1 <urn:swrl#similarity>
-                                   ]
-                       ]
-            ] ;
   swrl:head [ rdf:type swrl:AtomList ;
               rdf:rest rdf:nil ;
               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                          swrl:argument2 1 ;
+                          swrl:argument2 0 ;
                           swrl:propertyPredicate :hasValue ;
-                          swrl:argument1 <urn:swrl#similarity>
-                        ]
-            ]
-] .
-[ rdf:type swrl:Imp ;
-  swrl:head [ rdf:type swrl:AtomList ;
-              rdf:rest rdf:nil ;
-              rdf:first [ rdf:type swrl:SameIndividualAtom ;
-                          swrl:argument1 <urn:swrl#individual1> ;
-                          swrl:argument2 <urn:swrl#individual2>
+                          swrl:argument1 <urn:swrl#measure>
                         ]
             ] ;
   swrl:body [ rdf:type swrl:AtomList ;
-              rdf:first [ rdf:type swrl:ClassAtom ;
-                          swrl:classPredicate :DistanceMeasure ;
-                          swrl:argument1 <urn:swrl#measure>
-                        ] ;
               rdf:rest [ rdf:type swrl:AtomList ;
-                         rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                     swrl:propertyPredicate :hasSourceObject ;
-                                     swrl:argument2 <urn:swrl#individual1> ;
-                                     swrl:argument1 <urn:swrl#measure>
-                                   ] ;
                          rdf:rest [ rdf:type swrl:AtomList ;
+                                    rdf:rest [ rdf:type swrl:AtomList ;
+                                               rdf:rest [ rdf:type swrl:AtomList ;
+                                                          rdf:rest rdf:nil ;
+                                                          rdf:first [ rdf:type swrl:DifferentIndividualsAtom ;
+                                                                      swrl:argument1 <urn:swrl#individual1> ;
+                                                                      swrl:argument2 <urn:swrl#individual2>
+                                                                    ]
+                                                        ] ;
+                                               rdf:first [ rdf:type swrl:ClassAtom ;
+                                                           swrl:classPredicate :SimilarityMeasure ;
+                                                           swrl:argument1 <urn:swrl#measure>
+                                                         ]
+                                             ] ;
                                     rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
                                                 swrl:propertyPredicate :hasTargetObject ;
                                                 swrl:argument2 <urn:swrl#individual2> ;
                                                 swrl:argument1 <urn:swrl#measure>
-                                              ] ;
-                                    rdf:rest [ rdf:type swrl:AtomList ;
-                                               rdf:rest rdf:nil ;
-                                               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                                           swrl:argument2 0 ;
-                                                           swrl:propertyPredicate :hasValue ;
-                                                           swrl:argument1 <urn:swrl#measure>
-                                                         ]
-                                             ]
-                                  ]
-                       ]
+                                              ]
+                                  ] ;
+                         rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                     swrl:propertyPredicate :hasSourceObject ;
+                                     swrl:argument2 <urn:swrl#individual1> ;
+                                     swrl:argument1 <urn:swrl#measure>
+                                   ]
+                       ] ;
+              rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                          swrl:argument2 :objectIdentitySimilarityFunction ;
+                          swrl:propertyPredicate :usesComparisonMethod ;
+                          swrl:argument1 <urn:swrl#measure>
+                        ]
             ]
 ] .
 [ rdf:type swrl:Imp ;
@@ -1108,48 +1181,10 @@ owl:topDataProperty rdfs:label "compares entity"@en ,
                           swrl:argument1 <urn:swrl#measure>
                         ] ;
               rdf:rest [ rdf:type swrl:AtomList ;
-                         rdf:rest [ rdf:type swrl:AtomList ;
-                                    rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                                swrl:argument2 0 ;
-                                                swrl:propertyPredicate :hasValue ;
-                                                swrl:argument1 <urn:swrl#measure>
-                                              ] ;
-                                    rdf:rest [ rdf:type swrl:AtomList ;
-                                               rdf:rest rdf:nil ;
-                                               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                                           swrl:propertyPredicate :hasSourceData ;
-                                                           swrl:argument2 <urn:swrl#literal1> ;
-                                                           swrl:argument1 <urn:swrl#measure>
-                                                         ]
-                                             ]
-                                  ] ;
                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
                                      swrl:propertyPredicate :hasTargetData ;
                                      swrl:argument2 <urn:swrl#literal2> ;
                                      swrl:argument1 <urn:swrl#measure>
-                                   ]
-                       ]
-            ]
-] .
-[ rdf:type swrl:Imp ;
-  swrl:head [ rdf:type swrl:AtomList ;
-              rdf:rest rdf:nil ;
-              rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                          swrl:argument2 0 ;
-                          swrl:propertyPredicate :hasValue ;
-                          swrl:argument1 <urn:swrl#measure>
-                        ]
-            ] ;
-  swrl:body [ rdf:type swrl:AtomList ;
-              rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                          swrl:propertyPredicate :hasTargetObject ;
-                          swrl:argument2 <urn:swrl#literal2> ;
-                          swrl:argument1 <urn:swrl#measure>
-                        ] ;
-              rdf:rest [ rdf:type swrl:AtomList ;
-                         rdf:first [ rdf:type swrl:SameIndividualAtom ;
-                                     swrl:argument1 <urn:swrl#literal1> ;
-                                     swrl:argument2 <urn:swrl#literal2>
                                    ] ;
                          rdf:rest [ rdf:type swrl:AtomList ;
                                     rdf:rest [ rdf:type swrl:AtomList ;
@@ -1160,8 +1195,9 @@ owl:topDataProperty rdfs:label "compares entity"@en ,
                                                            swrl:argument1 <urn:swrl#measure>
                                                          ]
                                              ] ;
-                                    rdf:first [ rdf:type swrl:ClassAtom ;
-                                                swrl:classPredicate :DissimilarityMeasure ;
+                                    rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                swrl:argument2 0 ;
+                                                swrl:propertyPredicate :hasValue ;
                                                 swrl:argument1 <urn:swrl#measure>
                                               ]
                                   ]
@@ -1179,10 +1215,6 @@ owl:topDataProperty rdfs:label "compares entity"@en ,
                         ]
             ] ;
   swrl:body [ rdf:type swrl:AtomList ;
-              rdf:first [ rdf:type swrl:ClassAtom ;
-                          swrl:classPredicate :DistanceMeasure ;
-                          swrl:argument1 <urn:swrl#measure1>
-                        ] ;
               rdf:rest [ rdf:type swrl:AtomList ;
                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
                                      swrl:propertyPredicate :usesComparisonMethod ;
@@ -1190,6 +1222,11 @@ owl:topDataProperty rdfs:label "compares entity"@en ,
                                      swrl:argument2 <urn:swrl#method>
                                    ] ;
                          rdf:rest [ rdf:type swrl:AtomList ;
+                                    rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                swrl:propertyPredicate :hasSourceData ;
+                                                swrl:argument2 <urn:swrl#literal1> ;
+                                                swrl:argument1 <urn:swrl#measure3>
+                                              ] ;
                                     rdf:rest [ rdf:type swrl:AtomList ;
                                                rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
                                                            swrl:propertyPredicate :hasTargetData ;
@@ -1197,6 +1234,11 @@ owl:topDataProperty rdfs:label "compares entity"@en ,
                                                            swrl:argument1 <urn:swrl#measure3>
                                                          ] ;
                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                                      swrl:propertyPredicate :usesComparisonMethod ;
+                                                                      swrl:argument1 <urn:swrl#measure3> ;
+                                                                      swrl:argument2 <urn:swrl#method>
+                                                                    ] ;
                                                           rdf:rest [ rdf:type swrl:AtomList ;
                                                                      rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
                                                                                  swrl:propertyPredicate :hasSourceData ;
@@ -1210,24 +1252,32 @@ owl:topDataProperty rdfs:label "compares entity"@en ,
                                                                                             swrl:argument2 <urn:swrl#value3>
                                                                                           ] ;
                                                                                 rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                           rdf:first [ rdf:type swrl:BuiltinAtom ;
-                                                                                                       swrl:builtin swrlb:add ;
-                                                                                                       swrl:arguments ( <urn:swrl#value4>
-                                                                                                                        <urn:swrl#value1>
-                                                                                                                        <urn:swrl#value2>
-                                                                                                                      )
-                                                                                                     ] ;
                                                                                            rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                                      rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                                                                                  swrl:propertyPredicate :hasSourceData ;
+                                                                                                                  swrl:argument2 <urn:swrl#literal1> ;
+                                                                                                                  swrl:argument1 <urn:swrl#measure1>
+                                                                                                                ] ;
                                                                                                       rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                                                 rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                                                                             swrl:classPredicate :DistanceMeasure ;
+                                                                                                                             swrl:argument1 <urn:swrl#measure3>
+                                                                                                                           ] ;
                                                                                                                  rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                                                            rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                                                                                                        swrl:propertyPredicate :usesComparisonMethod ;
+                                                                                                                                        swrl:argument1 <urn:swrl#measure1> ;
+                                                                                                                                        swrl:argument2 <urn:swrl#method>
+                                                                                                                                      ] ;
                                                                                                                             rdf:rest [ rdf:type swrl:AtomList ;
                                                                                                                                        rdf:rest [ rdf:type swrl:AtomList ;
                                                                                                                                                   rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                                                             rdf:first [ rdf:type swrl:ClassAtom ;
-                                                                                                                                                                         swrl:classPredicate :DistanceMeasure ;
-                                                                                                                                                                         swrl:argument1 <urn:swrl#measure2>
-                                                                                                                                                                       ] ;
                                                                                                                                                              rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                                                                                                        rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                                                                                                                                                    swrl:propertyPredicate :hasValue ;
+                                                                                                                                                                                    swrl:argument1 <urn:swrl#measure1> ;
+                                                                                                                                                                                    swrl:argument2 <urn:swrl#value1>
+                                                                                                                                                                                  ] ;
                                                                                                                                                                         rdf:rest [ rdf:type swrl:AtomList ;
                                                                                                                                                                                    rdf:rest rdf:nil ;
                                                                                                                                                                                    rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
@@ -1235,13 +1285,12 @@ owl:topDataProperty rdfs:label "compares entity"@en ,
                                                                                                                                                                                                swrl:argument2 <urn:swrl#literal3> ;
                                                                                                                                                                                                swrl:argument1 <urn:swrl#measure2>
                                                                                                                                                                                              ]
-                                                                                                                                                                                 ] ;
-                                                                                                                                                                        rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                                                                                                                                                                    swrl:propertyPredicate :hasValue ;
-                                                                                                                                                                                    swrl:argument1 <urn:swrl#measure1> ;
-                                                                                                                                                                                    swrl:argument2 <urn:swrl#value1>
-                                                                                                                                                                                  ]
-                                                                                                                                                                      ]
+                                                                                                                                                                                 ]
+                                                                                                                                                                      ] ;
+                                                                                                                                                             rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                                                                                                                         swrl:classPredicate :DistanceMeasure ;
+                                                                                                                                                                         swrl:argument1 <urn:swrl#measure2>
+                                                                                                                                                                       ]
                                                                                                                                                            ] ;
                                                                                                                                                   rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
                                                                                                                                                               swrl:propertyPredicate :hasValue ;
@@ -1254,137 +1303,38 @@ owl:topDataProperty rdfs:label "compares entity"@en ,
                                                                                                                                                    swrl:argument2 <urn:swrl#literal2> ;
                                                                                                                                                    swrl:argument1 <urn:swrl#measure1>
                                                                                                                                                  ]
-                                                                                                                                     ] ;
-                                                                                                                            rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                                                                                        swrl:propertyPredicate :usesComparisonMethod ;
-                                                                                                                                        swrl:argument1 <urn:swrl#measure1> ;
-                                                                                                                                        swrl:argument2 <urn:swrl#method>
-                                                                                                                                      ]
-                                                                                                                          ] ;
-                                                                                                                 rdf:first [ rdf:type swrl:ClassAtom ;
-                                                                                                                             swrl:classPredicate :DistanceMeasure ;
-                                                                                                                             swrl:argument1 <urn:swrl#measure3>
-                                                                                                                           ]
-                                                                                                               ] ;
-                                                                                                      rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                                                                                                  swrl:propertyPredicate :hasSourceData ;
-                                                                                                                  swrl:argument2 <urn:swrl#literal1> ;
-                                                                                                                  swrl:argument1 <urn:swrl#measure1>
-                                                                                                                ]
-                                                                                                    ]
+                                                                                                                                     ]
+                                                                                                                          ]
+                                                                                                               ]
+                                                                                                    ] ;
+                                                                                           rdf:first [ rdf:type swrl:BuiltinAtom ;
+                                                                                                       swrl:builtin swrlb:add ;
+                                                                                                       swrl:arguments ( <urn:swrl#value4>
+                                                                                                                        <urn:swrl#value1>
+                                                                                                                        <urn:swrl#value2>
+                                                                                                                      )
+                                                                                                     ]
                                                                                          ]
                                                                               ]
-                                                                   ] ;
-                                                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                      swrl:propertyPredicate :usesComparisonMethod ;
-                                                                      swrl:argument1 <urn:swrl#measure3> ;
-                                                                      swrl:argument2 <urn:swrl#method>
-                                                                    ]
-                                                        ]
-                                             ] ;
-                                    rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                                swrl:propertyPredicate :hasSourceData ;
-                                                swrl:argument2 <urn:swrl#literal1> ;
-                                                swrl:argument1 <urn:swrl#measure3>
-                                              ]
-                                  ]
-                       ]
-            ]
-] .
-[ rdf:type swrl:Imp ;
-  swrl:head [ rdf:type swrl:AtomList ;
-              rdf:rest rdf:nil ;
-              rdf:first [ rdf:type swrl:BuiltinAtom ;
-                          swrl:builtin swrlb:greaterThanOrEqual ;
-                          swrl:arguments ( <urn:swrl#value1>
-                                           <urn:swrl#value2>
-                                         )
-                        ]
-            ] ;
-  swrl:body [ rdf:type swrl:AtomList ;
-              rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                          swrl:propertyPredicate :usesComparisonMethod ;
-                          swrl:argument1 <urn:swrl#measure2> ;
-                          swrl:argument2 <urn:swrl#method>
-                        ] ;
-              rdf:rest [ rdf:type swrl:AtomList ;
-                         rdf:rest [ rdf:type swrl:AtomList ;
-                                    rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                                swrl:propertyPredicate :hasSourceData ;
-                                                swrl:argument2 <urn:swrl#literal1> ;
-                                                swrl:argument1 <urn:swrl#measure1>
-                                              ] ;
-                                    rdf:rest [ rdf:type swrl:AtomList ;
-                                               rdf:rest [ rdf:type swrl:AtomList ;
-                                                          rdf:first [ rdf:type swrl:SameIndividualAtom ;
-                                                                      swrl:argument1 <urn:swrl#literal1> ;
-                                                                      swrl:argument2 <urn:swrl#literal2>
-                                                                    ] ;
-                                                          rdf:rest [ rdf:type swrl:AtomList ;
-                                                                     rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                                 swrl:propertyPredicate :usesComparisonMethod ;
-                                                                                 swrl:argument1 <urn:swrl#measure1> ;
-                                                                                 swrl:argument2 <urn:swrl#method>
-                                                                               ] ;
-                                                                     rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                           rdf:first [ rdf:type swrl:ClassAtom ;
-                                                                                                       swrl:classPredicate :SimilarityMeasure ;
-                                                                                                       swrl:argument1 <urn:swrl#measure2>
-                                                                                                     ] ;
-                                                                                           rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                      rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                 rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                            rdf:rest rdf:nil ;
-                                                                                                                            rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                                                                                                                        swrl:propertyPredicate :hasTargetData ;
-                                                                                                                                        swrl:argument2 <urn:swrl#literal3> ;
-                                                                                                                                        swrl:argument1 <urn:swrl#measure2>
-                                                                                                                                      ]
-                                                                                                                          ] ;
-                                                                                                                 rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                                                                                                             swrl:propertyPredicate :hasSourceData ;
-                                                                                                                             swrl:argument2 <urn:swrl#literal1> ;
-                                                                                                                             swrl:argument1 <urn:swrl#measure2>
-                                                                                                                           ]
-                                                                                                               ] ;
-                                                                                                      rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                                                                                                  swrl:propertyPredicate :hasValue ;
-                                                                                                                  swrl:argument1 <urn:swrl#measure1> ;
-                                                                                                                  swrl:argument2 <urn:swrl#value1>
-                                                                                                                ]
-                                                                                                    ]
-                                                                                         ] ;
-                                                                                rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                                                                            swrl:propertyPredicate :hasValue ;
-                                                                                            swrl:argument1 <urn:swrl#measure2> ;
-                                                                                            swrl:argument2 <urn:swrl#value2>
-                                                                                          ]
-                                                                              ]
                                                                    ]
-                                                        ] ;
-                                               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                                           swrl:propertyPredicate :hasTargetData ;
-                                                           swrl:argument2 <urn:swrl#literal1> ;
-                                                           swrl:argument1 <urn:swrl#measure1>
-                                                         ]
+                                                        ]
                                              ]
-                                  ] ;
-                         rdf:first [ rdf:type swrl:ClassAtom ;
-                                     swrl:classPredicate :SimilarityMeasure ;
-                                     swrl:argument1 <urn:swrl#measure1>
-                                   ]
-                       ]
+                                  ]
+                       ] ;
+              rdf:first [ rdf:type swrl:ClassAtom ;
+                          swrl:classPredicate :DistanceMeasure ;
+                          swrl:argument1 <urn:swrl#measure1>
+                        ]
             ]
 ] .
 [ rdf:type swrl:Imp ;
   swrl:head [ rdf:type swrl:AtomList ;
-              rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                          swrl:propertyPredicate :hasTargetData ;
-                          swrl:argument2 <urn:swrl#literal1> ;
-                          swrl:argument1 <urn:swrl#measure2>
-                        ] ;
               rdf:rest [ rdf:type swrl:AtomList ;
+                         rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                     swrl:propertyPredicate :hasSourceData ;
+                                     swrl:argument2 <urn:swrl#literal2> ;
+                                     swrl:argument1 <urn:swrl#measure2>
+                                   ] ;
                          rdf:rest [ rdf:type swrl:AtomList ;
                                     rdf:rest [ rdf:type swrl:AtomList ;
                                                rdf:rest [ rdf:type swrl:AtomList ;
@@ -1405,16 +1355,25 @@ owl:topDataProperty rdfs:label "compares entity"@en ,
                                                 swrl:classPredicate :SymmetricComparisonMeasure ;
                                                 swrl:argument1 <urn:swrl#measure2>
                                               ]
-                                  ] ;
-                         rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                     swrl:propertyPredicate :hasSourceData ;
-                                     swrl:argument2 <urn:swrl#literal2> ;
-                                     swrl:argument1 <urn:swrl#measure2>
-                                   ]
-                       ]
+                                  ]
+                       ] ;
+              rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                          swrl:propertyPredicate :hasTargetData ;
+                          swrl:argument2 <urn:swrl#literal1> ;
+                          swrl:argument1 <urn:swrl#measure2>
+                        ]
             ] ;
   swrl:body [ rdf:type swrl:AtomList ;
+              rdf:first [ rdf:type swrl:ClassAtom ;
+                          swrl:classPredicate :SymmetricComparisonMeasure ;
+                          swrl:argument1 <urn:swrl#measure1>
+                        ] ;
               rdf:rest [ rdf:type swrl:AtomList ;
+                         rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                     swrl:propertyPredicate :hasSourceData ;
+                                     swrl:argument2 <urn:swrl#literal1> ;
+                                     swrl:argument1 <urn:swrl#measure1>
+                                   ] ;
                          rdf:rest [ rdf:type swrl:AtomList ;
                                     rdf:rest [ rdf:type swrl:AtomList ;
                                                rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
@@ -1436,27 +1395,149 @@ owl:topDataProperty rdfs:label "compares entity"@en ,
                                                 swrl:argument1 <urn:swrl#measure1> ;
                                                 swrl:argument2 <urn:swrl#method>
                                               ]
-                                  ] ;
-                         rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                     swrl:propertyPredicate :hasSourceData ;
-                                     swrl:argument2 <urn:swrl#literal1> ;
-                                     swrl:argument1 <urn:swrl#measure1>
-                                   ]
-                       ] ;
-              rdf:first [ rdf:type swrl:ClassAtom ;
-                          swrl:classPredicate :SymmetricComparisonMeasure ;
-                          swrl:argument1 <urn:swrl#measure1>
-                        ]
+                                  ]
+                       ]
             ]
 ] .
 [ rdf:type swrl:Imp ;
   swrl:body [ rdf:type swrl:AtomList ;
+              rdf:rest [ rdf:type swrl:AtomList ;
+                         rdf:first [ rdf:type swrl:SameIndividualAtom ;
+                                     swrl:argument1 <urn:swrl#literal1> ;
+                                     swrl:argument2 <urn:swrl#literal2>
+                                   ] ;
+                         rdf:rest [ rdf:type swrl:AtomList ;
+                                    rdf:first [ rdf:type swrl:ClassAtom ;
+                                                swrl:classPredicate :DissimilarityMeasure ;
+                                                swrl:argument1 <urn:swrl#measure>
+                                              ] ;
+                                    rdf:rest [ rdf:type swrl:AtomList ;
+                                               rdf:rest rdf:nil ;
+                                               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                           swrl:propertyPredicate :hasSourceData ;
+                                                           swrl:argument2 <urn:swrl#literal1> ;
+                                                           swrl:argument1 <urn:swrl#measure>
+                                                         ]
+                                             ]
+                                  ]
+                       ] ;
+              rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                          swrl:propertyPredicate :hasTargetObject ;
+                          swrl:argument2 <urn:swrl#literal2> ;
+                          swrl:argument1 <urn:swrl#measure>
+                        ]
+            ] ;
+  swrl:head [ rdf:type swrl:AtomList ;
+              rdf:rest rdf:nil ;
+              rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                          swrl:argument2 0 ;
+                          swrl:propertyPredicate :hasValue ;
+                          swrl:argument1 <urn:swrl#measure>
+                        ]
+            ]
+] .
+[ rdf:type swrl:Imp ;
+  swrl:head [ rdf:type swrl:AtomList ;
+              rdf:rest rdf:nil ;
+              rdf:first [ rdf:type swrl:BuiltinAtom ;
+                          swrl:builtin swrlb:greaterThanOrEqual ;
+                          swrl:arguments ( <urn:swrl#value1>
+                                           <urn:swrl#value2>
+                                         )
+                        ]
+            ] ;
+  swrl:body [ rdf:type swrl:AtomList ;
               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
                           swrl:propertyPredicate :hasSourceObject ;
                           swrl:argument2 <urn:swrl#individual1> ;
-                          swrl:argument1 <urn:swrl#measure>
+                          swrl:argument1 <urn:swrl#measure2>
                         ] ;
               rdf:rest [ rdf:type swrl:AtomList ;
+                         rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                     swrl:propertyPredicate :usesComparisonMethod ;
+                                     swrl:argument1 <urn:swrl#measure2> ;
+                                     swrl:argument2 <urn:swrl#method>
+                                   ] ;
+                         rdf:rest [ rdf:type swrl:AtomList ;
+                                    rdf:rest [ rdf:type swrl:AtomList ;
+                                               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                           swrl:propertyPredicate :hasTargetObject ;
+                                                           swrl:argument2 <urn:swrl#individual1> ;
+                                                           swrl:argument1 <urn:swrl#measure1>
+                                                         ] ;
+                                               rdf:rest [ rdf:type swrl:AtomList ;
+                                                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                                      swrl:propertyPredicate :usesComparisonMethod ;
+                                                                      swrl:argument1 <urn:swrl#measure1> ;
+                                                                      swrl:argument2 <urn:swrl#method>
+                                                                    ] ;
+                                                          rdf:rest [ rdf:type swrl:AtomList ;
+                                                                     rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                                                 swrl:propertyPredicate :hasValue ;
+                                                                                 swrl:argument1 <urn:swrl#measure2> ;
+                                                                                 swrl:argument2 <urn:swrl#value2>
+                                                                               ] ;
+                                                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                                                            swrl:propertyPredicate :hasTargetObject ;
+                                                                                            swrl:argument2 <urn:swrl#individual3> ;
+                                                                                            swrl:argument1 <urn:swrl#measure2>
+                                                                                          ] ;
+                                                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                           rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                                                                       swrl:propertyPredicate :hasSourceObject ;
+                                                                                                       swrl:argument2 <urn:swrl#individual1> ;
+                                                                                                       swrl:argument1 <urn:swrl#measure1>
+                                                                                                     ] ;
+                                                                                           rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                                      rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                                                 rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                                                            rdf:rest rdf:nil ;
+                                                                                                                            rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                                                                                                        swrl:propertyPredicate :hasValue ;
+                                                                                                                                        swrl:argument1 <urn:swrl#measure1> ;
+                                                                                                                                        swrl:argument2 <urn:swrl#value1>
+                                                                                                                                      ]
+                                                                                                                          ] ;
+                                                                                                                 rdf:first [ rdf:type swrl:SameIndividualAtom ;
+                                                                                                                             swrl:argument1 <urn:swrl#individual1> ;
+                                                                                                                             swrl:argument2 <urn:swrl#individual2>
+                                                                                                                           ]
+                                                                                                               ] ;
+                                                                                                      rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                                                                  swrl:classPredicate :SimilarityMeasure ;
+                                                                                                                  swrl:argument1 <urn:swrl#measure2>
+                                                                                                                ]
+                                                                                                    ]
+                                                                                         ]
+                                                                              ]
+                                                                   ]
+                                                        ]
+                                             ] ;
+                                    rdf:first [ rdf:type swrl:ClassAtom ;
+                                                swrl:classPredicate :SimilarityMeasure ;
+                                                swrl:argument1 <urn:swrl#measure1>
+                                              ]
+                                  ]
+                       ]
+            ]
+] .
+[ rdf:type swrl:Imp ;
+  swrl:head [ rdf:type swrl:AtomList ;
+              rdf:rest rdf:nil ;
+              rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                          swrl:argument2 0 ;
+                          swrl:propertyPredicate :hasValue ;
+                          swrl:argument1 <urn:swrl#measure>
+                        ]
+            ] ;
+  swrl:body [ rdf:type swrl:AtomList ;
+              rdf:rest [ rdf:type swrl:AtomList ;
+                         rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                     swrl:propertyPredicate :hasTargetObject ;
+                                     swrl:argument2 <urn:swrl#individual2> ;
+                                     swrl:argument1 <urn:swrl#measure>
+                                   ] ;
                          rdf:rest [ rdf:type swrl:AtomList ;
                                     rdf:first [ rdf:type swrl:ClassAtom ;
                                                 swrl:classPredicate :DissimilarityMeasure ;
@@ -1469,24 +1550,61 @@ owl:topDataProperty rdfs:label "compares entity"@en ,
                                                            swrl:argument2 <urn:swrl#individual2>
                                                          ]
                                              ]
-                                  ] ;
-                         rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                     swrl:propertyPredicate :hasTargetObject ;
-                                     swrl:argument2 <urn:swrl#individual2> ;
-                                     swrl:argument1 <urn:swrl#measure>
-                                   ]
-                       ]
-            ] ;
-  swrl:head [ rdf:type swrl:AtomList ;
-              rdf:rest rdf:nil ;
-              rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                          swrl:argument2 0 ;
-                          swrl:propertyPredicate :hasValue ;
+                                  ]
+                       ] ;
+              rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                          swrl:propertyPredicate :hasSourceObject ;
+                          swrl:argument2 <urn:swrl#individual1> ;
                           swrl:argument1 <urn:swrl#measure>
                         ]
             ]
 ] .
 [ rdf:type swrl:Imp ;
+  swrl:body [ rdf:type swrl:AtomList ;
+              rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                          swrl:propertyPredicate :hasSourceObject ;
+                          swrl:argument2 <urn:swrl#individual1> ;
+                          swrl:argument1 <urn:swrl#similarity>
+                        ] ;
+              rdf:rest [ rdf:type swrl:AtomList ;
+                         rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                     swrl:propertyPredicate :hasTargetObject ;
+                                     swrl:argument2 <urn:swrl#individual2> ;
+                                     swrl:argument1 <urn:swrl#similarity>
+                                   ] ;
+                         rdf:rest [ rdf:type swrl:AtomList ;
+                                    rdf:first [ rdf:type swrl:ClassAtom ;
+                                                swrl:classPredicate :NormalizedSimilarityMeasure ;
+                                                swrl:argument1 <urn:swrl#similarity>
+                                              ] ;
+                                    rdf:rest [ rdf:type swrl:AtomList ;
+                                               rdf:rest rdf:nil ;
+                                               rdf:first [ rdf:type swrl:SameIndividualAtom ;
+                                                           swrl:argument1 <urn:swrl#individual1> ;
+                                                           swrl:argument2 <urn:swrl#individual2>
+                                                         ]
+                                             ]
+                                  ]
+                       ]
+            ] ;
+  swrl:head [ rdf:type swrl:AtomList ;
+              rdf:rest rdf:nil ;
+              rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                          swrl:argument2 1 ;
+                          swrl:propertyPredicate :hasValue ;
+                          swrl:argument1 <urn:swrl#similarity>
+                        ]
+            ]
+] .
+[ rdf:type swrl:Imp ;
+  swrl:head [ rdf:type swrl:AtomList ;
+              rdf:rest rdf:nil ;
+              rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                          swrl:argument2 1 ;
+                          swrl:propertyPredicate :hasValue ;
+                          swrl:argument1 <urn:swrl#similarity>
+                        ]
+            ] ;
   swrl:body [ rdf:type swrl:AtomList ;
               rdf:rest [ rdf:type swrl:AtomList ;
                          rdf:first [ rdf:type swrl:ClassAtom ;
@@ -1513,13 +1631,77 @@ owl:topDataProperty rdfs:label "compares entity"@en ,
                           swrl:argument2 <urn:swrl#literal2> ;
                           swrl:argument1 <urn:swrl#similarity>
                         ]
-            ] ;
+            ]
+] .
+[ rdf:type swrl:Imp ;
   swrl:head [ rdf:type swrl:AtomList ;
-              rdf:rest rdf:nil ;
-              rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                          swrl:argument2 1 ;
-                          swrl:propertyPredicate :hasValue ;
-                          swrl:argument1 <urn:swrl#similarity>
+              rdf:first [ rdf:type swrl:ClassAtom ;
+                          swrl:classPredicate :SymmetricComparisonMeasure ;
+                          swrl:argument1 <urn:swrl#measure2>
+                        ] ;
+              rdf:rest [ rdf:type swrl:AtomList ;
+                         rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                     swrl:propertyPredicate :hasTargetObject ;
+                                     swrl:argument2 <urn:swrl#individual1> ;
+                                     swrl:argument1 <urn:swrl#measure2>
+                                   ] ;
+                         rdf:rest [ rdf:type swrl:AtomList ;
+                                    rdf:rest [ rdf:type swrl:AtomList ;
+                                               rdf:rest [ rdf:type swrl:AtomList ;
+                                                          rdf:rest rdf:nil ;
+                                                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                                      swrl:propertyPredicate :hasSourceObject ;
+                                                                      swrl:argument2 <urn:swrl#individual2> ;
+                                                                      swrl:argument1 <urn:swrl#measure2>
+                                                                    ]
+                                                        ] ;
+                                               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                           swrl:propertyPredicate :hasValue ;
+                                                           swrl:argument1 <urn:swrl#measure2> ;
+                                                           swrl:argument2 <urn:swrl#value>
+                                                         ]
+                                             ] ;
+                                    rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                swrl:propertyPredicate :usesComparisonMethod ;
+                                                swrl:argument1 <urn:swrl#measure2> ;
+                                                swrl:argument2 <urn:swrl#method>
+                                              ]
+                                  ]
+                       ]
+            ] ;
+  swrl:body [ rdf:type swrl:AtomList ;
+              rdf:rest [ rdf:type swrl:AtomList ;
+                         rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                     swrl:propertyPredicate :usesComparisonMethod ;
+                                     swrl:argument1 <urn:swrl#measure1> ;
+                                     swrl:argument2 <urn:swrl#method>
+                                   ] ;
+                         rdf:rest [ rdf:type swrl:AtomList ;
+                                    rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                swrl:propertyPredicate :hasValue ;
+                                                swrl:argument1 <urn:swrl#measure1> ;
+                                                swrl:argument2 <urn:swrl#value>
+                                              ] ;
+                                    rdf:rest [ rdf:type swrl:AtomList ;
+                                               rdf:rest [ rdf:type swrl:AtomList ;
+                                                          rdf:rest rdf:nil ;
+                                                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                                      swrl:propertyPredicate :hasTargetObject ;
+                                                                      swrl:argument2 <urn:swrl#individual2> ;
+                                                                      swrl:argument1 <urn:swrl#measure1>
+                                                                    ]
+                                                        ] ;
+                                               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                           swrl:propertyPredicate :hasSourceObject ;
+                                                           swrl:argument2 <urn:swrl#individual1> ;
+                                                           swrl:argument1 <urn:swrl#measure1>
+                                                         ]
+                                             ]
+                                  ]
+                       ] ;
+              rdf:first [ rdf:type swrl:ClassAtom ;
+                          swrl:classPredicate :SymmetricComparisonMeasure ;
+                          swrl:argument1 <urn:swrl#measure1>
                         ]
             ]
 ] .
@@ -1533,169 +1715,6 @@ owl:topDataProperty rdfs:label "compares entity"@en ,
                         ]
             ] ;
   swrl:body [ rdf:type swrl:AtomList ;
-              rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                          swrl:argument2 :objectIdentitySimilarityFunction ;
-                          swrl:propertyPredicate :usesComparisonMethod ;
-                          swrl:argument1 <urn:swrl#measure>
-                        ] ;
-              rdf:rest [ rdf:type swrl:AtomList ;
-                         rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                     swrl:propertyPredicate :hasSourceObject ;
-                                     swrl:argument2 <urn:swrl#individual1> ;
-                                     swrl:argument1 <urn:swrl#measure>
-                                   ] ;
-                         rdf:rest [ rdf:type swrl:AtomList ;
-                                    rdf:rest [ rdf:type swrl:AtomList ;
-                                               rdf:first [ rdf:type swrl:ClassAtom ;
-                                                           swrl:classPredicate :SimilarityMeasure ;
-                                                           swrl:argument1 <urn:swrl#measure>
-                                                         ] ;
-                                               rdf:rest [ rdf:type swrl:AtomList ;
-                                                          rdf:rest rdf:nil ;
-                                                          rdf:first [ rdf:type swrl:DifferentIndividualsAtom ;
-                                                                      swrl:argument1 <urn:swrl#individual1> ;
-                                                                      swrl:argument2 <urn:swrl#individual2>
-                                                                    ]
-                                                        ]
-                                             ] ;
-                                    rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                swrl:propertyPredicate :hasTargetObject ;
-                                                swrl:argument2 <urn:swrl#individual2> ;
-                                                swrl:argument1 <urn:swrl#measure>
-                                              ]
-                                  ]
-                       ]
-            ]
-] .
-[ rdf:type swrl:Imp ;
-  swrl:head [ rdf:type swrl:AtomList ;
-              rdf:rest rdf:nil ;
-              rdf:first [ rdf:type swrl:BuiltinAtom ;
-                          swrl:builtin swrlb:greaterThanOrEqual ;
-                          swrl:arguments ( <urn:swrl#value4>
-                                           <urn:swrl#value3>
-                                         )
-                        ]
-            ] ;
-  swrl:body [ rdf:type swrl:AtomList ;
-              rdf:first [ rdf:type swrl:ClassAtom ;
-                          swrl:classPredicate :DistanceMeasure ;
-                          swrl:argument1 <urn:swrl#measure1>
-                        ] ;
-              rdf:rest [ rdf:type swrl:AtomList ;
-                         rdf:rest [ rdf:type swrl:AtomList ;
-                                    rdf:rest [ rdf:type swrl:AtomList ;
-                                               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                           swrl:propertyPredicate :usesComparisonMethod ;
-                                                           swrl:argument1 <urn:swrl#measure3> ;
-                                                           swrl:argument2 <urn:swrl#method>
-                                                         ] ;
-                                               rdf:rest [ rdf:type swrl:AtomList ;
-                                                          rdf:rest [ rdf:type swrl:AtomList ;
-                                                                     rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                           rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                                                       swrl:propertyPredicate :hasSourceObject ;
-                                                                                                       swrl:argument2 <urn:swrl#individual2> ;
-                                                                                                       swrl:argument1 <urn:swrl#measure2>
-                                                                                                     ] ;
-                                                                                           rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                      rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                 rdf:first [ rdf:type swrl:BuiltinAtom ;
-                                                                                                                             swrl:builtin swrlb:add ;
-                                                                                                                             swrl:arguments ( <urn:swrl#value4>
-                                                                                                                                              <urn:swrl#value1>
-                                                                                                                                              <urn:swrl#value2>
-                                                                                                                                            )
-                                                                                                                           ] ;
-                                                                                                                 rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                            rdf:first [ rdf:type swrl:ClassAtom ;
-                                                                                                                                        swrl:classPredicate :DistanceMeasure ;
-                                                                                                                                        swrl:argument1 <urn:swrl#measure3>
-                                                                                                                                      ] ;
-                                                                                                                            rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                                       rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                                                  rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                                                                                                              swrl:propertyPredicate :hasSourceObject ;
-                                                                                                                                                              swrl:argument2 <urn:swrl#individual1> ;
-                                                                                                                                                              swrl:argument1 <urn:swrl#measure3>
-                                                                                                                                                            ] ;
-                                                                                                                                                  rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                                                             rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                                                                                                                                                         swrl:propertyPredicate :hasValue ;
-                                                                                                                                                                         swrl:argument1 <urn:swrl#measure2> ;
-                                                                                                                                                                         swrl:argument2 <urn:swrl#value2>
-                                                                                                                                                                       ] ;
-                                                                                                                                                             rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                                                                        rdf:first [ rdf:type swrl:ClassAtom ;
-                                                                                                                                                                                    swrl:classPredicate :DistanceMeasure ;
-                                                                                                                                                                                    swrl:argument1 <urn:swrl#measure2>
-                                                                                                                                                                                  ] ;
-                                                                                                                                                                        rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                                                                                   rdf:rest rdf:nil ;
-                                                                                                                                                                                   rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                                                                                                                                                                               swrl:propertyPredicate :hasValue ;
-                                                                                                                                                                                               swrl:argument1 <urn:swrl#measure1> ;
-                                                                                                                                                                                               swrl:argument2 <urn:swrl#value1>
-                                                                                                                                                                                             ]
-                                                                                                                                                                                 ]
-                                                                                                                                                                      ]
-                                                                                                                                                           ]
-                                                                                                                                                ] ;
-                                                                                                                                       rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                                                                                                   swrl:propertyPredicate :usesComparisonMethod ;
-                                                                                                                                                   swrl:argument1 <urn:swrl#measure1> ;
-                                                                                                                                                   swrl:argument2 <urn:swrl#method>
-                                                                                                                                                 ]
-                                                                                                                                     ]
-                                                                                                                          ]
-                                                                                                               ] ;
-                                                                                                      rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                                                                                                  swrl:propertyPredicate :hasValue ;
-                                                                                                                  swrl:argument1 <urn:swrl#measure3> ;
-                                                                                                                  swrl:argument2 <urn:swrl#value3>
-                                                                                                                ]
-                                                                                                    ]
-                                                                                         ] ;
-                                                                                rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                                            swrl:propertyPredicate :hasTargetObject ;
-                                                                                            swrl:argument2 <urn:swrl#individual2> ;
-                                                                                            swrl:argument1 <urn:swrl#measure1>
-                                                                                          ]
-                                                                              ] ;
-                                                                     rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                                 swrl:propertyPredicate :hasSourceObject ;
-                                                                                 swrl:argument2 <urn:swrl#individual1> ;
-                                                                                 swrl:argument1 <urn:swrl#measure1>
-                                                                               ]
-                                                                   ] ;
-                                                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                      swrl:propertyPredicate :hasTargetObject ;
-                                                                      swrl:argument2 <urn:swrl#individual3> ;
-                                                                      swrl:argument1 <urn:swrl#measure2>
-                                                                    ]
-                                                        ]
-                                             ] ;
-                                    rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                swrl:propertyPredicate :hasTargetObject ;
-                                                swrl:argument2 <urn:swrl#individual3> ;
-                                                swrl:argument1 <urn:swrl#measure3>
-                                              ]
-                                  ] ;
-                         rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                     swrl:propertyPredicate :usesComparisonMethod ;
-                                     swrl:argument1 <urn:swrl#measure2> ;
-                                     swrl:argument2 <urn:swrl#method>
-                                   ]
-                       ]
-            ]
-] .
-[ rdf:type swrl:Imp ;
-  swrl:body [ rdf:type swrl:AtomList ;
-              rdf:first [ rdf:type swrl:ClassAtom ;
-                          swrl:classPredicate :SimilarityMeasure ;
-                          swrl:argument1 <urn:swrl#measure>
-                        ] ;
               rdf:rest [ rdf:type swrl:AtomList ;
                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
                                      swrl:propertyPredicate :hasSourceData ;
@@ -1703,11 +1722,6 @@ owl:topDataProperty rdfs:label "compares entity"@en ,
                                      swrl:argument1 <urn:swrl#measure>
                                    ] ;
                          rdf:rest [ rdf:type swrl:AtomList ;
-                                    rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                                swrl:propertyPredicate :hasTargetData ;
-                                                swrl:argument2 <urn:swrl#literal2> ;
-                                                swrl:argument1 <urn:swrl#measure>
-                                              ] ;
                                     rdf:rest [ rdf:type swrl:AtomList ;
                                                rdf:rest [ rdf:type swrl:AtomList ;
                                                           rdf:rest rdf:nil ;
@@ -1721,89 +1735,104 @@ owl:topDataProperty rdfs:label "compares entity"@en ,
                                                            swrl:propertyPredicate :usesComparisonMethod ;
                                                            swrl:argument1 <urn:swrl#measure>
                                                          ]
-                                             ]
+                                             ] ;
+                                    rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                swrl:propertyPredicate :hasTargetData ;
+                                                swrl:argument2 <urn:swrl#literal2> ;
+                                                swrl:argument1 <urn:swrl#measure>
+                                              ]
                                   ]
-                       ]
-            ] ;
-  swrl:head [ rdf:type swrl:AtomList ;
-              rdf:rest rdf:nil ;
-              rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                          swrl:argument2 0 ;
-                          swrl:propertyPredicate :hasValue ;
+                       ] ;
+              rdf:first [ rdf:type swrl:ClassAtom ;
+                          swrl:classPredicate :SimilarityMeasure ;
                           swrl:argument1 <urn:swrl#measure>
                         ]
             ]
 ] .
 [ rdf:type swrl:Imp ;
+  swrl:head [ rdf:type swrl:AtomList ;
+              rdf:rest rdf:nil ;
+              rdf:first [ rdf:type swrl:BuiltinAtom ;
+                          swrl:builtin swrlb:greaterThanOrEqual ;
+                          swrl:arguments ( <urn:swrl#value1>
+                                           <urn:swrl#value2>
+                                         )
+                        ]
+            ] ;
   swrl:body [ rdf:type swrl:AtomList ;
-              rdf:first [ rdf:type swrl:ClassAtom ;
-                          swrl:classPredicate :SymmetricComparisonMeasure ;
-                          swrl:argument1 <urn:swrl#measure1>
-                        ] ;
               rdf:rest [ rdf:type swrl:AtomList ;
                          rdf:rest [ rdf:type swrl:AtomList ;
                                     rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                                swrl:propertyPredicate :hasValue ;
-                                                swrl:argument1 <urn:swrl#measure1> ;
-                                                swrl:argument2 <urn:swrl#value>
-                                              ] ;
-                                    rdf:rest [ rdf:type swrl:AtomList ;
-                                               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                           swrl:propertyPredicate :hasSourceObject ;
-                                                           swrl:argument2 <urn:swrl#individual1> ;
-                                                           swrl:argument1 <urn:swrl#measure1>
-                                                         ] ;
-                                               rdf:rest [ rdf:type swrl:AtomList ;
-                                                          rdf:rest rdf:nil ;
-                                                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                      swrl:propertyPredicate :hasTargetObject ;
-                                                                      swrl:argument2 <urn:swrl#individual2> ;
-                                                                      swrl:argument1 <urn:swrl#measure1>
-                                                                    ]
-                                                        ]
-                                             ]
-                                  ] ;
-                         rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                     swrl:propertyPredicate :usesComparisonMethod ;
-                                     swrl:argument1 <urn:swrl#measure1> ;
-                                     swrl:argument2 <urn:swrl#method>
-                                   ]
-                       ]
-            ] ;
-  swrl:head [ rdf:type swrl:AtomList ;
-              rdf:first [ rdf:type swrl:ClassAtom ;
-                          swrl:classPredicate :SymmetricComparisonMeasure ;
-                          swrl:argument1 <urn:swrl#measure2>
-                        ] ;
-              rdf:rest [ rdf:type swrl:AtomList ;
-                         rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                     swrl:propertyPredicate :hasTargetObject ;
-                                     swrl:argument2 <urn:swrl#individual1> ;
-                                     swrl:argument1 <urn:swrl#measure2>
-                                   ] ;
-                         rdf:rest [ rdf:type swrl:AtomList ;
-                                    rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                swrl:propertyPredicate :usesComparisonMethod ;
-                                                swrl:argument1 <urn:swrl#measure2> ;
-                                                swrl:argument2 <urn:swrl#method>
+                                                swrl:propertyPredicate :hasSourceData ;
+                                                swrl:argument2 <urn:swrl#literal1> ;
+                                                swrl:argument1 <urn:swrl#measure1>
                                               ] ;
                                     rdf:rest [ rdf:type swrl:AtomList ;
                                                rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                                           swrl:propertyPredicate :hasValue ;
-                                                           swrl:argument1 <urn:swrl#measure2> ;
-                                                           swrl:argument2 <urn:swrl#value>
+                                                           swrl:propertyPredicate :hasTargetData ;
+                                                           swrl:argument2 <urn:swrl#literal1> ;
+                                                           swrl:argument1 <urn:swrl#measure1>
                                                          ] ;
                                                rdf:rest [ rdf:type swrl:AtomList ;
-                                                          rdf:rest rdf:nil ;
-                                                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                      swrl:propertyPredicate :hasSourceObject ;
-                                                                      swrl:argument2 <urn:swrl#individual2> ;
-                                                                      swrl:argument1 <urn:swrl#measure2>
-                                                                    ]
+                                                          rdf:first [ rdf:type swrl:SameIndividualAtom ;
+                                                                      swrl:argument1 <urn:swrl#literal1> ;
+                                                                      swrl:argument2 <urn:swrl#literal2>
+                                                                    ] ;
+                                                          rdf:rest [ rdf:type swrl:AtomList ;
+                                                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                                                            swrl:propertyPredicate :hasValue ;
+                                                                                            swrl:argument1 <urn:swrl#measure2> ;
+                                                                                            swrl:argument2 <urn:swrl#value2>
+                                                                                          ] ;
+                                                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                           rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                                      rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                                                                                  swrl:propertyPredicate :hasValue ;
+                                                                                                                  swrl:argument1 <urn:swrl#measure1> ;
+                                                                                                                  swrl:argument2 <urn:swrl#value1>
+                                                                                                                ] ;
+                                                                                                      rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                                                 rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                                                            rdf:rest rdf:nil ;
+                                                                                                                            rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                                                                                                        swrl:propertyPredicate :hasTargetData ;
+                                                                                                                                        swrl:argument2 <urn:swrl#literal3> ;
+                                                                                                                                        swrl:argument1 <urn:swrl#measure2>
+                                                                                                                                      ]
+                                                                                                                          ] ;
+                                                                                                                 rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                                                                                             swrl:propertyPredicate :hasSourceData ;
+                                                                                                                             swrl:argument2 <urn:swrl#literal1> ;
+                                                                                                                             swrl:argument1 <urn:swrl#measure2>
+                                                                                                                           ]
+                                                                                                               ]
+                                                                                                    ] ;
+                                                                                           rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                                                       swrl:classPredicate :SimilarityMeasure ;
+                                                                                                       swrl:argument1 <urn:swrl#measure2>
+                                                                                                     ]
+                                                                                         ]
+                                                                              ] ;
+                                                                     rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                                                 swrl:propertyPredicate :usesComparisonMethod ;
+                                                                                 swrl:argument1 <urn:swrl#measure1> ;
+                                                                                 swrl:argument2 <urn:swrl#method>
+                                                                               ]
+                                                                   ]
                                                         ]
                                              ]
-                                  ]
-                       ]
+                                  ] ;
+                         rdf:first [ rdf:type swrl:ClassAtom ;
+                                     swrl:classPredicate :SimilarityMeasure ;
+                                     swrl:argument1 <urn:swrl#measure1>
+                                   ]
+                       ] ;
+              rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                          swrl:propertyPredicate :usesComparisonMethod ;
+                          swrl:argument1 <urn:swrl#measure2> ;
+                          swrl:argument2 <urn:swrl#method>
+                        ]
             ]
 ] .
 

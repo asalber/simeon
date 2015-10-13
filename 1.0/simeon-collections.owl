@@ -13,15 +13,19 @@ Ontology(<http://purl.org/ceu/simeon/collections>
 <http://purl.org/ceu/simeon/collections/1.0>
 Import(<http://purl.org/ceu/simeon/1.0>)
 Import(<http://purl.org/ceu/eco/1.0>)
-Annotation(dc:rights "La ontología SIMEON está bajo una licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional ( http://creativecommons.org/licenses/by-sa/4.0/).
+Annotation(dc:license "Licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional (http://creativecommons.org/licenses/by-sa/4.0/)."@es)
+Annotation(rdfs:comment "La ontología SIMEON permite establecer medidas de similitud entre los objetos y colecciones de objetos de las ontologías.
 El módulo Collections añade soporte para la comparación de colecciones usando la ontología E-Collections."@es)
 Annotation(dc:creator "Alfredo Sánchez Alberca (asalber@ceu.es) <http://aprendeconalf.es/foaf.rdf>"@es)
 Annotation(rdfs:comment "SIMEON ontology allow to establish similarity measures between ontology objets and collections.
 The collections module add support for comparing collections using the E-Collections ontology."@en)
-Annotation(rdfs:comment "La ontología SIMEON permite establecer medidas de similitud entre los objetos y colecciones de objetos de las ontologías."@es)
 Annotation(rdfs:label "Ontología SIMEON (Módulo Collections)"@es)
-Annotation(dc:rights "SIMEON ontology is released under Attribution-ShareAlike 4.0 International Creative Commons license: http://creativecommons.org/licenses/by-sa/4.0/"@en)
 Annotation(rdfs:label "SIMEON Ontology (Collections module)"@en)
+Annotation(dc:abstract "SIMEON ontology allow to establish similarity measures between ontology objets and collections.
+The collections module add support for comparing collections using the E-Collections ontology."@en)
+Annotation(dc:license "Attribution-ShareAlike 4.0 International Creative Commons license (http://creativecommons.org/licenses/by-sa/4.0/)"@en)
+Annotation(dc:abstract "La ontología SIMEON permite establecer medidas de similitud entre los objetos y colecciones de objetos de las ontologías.
+El módulo Collections añade soporte para la comparación de colecciones usando la ontología E-Collections."@es)
 
 Declaration(Class(<http://purl.org/ceu/simeon/1.0#BooleansComparisonMethod>))
 Declaration(Class(<http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod>))

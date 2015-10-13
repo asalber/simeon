@@ -24,13 +24,17 @@
     <owl:Ontology rdf:about="http://purl.org/ceu/simeon/collections">
         <rdfs:label xml:lang="en">SIMEON Ontology (Collections module)</rdfs:label>
         <rdfs:label xml:lang="es">Ontología SIMEON (Módulo Collections)</rdfs:label>
+        <dc:license xml:lang="en">Attribution-ShareAlike 4.0 International Creative Commons license (http://creativecommons.org/licenses/by-sa/4.0/)</dc:license>
+        <dc:abstract xml:lang="en">SIMEON ontology allow to establish similarity measures between ontology objets and collections.
+The collections module add support for comparing collections using the E-Collections ontology.</dc:abstract>
         <rdfs:comment xml:lang="en">SIMEON ontology allow to establish similarity measures between ontology objets and collections.
 The collections module add support for comparing collections using the E-Collections ontology.</rdfs:comment>
-        <dc:rights xml:lang="en">SIMEON ontology is released under Attribution-ShareAlike 4.0 International Creative Commons license: http://creativecommons.org/licenses/by-sa/4.0/</dc:rights>
         <dc:creator xml:lang="es">Alfredo Sánchez Alberca (asalber@ceu.es) &lt;http://aprendeconalf.es/foaf.rdf&gt;</dc:creator>
-        <dc:rights xml:lang="es">La ontología SIMEON está bajo una licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional ( http://creativecommons.org/licenses/by-sa/4.0/).
-El módulo Collections añade soporte para la comparación de colecciones usando la ontología E-Collections.</dc:rights>
-        <rdfs:comment xml:lang="es">La ontología SIMEON permite establecer medidas de similitud entre los objetos y colecciones de objetos de las ontologías.</rdfs:comment>
+        <dc:abstract xml:lang="es">La ontología SIMEON permite establecer medidas de similitud entre los objetos y colecciones de objetos de las ontologías.
+El módulo Collections añade soporte para la comparación de colecciones usando la ontología E-Collections.</dc:abstract>
+        <rdfs:comment xml:lang="es">La ontología SIMEON permite establecer medidas de similitud entre los objetos y colecciones de objetos de las ontologías.
+El módulo Collections añade soporte para la comparación de colecciones usando la ontología E-Collections.</rdfs:comment>
+        <dc:license xml:lang="es">Licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional (http://creativecommons.org/licenses/by-sa/4.0/).</dc:license>
         <owl:imports rdf:resource="http://purl.org/ceu/eco/1.0"/>
         <owl:imports rdf:resource="http://purl.org/ceu/simeon/1.0"/>
         <owl:versionIRI rdf:resource="http://purl.org/ceu/simeon/collections/1.0"/>
@@ -46,6 +50,108 @@ El módulo Collections añade soporte para la comparación de colecciones usando
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://purl.org/ceu/eco/1.0#Box -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/eco/1.0#Box"/>
+    
+
+
+    <!-- http://purl.org/ceu/eco/1.0#Collection -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/eco/1.0#Collection"/>
+    
+
+
+    <!-- http://purl.org/ceu/eco/1.0#Combination -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/eco/1.0#Combination"/>
+    
+
+
+    <!-- http://purl.org/ceu/eco/1.0#Heterocombination -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/eco/1.0#Heterocombination"/>
+    
+
+
+    <!-- http://purl.org/ceu/eco/1.0#Heteroranking -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/eco/1.0#Heteroranking"/>
+    
+
+
+    <!-- http://purl.org/ceu/eco/1.0#Heteroset -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/eco/1.0#Heteroset"/>
+    
+
+
+    <!-- http://purl.org/ceu/eco/1.0#Heterovariation -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/eco/1.0#Heterovariation"/>
+    
+
+
+    <!-- http://purl.org/ceu/eco/1.0#List -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/eco/1.0#List"/>
+    
+
+
+    <!-- http://purl.org/ceu/eco/1.0#Multicombination -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/eco/1.0#Multicombination"/>
+    
+
+
+    <!-- http://purl.org/ceu/eco/1.0#Multiheteroset -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/eco/1.0#Multiheteroset"/>
+    
+
+
+    <!-- http://purl.org/ceu/eco/1.0#Multiset -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/eco/1.0#Multiset"/>
+    
+
+
+    <!-- http://purl.org/ceu/eco/1.0#Ranking -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/eco/1.0#Ranking"/>
+    
+
+
+    <!-- http://purl.org/ceu/eco/1.0#Sequence -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/eco/1.0#Sequence"/>
+    
+
+
+    <!-- http://purl.org/ceu/eco/1.0#Set -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/eco/1.0#Set"/>
+    
+
+
+    <!-- http://purl.org/ceu/eco/1.0#Tuple -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/eco/1.0#Tuple"/>
+    
+
+
+    <!-- http://purl.org/ceu/eco/1.0#Variation -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/eco/1.0#Variation"/>
+    
+
+
+    <!-- http://purl.org/ceu/eco/1.0#Vector -->
+
+    <owl:Class rdf:about="http://purl.org/ceu/eco/1.0#Vector"/>
     
 
 
@@ -119,12 +225,6 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon#DataComparisonMeasure"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetData"/>
-                <owl:someValuesFrom rdf:resource="&xsd;boolean"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/1.0#BooleansComparisonMethod"/>
             </owl:Restriction>
@@ -132,6 +232,12 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasSourceData"/>
+                <owl:someValuesFrom rdf:resource="&xsd;boolean"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetData"/>
                 <owl:someValuesFrom rdf:resource="&xsd;boolean"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -147,6 +253,12 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMeasure"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasSourceObject"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Box"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetObject"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Box"/>
             </owl:Restriction>
@@ -155,12 +267,6 @@ El módulo Collections añade soporte para la comparación de colecciones usando
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#BoxesComparisonMethod"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasSourceObject"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Box"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -191,6 +297,12 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon#ObjectComparisonMeasure"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasSourceObject"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Collection"/>
             </owl:Restriction>
@@ -199,12 +311,6 @@ El módulo Collections añade soporte para la comparación de colecciones usando
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetObject"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Collection"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/1.0#CollectionsComparisonMethod"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -221,6 +327,12 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon/collections#SetsComparisonMeasure"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasSourceObject"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Combination"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#CombinationsComparisonMethod"/>
             </owl:Restriction>
@@ -228,12 +340,6 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetObject"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Combination"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasSourceObject"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Combination"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -267,14 +373,14 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon#DataComparisonMeasure"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#DatesComparsionMethod"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasSourceData"/>
+                <owl:someValuesFrom rdf:resource="&xsd;dateTime"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasSourceData"/>
-                <owl:someValuesFrom rdf:resource="&xsd;dateTime"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#DatesComparsionMethod"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -312,14 +418,14 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetObject"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Heterocombination"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#HeterocombinationsComparisonMethod"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#HeterocombinationsComparisonMethod"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetObject"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Heterocombination"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -352,6 +458,12 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon/collections#ListsComparisonMeasure"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetObject"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Heteroranking"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasSourceObject"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Heteroranking"/>
             </owl:Restriction>
@@ -360,12 +472,6 @@ El módulo Collections añade soporte para la comparación de colecciones usando
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#HeterorankingsComparisonMethod"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetObject"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Heteroranking"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -443,14 +549,14 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon/collections#TuplesComparisonMeasure"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#HeterovariationsComparisonMethod"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasSourceObject"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Heterovariation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasSourceObject"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Heterovariation"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#HeterovariationsComparisonMethod"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -534,12 +640,6 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon/collections#MultisetsComparisonMeasure"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#MulticombinationsComparisonMethod"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasSourceObject"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Multicombination"/>
             </owl:Restriction>
@@ -548,6 +648,12 @@ El módulo Collections añade soporte para la comparación de colecciones usando
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetObject"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Multicombination"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#MulticombinationsComparisonMethod"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -579,14 +685,14 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon/collections#CollectionsComparisonMeasure"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMethod"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasSourceObject"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Multiheteroset"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasSourceObject"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Multiheteroset"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMethod"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -623,8 +729,8 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon/collections#MultiheterosetsComparisonMeasure"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#MultisetsComparisonMethod"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetObject"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Multiset"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -635,8 +741,8 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetObject"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Multiset"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#MultisetsComparisonMethod"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -673,14 +779,14 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#NumbersComparisonMethod"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetData"/>
+                <owl:someValuesFrom rdf:resource="&xsd;decimal"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetData"/>
-                <owl:someValuesFrom rdf:resource="&xsd;decimal"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#NumbersComparisonMethod"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -707,13 +813,13 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon/collections#SetsComparisonMeasure"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetObject"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasSourceObject"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Ranking"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasSourceObject"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetObject"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Ranking"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -754,7 +860,7 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon/collections#MultisetsComparisonMeasure"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetObject"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasSourceObject"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Sequence"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -766,7 +872,7 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasSourceObject"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetObject"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Sequence"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -800,6 +906,12 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon/collections#MultisetsComparisonMeasure"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetObject"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Set"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasSourceObject"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Set"/>
             </owl:Restriction>
@@ -808,12 +920,6 @@ El módulo Collections añade soporte para la comparación de colecciones usando
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#SetsComparisonMethod"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetObject"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Set"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -851,14 +957,14 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetData"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#StringsComparisonMethod"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#StringsComparisonMethod"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetData"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -942,7 +1048,7 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         <rdfs:subClassOf rdf:resource="http://purl.org/ceu/simeon/collections#VectorsComparisonMeasure"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetObject"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasSourceObject"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Variation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -954,7 +1060,7 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasSourceObject"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetObject"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Variation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -995,14 +1101,14 @@ El módulo Collections añade soporte para la comparación de colecciones usando
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetObject"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Vector"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#VectorsComparisonMethod"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#usesComparisonMethod"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/simeon/collections#VectorsComparisonMethod"/>
+                <owl:onProperty rdf:resource="http://purl.org/ceu/simeon#hasTargetObject"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/ceu/eco/1.0#Vector"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
