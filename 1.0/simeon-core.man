@@ -14,17 +14,19 @@ Ontology: <http://purl.org/ceu/simeon>
 <http://purl.org/ceu/simeon/1.0>
 
 Annotations: 
+    dc:abstract "La ontología SIMEON permite establecer medidas de similitud entre los objetos y colecciones de objetos de las ontologías."@es,
     rdfs:comment "SIMEON ontology allow to establish similarity measures between ontology objets and collections."@en,
     owl:versionInfo "Versión 1.0 01/07/2015"@es,
+    dc:license "Licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional (http://creativecommons.org/licenses/by-sa/4.0/)."@es,
     dc:creator "Alfredo Sánchez Alberca (asalber@ceu.es) <http://aprendeconalf.es/foaf.rdf>"@es,
-    dc:rights "La ontología SIMEON está bajo una licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional ( http://creativecommons.org/licenses/by-sa/4.0/)."@es,
     owl:versionInfo "Version 1.0 2015/07/01"@en,
     rdfs:comment "La ontología SIMEON permite establecer medidas de similitud entre los objetos y colecciones de objetos de las ontologías."@es,
     rdfs:label "SIMEON Ontology"@en,
-    dc:rights "SIMEON ontology is released under Attribution-ShareAlike 4.0 International Creative Commons license: http://creativecommons.org/licenses/by-sa/4.0/"@en,
-    rdfs:label "Ontología SIMEON"@es
+    dc:abstract "SIMEON ontology allow to establish similarity measures between ontology objets and collections."@en,
+    rdfs:label "Ontología SIMEON"@es,
+    dc:license "Attribution-ShareAlike 4.0 International Creative Commons license (http://creativecommons.org/licenses/by-sa/4.0/)"@en
 
-AnnotationProperty: dc:rights
+AnnotationProperty: dc:license
 
     
 AnnotationProperty: rdfs:seeAlso
@@ -40,6 +42,9 @@ AnnotationProperty: rdfs:comment
 
     
 AnnotationProperty: dc:creator
+
+    
+AnnotationProperty: dc:abstract
 
     
 Datatype: rdfs:Literal
@@ -84,6 +89,9 @@ ObjectProperty: <http://purl.org/ceu/simeon#hasTargetObject>
     Domain: 
         <http://purl.org/ceu/simeon#ObjectComparisonMeasure>
     
+    Range: 
+        owl:Thing
+    
     Characteristics: 
         Functional
     
@@ -120,6 +128,9 @@ ObjectProperty: <http://purl.org/ceu/simeon#hasSourceObject>
     Domain: 
         <http://purl.org/ceu/simeon#ObjectComparisonMeasure>
     
+    Range: 
+        owl:Thing
+    
     Characteristics: 
         Functional
     
@@ -137,18 +148,6 @@ ObjectProperty: <http://purl.org/ceu/simeon#hasReference>
     
     Range: 
         <http://purl.org/dc/terms/BibliographicResource>
-    
-    
-ObjectProperty: <http://purl.org/ceu/simeon#hasRange>
-
-    Annotations: 
-        rdfs:label "tiene rango"@es,
-        rdfs:label "Property that relates a comparison method with the range of values that returns."@en,
-        rdfs:label "has range"@en,
-        rdfs:label "Propiedad que relaciona un método de comparación con el rango de valores que devuelve."@es
-    
-    Domain: 
-        <http://purl.org/ceu/simeon#ComparisonMethod>
     
     
 ObjectProperty: <http://purl.org/ceu/simeon#hasDomain>
@@ -170,6 +169,12 @@ ObjectProperty: <http://purl.org/ceu/simeon#comparesObject>
         rdfs:label "compara objeto"@es,
         rdfs:label "compares object"@en,
         rdfs:comment "Property that relates a comparison method with an individual that is compared with that method."@en
+    
+    Domain: 
+        <http://purl.org/ceu/simeon#ComparisonMethod>
+    
+    Range: 
+        owl:Thing
     
     SubPropertyChain: 
         <http://purl.org/ceu/simeon#usedByComparisonMeasure> o <http://purl.org/ceu/simeon#hasSourceObject>
@@ -200,6 +205,15 @@ ObjectProperty: <http://purl.org/ceu/simeon#usedByComparisonMeasure>
         rdfs:comment "Property that relates a comparison method with a comparison measure calculated with that method."@en,
         rdfs:label "used by comparsion measure"@en,
         rdfs:comment "Propieda que relaciona un método de comparación con una medida de comparación calculada con ese método."@es
+    
+    Domain: 
+        <http://purl.org/ceu/simeon#ComparisonMethod>
+    
+    Range: 
+        <http://purl.org/ceu/simeon#ComparisonMeasure>
+    
+    Characteristics: 
+        InverseFunctional
     
     InverseOf: 
         <http://purl.org/ceu/simeon#usesComparisonMethod>
@@ -234,6 +248,9 @@ DataProperty: <http://purl.org/ceu/simeon#hasSourceData>
     Domain: 
         <http://purl.org/ceu/simeon#DataComparisonMeasure>
     
+    Range: 
+        rdfs:Literal
+    
     Characteristics: 
         Functional
     
@@ -249,6 +266,9 @@ DataProperty: <http://purl.org/ceu/simeon#hasTargetData>
     Domain: 
         <http://purl.org/ceu/simeon#DataComparisonMeasure>
     
+    Range: 
+        rdfs:Literal
+    
     Characteristics: 
         Functional
     
@@ -256,10 +276,12 @@ DataProperty: <http://purl.org/ceu/simeon#hasTargetData>
 Class: <http://purl.org/ceu/simeon#Algorithm>
 
     Annotations: 
-        rdfs:label "Algoritmo"@es,
-        rdfs:seeAlso "La ontología del software: http://theswo.sourceforge.net/"@es,
+        rdfs:seeAlso "The software ontology: http://theswo.sourceforge.net/"@en,
         rdfs:label "Algorithm"@en,
-        rdfs:seeAlso "The software ontology: http://theswo.sourceforge.net/"@en
+        rdfs:comment "Un algoritmo es un procedimiento para realizar unos cálculos."@es,
+        rdfs:comment "An algorithm is a procedure for doing some calculations."@en,
+        rdfs:seeAlso "La ontología del software: http://theswo.sourceforge.net/"@es,
+        rdfs:label "Algoritmo"@es
     
     EquivalentTo: 
         <http://purl.obolibrary.org/obo/IAO_0000064>
@@ -298,10 +320,12 @@ Class: <http://purl.org/ceu/simeon#ObjectiveComparisonMeasure>
 Class: <http://purl.obolibrary.org/obo/IAO_0000064>
 
     Annotations: 
-        rdfs:seeAlso "La ontología de software: http://theswo.sourceforge.net/"@es,
+        rdfs:comment "An algorithm is a procedure for doing some calculations."@en,
+        rdfs:label "Algoritmo"@es,
         rdfs:seeAlso "The software ontology: http://theswo.sourceforge.net/"@en,
+        rdfs:seeAlso "La ontología de software: http://theswo.sourceforge.net/"@es,
         rdfs:label "Algorithm"@en,
-        rdfs:label "Algoritmo"@es
+        rdfs:comment "Un algoritmo es un procedimiento para realizar unos cálculos."@es
     
     EquivalentTo: 
         <http://purl.org/ceu/simeon#Algorithm>
@@ -408,10 +432,10 @@ Class: owl:Thing
 Class: <http://purl.org/ceu/simeon#DataComparisonMethod>
 
     Annotations: 
-        rdfs:comment "A comparison method is a procedure to compare a source literal data with a target literal data that returns a real number, known as comparison measure, that expresses the similarity or dissimilarity degree of the source literal data with the target one."@en,
-        rdfs:comment "Data comparison method"@en,
-        rdfs:comment "Método de comparación de datos"@es,
-        rdfs:comment "Un método de comparación es un procedimiento para comparar un dato literal origen con otro destino que devuelve un número real, conocido como medida de comparación, que expresa el grado de similitud o disimilitud del dato literal origen con el destino."@es
+        rdfs:label "Data comparison method"@en,
+        rdfs:label "Método de comparación de datos"@es,
+        rdfs:comment "Un método de comparación es un procedimiento para comparar un dato literal origen con otro destino que devuelve un número real, conocido como medida de comparación, que expresa el grado de similitud o disimilitud del dato literal origen con el destino."@es,
+        rdfs:comment "A comparison method is a procedure to compare a source literal data with a target literal data that returns a real number, known as comparison measure, that expresses the similarity or dissimilarity degree of the source literal data with the target one."@en
     
     SubClassOf: 
         <http://purl.org/ceu/simeon#ComparisonMethod>
@@ -424,15 +448,17 @@ Class: <http://purl.org/dc/terms/Agent>
 
     Annotations: 
         rdfs:seeAlso "The Dublin Core Ontology: http://dublincore.org/documents/dcmi-terms/"@en,
-        rdfs:label "Agent"@en,
         rdfs:seeAlso "La ontología Dublin Core: http://dublincore.org/documents/dcmi-terms/"@es,
-        rdfs:label "Agente"@es
+        rdfs:label "Agent"@en,
+        rdfs:label "Agente"@es,
+        rdfs:comment "An agent is an entity (person or artefact) capable of acting and doing things."@en,
+        rdfs:comment "Un agente es una entidad (persona o artefacto) capaz de actuar y hacer cosas."@es
     
     
 Class: <http://purl.org/ceu/simeon#NormalizedDissimilarityFunction>
 
     Annotations: 
-        rdfs:label "Una función de disimilitud normalizada es una función de disimilitud con rango el intervalo real [0,1], es decir, que devuelve valores entre 0 y 1."@es,
+        rdfs:comment "Una función de disimilitud normalizada es una función de disimilitud con rango el intervalo real [0,1], es decir, que devuelve valores entre 0 y 1."@es,
         rdfs:label "Función de disimilitud normalizada"@es,
         rdfs:label "Normalized dissimilarity function"@en,
         rdfs:comment "A normalized dissimilarity function is a dissimilarity function with range the real inteval [0,1], that is, that returns values between 0 and 1."@en
@@ -445,9 +471,9 @@ Class: <http://purl.org/ceu/simeon#NormalizedDissimilarityFunction>
 Class: <http://purl.org/ceu/simeon#DataComparisonMeasure>
 
     Annotations: 
-        rdfs:label "Una medida de comparación es un valor que expresa el grado de similitud o disimilitud entre dos datos simples (literales): booleanos, números, fechas, cadenas, etc."@es,
-        rdfs:label "A comparison measure is a value that espresses the similarity or dissimilarity degree between two simple data (literals): booleans, numbers, dates, strings, etc."@en,
         rdfs:label "Data comparison measure"@en,
+        rdfs:comment "A comparison measure is a value that espresses the similarity or dissimilarity degree between two simple data (literals): booleans, numbers, dates, strings, etc."@en,
+        rdfs:comment "Una medida de comparación es un valor que expresa el grado de similitud o disimilitud entre dos datos simples (literales): booleanos, números, fechas, cadenas, etc."@es,
         rdfs:label "Medida de comparación de datos"@es
     
     SubClassOf: 
@@ -602,10 +628,12 @@ Class: <http://purl.org/ceu/simeon#SimilarityFunction>
 Class: <http://purl.org/dc/terms/BibliographicResource>
 
     Annotations: 
+        rdfs:seeAlso "La ontología Dublin Core: http://dublincore.org/documents/dcmi-terms/"@es,
         rdfs:label "Recurso bibliográfico"@es,
-        rdfs:seeAlso "The Dublin Core Ontology: http://dublincore.org/documents/dcmi-terms/"@en,
         rdfs:label "Bibliographic resource"@en,
-        rdfs:seeAlso "La ontología Dublin Core: http://dublincore.org/documents/dcmi-terms/"@es
+        rdfs:comment "A bibliographic resource is a publication (article, book, web page, etc.)"@en,
+        rdfs:comment "Un recurso bibliográfico es una publicación (artículo, libro, página web, etc)."@es,
+        rdfs:seeAlso "The Dublin Core Ontology: http://dublincore.org/documents/dcmi-terms/"@en
     
     
 Class: <http://purl.org/ceu/simeon#SymmetricComparisonMethod>
@@ -625,8 +653,10 @@ c(x,y) = c(y,x) para todo x,y."@es,
 Class: <http://purl.org/ceu/simeon#SubjectiveComparisonMeasure>
 
     Annotations: 
+        rdfs:label "Subjective comparison measure"@en,
+        rdfs:comment "Una medida de comparación subjetiva es una medida realizada con un método de comparación subjetivo, es decir, basado en la percepción, sentimientos u opinión de una persona."@es,
         rdfs:comment "A subjective comparison measure is a measure obtained with a subjective comparison method, that is, based on the perception, feelings or opinion of a person."@en,
-        rdfs:comment "Una medida de comparación subjetiva es una medida realizada con un método de comparación subjetivo, es decir, basado en la percepción, sentimientos u opinión de una persona."@es
+        rdfs:label "Medida de comparación subjetiva"@es
     
     SubClassOf: 
         <http://purl.org/ceu/simeon#ComparisonMeasure>
@@ -771,13 +801,13 @@ Rule:
     <http://purl.org/ceu/simeon#DistanceMeasure>(?measure1), <http://purl.org/ceu/simeon#usesComparisonMethod>(?measure2, ?method), <http://purl.org/ceu/simeon#hasTargetObject>(?measure3, ?individual3), <http://purl.org/ceu/simeon#usesComparisonMethod>(?measure3, ?method), <http://purl.org/ceu/simeon#hasTargetObject>(?measure2, ?individual3), <http://purl.org/ceu/simeon#hasSourceObject>(?measure1, ?individual1), <http://purl.org/ceu/simeon#hasTargetObject>(?measure1, ?individual2), <http://purl.org/ceu/simeon#hasSourceObject>(?measure2, ?individual2), <http://purl.org/ceu/simeon#hasValue>(?measure3, ?value3), swrlb:add(?value4, ?value1, ?value2), <http://purl.org/ceu/simeon#DistanceMeasure>(?measure3), <http://purl.org/ceu/simeon#usesComparisonMethod>(?measure1, ?method), <http://purl.org/ceu/simeon#hasSourceObject>(?measure3, ?individual1), <http://purl.org/ceu/simeon#hasValue>(?measure2, ?value2), <http://purl.org/ceu/simeon#DistanceMeasure>(?measure2), <http://purl.org/ceu/simeon#hasValue>(?measure1, ?value1) -> swrlb:greaterThanOrEqual(?value4, ?value3)
 
 Rule: 
+    <http://purl.org/ceu/simeon#DistanceMeasure>(?measure), <http://purl.org/ceu/simeon#hasTargetData>(?measure, ?literal2), <http://purl.org/ceu/simeon#hasValue>(?measure, 0), <http://purl.org/ceu/simeon#hasSourceData>(?measure, ?literal1) ->  SameAs (?literal1, ?literal2)
+
+Rule: 
     <http://purl.org/ceu/simeon#hasSourceObject>(?measure2, ?individual1), <http://purl.org/ceu/simeon#usesComparisonMethod>(?measure2, ?method), <http://purl.org/ceu/simeon#SimilarityMeasure>(?measure1), <http://purl.org/ceu/simeon#hasTargetObject>(?measure1, ?individual1), <http://purl.org/ceu/simeon#usesComparisonMethod>(?measure1, ?method), <http://purl.org/ceu/simeon#hasValue>(?measure2, ?value2), <http://purl.org/ceu/simeon#hasTargetObject>(?measure2, ?individual3), <http://purl.org/ceu/simeon#hasSourceObject>(?measure1, ?individual1), <http://purl.org/ceu/simeon#SimilarityMeasure>(?measure2),  SameAs (?individual1, ?individual2), <http://purl.org/ceu/simeon#hasValue>(?measure1, ?value1) -> swrlb:greaterThanOrEqual(?value1, ?value2)
 
 Rule: 
     <http://purl.org/ceu/simeon#DistanceMeasure>(?measure1), <http://purl.org/ceu/simeon#usesComparisonMethod>(?measure2, ?method), <http://purl.org/ceu/simeon#hasSourceData>(?measure3, ?literal1), <http://purl.org/ceu/simeon#hasTargetData>(?measure3, ?literal3), <http://purl.org/ceu/simeon#usesComparisonMethod>(?measure3, ?method), <http://purl.org/ceu/simeon#hasSourceData>(?measure2, ?literal2), <http://purl.org/ceu/simeon#hasValue>(?measure3, ?value3), swrlb:add(?value4, ?value1, ?value2), <http://purl.org/ceu/simeon#hasSourceData>(?measure1, ?literal1), <http://purl.org/ceu/simeon#DistanceMeasure>(?measure3), <http://purl.org/ceu/simeon#usesComparisonMethod>(?measure1, ?method), <http://purl.org/ceu/simeon#hasTargetData>(?measure1, ?literal2), <http://purl.org/ceu/simeon#hasValue>(?measure2, ?value2), <http://purl.org/ceu/simeon#DistanceMeasure>(?measure2), <http://purl.org/ceu/simeon#hasValue>(?measure1, ?value1), <http://purl.org/ceu/simeon#hasTargetData>(?measure2, ?literal3) -> swrlb:greaterThanOrEqual(?value4, ?value3)
-
-Rule: 
-    <http://purl.org/ceu/simeon#hasSourceObject>(?measure, ?individual1), <http://purl.org/ceu/simeon#hasTargetObject>(?measure, ?individual2), <http://purl.org/ceu/simeon#DissimilarityMeasure>(?measure),  SameAs (?individual1, ?individual2) -> <http://purl.org/ceu/simeon#hasValue>(?measure, 0)
 
 Rule: 
     <http://purl.org/ceu/simeon#hasTargetObject>(?measure, ?literal2),  SameAs (?literal1, ?literal2), <http://purl.org/ceu/simeon#DissimilarityMeasure>(?measure), <http://purl.org/ceu/simeon#hasSourceData>(?measure, ?literal1) -> <http://purl.org/ceu/simeon#hasValue>(?measure, 0)
@@ -786,7 +816,7 @@ Rule:
     <http://purl.org/ceu/simeon#DistanceMeasure>(?measure), <http://purl.org/ceu/simeon#hasSourceObject>(?measure, ?individual1), <http://purl.org/ceu/simeon#hasTargetObject>(?measure, ?individual2), <http://purl.org/ceu/simeon#hasValue>(?measure, 0) ->  SameAs (?individual1, ?individual2)
 
 Rule: 
-    <http://purl.org/ceu/simeon#DistanceMeasure>(?measure), <http://purl.org/ceu/simeon#hasTargetData>(?measure, ?literal2), <http://purl.org/ceu/simeon#hasValue>(?measure, 0), <http://purl.org/ceu/simeon#hasSourceData>(?measure, ?literal1) ->  SameAs (?literal1, ?literal2)
+    <http://purl.org/ceu/simeon#hasSourceObject>(?measure, ?individual1), <http://purl.org/ceu/simeon#hasTargetObject>(?measure, ?individual2), <http://purl.org/ceu/simeon#DissimilarityMeasure>(?measure),  SameAs (?individual1, ?individual2) -> <http://purl.org/ceu/simeon#hasValue>(?measure, 0)
 
 Rule: 
     <http://purl.org/ceu/simeon#usesComparisonMethod>(?measure2, ?method), <http://purl.org/ceu/simeon#SimilarityMeasure>(?measure1), <http://purl.org/ceu/simeon#hasSourceData>(?measure1, ?literal1), <http://purl.org/ceu/simeon#hasTargetData>(?measure1, ?literal1),  SameAs (?literal1, ?literal2), <http://purl.org/ceu/simeon#usesComparisonMethod>(?measure1, ?method), <http://purl.org/ceu/simeon#hasValue>(?measure2, ?value2), <http://purl.org/ceu/simeon#SimilarityMeasure>(?measure2), <http://purl.org/ceu/simeon#hasValue>(?measure1, ?value1), <http://purl.org/ceu/simeon#hasSourceData>(?measure2, ?literal1), <http://purl.org/ceu/simeon#hasTargetData>(?measure2, ?literal3) -> swrlb:greaterThanOrEqual(?value1, ?value2)

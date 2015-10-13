@@ -16,17 +16,21 @@ Import: <http://purl.org/ceu/simeon/1.0>
 Import: <http://purl.org/ceu/eco/1.0>
 
 Annotations: 
-    dc:rights "La ontología SIMEON está bajo una licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional ( http://creativecommons.org/licenses/by-sa/4.0/).
+    dc:license "Licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional (http://creativecommons.org/licenses/by-sa/4.0/)."@es,
+    rdfs:comment "La ontología SIMEON permite establecer medidas de similitud entre los objetos y colecciones de objetos de las ontologías.
 El módulo Collections añade soporte para la comparación de colecciones usando la ontología E-Collections."@es,
     dc:creator "Alfredo Sánchez Alberca (asalber@ceu.es) <http://aprendeconalf.es/foaf.rdf>"@es,
     rdfs:comment "SIMEON ontology allow to establish similarity measures between ontology objets and collections.
 The collections module add support for comparing collections using the E-Collections ontology."@en,
-    rdfs:comment "La ontología SIMEON permite establecer medidas de similitud entre los objetos y colecciones de objetos de las ontologías."@es,
     rdfs:label "Ontología SIMEON (Módulo Collections)"@es,
-    dc:rights "SIMEON ontology is released under Attribution-ShareAlike 4.0 International Creative Commons license: http://creativecommons.org/licenses/by-sa/4.0/"@en,
-    rdfs:label "SIMEON Ontology (Collections module)"@en
+    rdfs:label "SIMEON Ontology (Collections module)"@en,
+    dc:abstract "SIMEON ontology allow to establish similarity measures between ontology objets and collections.
+The collections module add support for comparing collections using the E-Collections ontology."@en,
+    dc:license "Attribution-ShareAlike 4.0 International Creative Commons license (http://creativecommons.org/licenses/by-sa/4.0/)"@en,
+    dc:abstract "La ontología SIMEON permite establecer medidas de similitud entre los objetos y colecciones de objetos de las ontologías.
+El módulo Collections añade soporte para la comparación de colecciones usando la ontología E-Collections."@es
 
-AnnotationProperty: dc:rights
+AnnotationProperty: dc:license
 
     
 AnnotationProperty: rdfs:seeAlso
@@ -39,6 +43,9 @@ AnnotationProperty: rdfs:comment
 
     
 AnnotationProperty: dc:creator
+
+    
+AnnotationProperty: dc:abstract
 
     
 Datatype: xsd:dateTime
